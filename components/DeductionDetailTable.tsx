@@ -110,12 +110,12 @@ export const DeductionDetailTable: React.FC = () => {
             </tr>
             <tr className="hover:bg-slate-50">
               <td className="px-4 py-3">Bậc 2: Trên 10 - 30 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">15%</td>
+              <td className="px-4 py-3 font-bold text-orange-600">10%</td>
               <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
             </tr>
             <tr className="hover:bg-slate-50">
               <td className="px-4 py-3">Bậc 3: Trên 30 - 60 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">25%</td>
+              <td className="px-4 py-3 font-bold text-orange-600">20%</td>
               <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
             </tr>
             <tr className="hover:bg-slate-50">

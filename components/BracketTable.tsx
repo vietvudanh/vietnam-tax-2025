@@ -30,8 +30,8 @@ export const BracketTable: React.FC = () => {
             <td className="px-4 py-3 border-r border-slate-200">Trên 5 đến 10</td>
             <td className="px-4 py-3 border-r border-slate-200 font-bold">10%</td>
             <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-medium text-slate-900 align-middle bg-green-50/50">Trên 10 - 30</td>
-            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">15%</td>
-            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Nới rộng khoảng cách</td>
+            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">10%</td>
+            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Giảm thuế suất</td>
           </tr>
           <tr className="hover:bg-slate-50">
             <td className="px-4 py-3 border-r border-slate-200">Trên 10 đến 18</td>
@@ -41,8 +41,8 @@ export const BracketTable: React.FC = () => {
             <td className="px-4 py-3 border-r border-slate-200">Trên 18 đến 32</td>
             <td className="px-4 py-3 border-r border-slate-200 font-bold">20%</td>
             <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-medium text-slate-900 align-middle bg-green-50/50">Trên 30 - 60</td>
-            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">25%</td>
-            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Nới rộng khoảng cách</td>
+            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">20%</td>
+            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Giảm thuế suất</td>
           </tr>
           <tr className="hover:bg-slate-50">
             <td className="px-4 py-3 border-r border-slate-200">Trên 32 đến 52</td>

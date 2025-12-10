@@ -57,6 +57,31 @@ const App: React.FC = () => {
                 </li>
               </ul>
             </div>
+
+            <div className="bg-emerald-50 border border-emerald-200 p-5 rounded-xl">
+              <h3 className="font-semibold text-emerald-900 flex items-center gap-2 mb-3">
+                <TrendingDown className="w-5 h-5 text-emerald-600" />
+                Lợi ích từ thay đổi mới
+              </h3>
+              <ul className="space-y-2 text-sm text-emerald-800">
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Người thu nhập thấp/trung bình được giảm thuế đáng kể</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Người có người phụ thuộc được hỗ trợ nhiều hơn</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Mức miễn thuế tăng lên rõ rệt</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Thuế suất các bậc giảm (10% thay vì 10-15%, 20% thay vì 20-25%)</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Right Column: Results */}

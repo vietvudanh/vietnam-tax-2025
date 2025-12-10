@@ -24,8 +24,8 @@ export const NEW_CONFIG: TaxConfig = {
   dependentDeduction: 6_200_000,
   brackets: [
     { min: 0, max: 10, rate: 5, desc: "Nới rộng từ 5 triệu" },
-    { min: 10, max: 30, rate: 15, desc: "Nới rộng khoảng cách" },
-    { min: 30, max: 60, rate: 25, desc: "Nới rộng khoảng cách" },
+    { min: 10, max: 30, rate: 10, desc: "Giảm từ 10-15% xuống 10%" },
+    { min: 30, max: 60, rate: 20, desc: "Giảm từ 20-25% xuống 20%" },
     { min: 60, max: 100, rate: 30, desc: "Ngưỡng mới" },
     { min: 100, max: null, rate: 35, desc: "Tăng từ 80 triệu" },
   ],

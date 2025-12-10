@@ -8,6 +8,7 @@ export interface TaxBracket {
 export interface TaxConfig {
   name: string;
   effectiveDate: string;
+  deductionEffectiveDate?: string; // Optional separate date for deduction changes
   personalDeduction: number; // VND
   dependentDeduction: number; // VND
   brackets: TaxBracket[];
@@ -16,6 +17,11 @@ export interface TaxConfig {
 export interface TaxResult {
   grossIncome: number;
   insurance: number;
+  insuranceBreakdown?: {
+    bhxh: number;
+    bhyt: number;
+    bhtn: number;
+  };
   incomeBeforeTax: number;
   personalDeduction: number;
   dependentDeduction: number;

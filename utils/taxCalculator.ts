@@ -2,7 +2,7 @@ import { TaxConfig, TaxResult, ComparisonResult } from '../types';
 
 export const OLD_CONFIG: TaxConfig = {
   name: "Quy định cũ (Hiện hành)",
-  effectiveDate: "Trước 1/7/2025",
+  effectiveDate: "Trước 1/7/2026",
   personalDeduction: 11_000_000,
   dependentDeduction: 4_400_000,
   brackets: [
@@ -18,7 +18,8 @@ export const OLD_CONFIG: TaxConfig = {
 
 export const NEW_CONFIG: TaxConfig = {
   name: "Quy định mới (Đề xuất)",
-  effectiveDate: "Sau 1/7/2025",
+  effectiveDate: "Sau 1/7/2026",
+  deductionEffectiveDate: "Từ 1/1/2026",
   personalDeduction: 15_500_000,
   dependentDeduction: 6_200_000,
   brackets: [
@@ -28,6 +29,27 @@ export const NEW_CONFIG: TaxConfig = {
     { min: 60, max: 100, rate: 30, desc: "Ngưỡng mới" },
     { min: 100, max: null, rate: 35, desc: "Tăng từ 80 triệu" },
   ],
+};
+
+// BHXH (Social Insurance) constants
+export const LUONG_CO_BAN = 2_340_000; // Lương cơ bản (base salary)
+export const BHXH_MAX_MULTIPLIER = 20; // Max is 20 times lương cơ bản
+export const BHXH_MAX_CAP = LUONG_CO_BAN * BHXH_MAX_MULTIPLIER; // 46,800,000 VND
+
+// Insurance rates
+export const INSURANCE_RATES = {
+  bhxh: 0.08,      // 8% BHXH (Social Insurance)
+  bhyt: 0.015,     // 1.5% BHYT (Health Insurance)
+  bhtn: 0.01,      // 1% BHTN (Unemployment Insurance)
+  total: 0.105     // 10.5% Total
+};
+
+/**
+ * Calculate BHXH based on gross income with cap at 20x lương cơ bản
+ */
+export const calculateBHXH = (grossIncome: number): number => {
+  const baseForBHXH = Math.min(grossIncome, BHXH_MAX_CAP);
+  return baseForBHXH * INSURANCE_RATES.total;
 };
 
 const calculateTaxForConfig = (
@@ -91,9 +113,18 @@ const calculateTaxForConfig = (
 
   const taxAmount = totalTaxMillion * 1_000_000;
 
+  // Calculate insurance breakdown
+  const baseForBHXH = Math.min(gross, BHXH_MAX_CAP);
+  const insuranceBreakdown = {
+    bhxh: baseForBHXH * INSURANCE_RATES.bhxh,
+    bhyt: baseForBHXH * INSURANCE_RATES.bhyt,
+    bhtn: baseForBHXH * INSURANCE_RATES.bhtn,
+  };
+
   return {
     grossIncome: gross,
     insurance,
+    insuranceBreakdown,
     incomeBeforeTax,
     personalDeduction: config.personalDeduction,
     dependentDeduction: totalDependentDeduction,

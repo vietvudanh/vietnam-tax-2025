@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calculator, Users, ShieldCheck } from 'lucide-react';
+import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
 
 interface InputFormProps {
   onCalculate: (gross: number, dependents: number, insurance: number) => void;
@@ -17,8 +18,8 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
 
   useEffect(() => {
     if (autoInsurance) {
-      // 10.5% standard deduction estimate
-      const estimated = gross * 0.105;
+      // Use the new BHXH calculation with cap
+      const estimated = calculateBHXH(gross);
       setInsuranceStr(estimated.toString());
     }
   }, [gross, autoInsurance]);
@@ -119,6 +120,9 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
             />
             <span className="absolute right-4 top-3 text-slate-400 text-sm">VND</span>
           </div>
+          <p className="text-xs text-slate-400 mt-1">
+            Áp dụng mức tối đa {formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)
+          </p>
         </div>
       </div>
     </div>

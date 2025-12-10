@@ -8,7 +8,7 @@ export const BracketTable: React.FC = () => {
         <thead className="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
           <tr>
             <th colSpan={2} className="px-4 py-3 text-center border-r border-slate-200 bg-slate-100">Quy định cũ (7 bậc)</th>
-            <th colSpan={3} className="px-4 py-3 text-center bg-green-50 text-green-800">Quy định mới (5 bậc) - Từ 1/7/2025</th>
+            <th colSpan={3} className="px-4 py-3 text-center bg-green-50 text-green-800">Quy định mới (5 bậc) - Từ 1/7/2026</th>
           </tr>
           <tr>
             <th className="px-4 py-2 border-r border-slate-200">Thu nhập tính thuế (Tr đ)</th>
@@ -30,8 +30,8 @@ export const BracketTable: React.FC = () => {
             <td className="px-4 py-3 border-r border-slate-200">Trên 5 đến 10</td>
             <td className="px-4 py-3 border-r border-slate-200 font-bold">10%</td>
             <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-medium text-slate-900 align-middle bg-green-50/50">Trên 10 - 30</td>
-            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">15%</td>
-            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Nới rộng khoảng cách</td>
+            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">10%</td>
+            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Giảm thuế suất</td>
           </tr>
           <tr className="hover:bg-slate-50">
             <td className="px-4 py-3 border-r border-slate-200">Trên 10 đến 18</td>
@@ -41,8 +41,8 @@ export const BracketTable: React.FC = () => {
             <td className="px-4 py-3 border-r border-slate-200">Trên 18 đến 32</td>
             <td className="px-4 py-3 border-r border-slate-200 font-bold">20%</td>
             <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-medium text-slate-900 align-middle bg-green-50/50">Trên 30 - 60</td>
-            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">25%</td>
-            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Nới rộng khoảng cách</td>
+            <td rowSpan={2} className="px-4 py-3 border-r border-slate-200 font-bold align-middle bg-green-50/50 text-green-700">20%</td>
+            <td rowSpan={2} className="px-4 py-3 text-slate-500 italic align-middle">Giảm thuế suất</td>
           </tr>
           <tr className="hover:bg-slate-50">
             <td className="px-4 py-3 border-r border-slate-200">Trên 32 đến 52</td>

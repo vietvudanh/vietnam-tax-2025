@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
+import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { calculateComparison, formatCurrency } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle } from 'lucide-react';
@@ -26,8 +27,8 @@ const App: React.FC = () => {
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900">Tính Thuế TNCN 2025</h1>
-              <p className="text-xs text-slate-500">So sánh luật cũ & mới (Hiệu lực 1/7/2025)</p>
+              <h1 className="text-xl font-bold text-slate-900">Tính Thuế TNCN 2026</h1>
+              <p className="text-xs text-slate-500">So sánh luật cũ & mới (Hiệu lực 1/7/2026)</p>
             </div>
           </div>
         </div>
@@ -43,7 +44,7 @@ const App: React.FC = () => {
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl">
               <h3 className="font-semibold text-blue-900 flex items-center gap-2 mb-3">
                 <Info className="w-5 h-5 text-blue-600" />
-                Thông tin giảm trừ mới
+                Thông tin giảm trừ mới (từ 1/1/2026)
               </h3>
               <ul className="space-y-3 text-sm text-blue-800">
                 <li className="flex justify-between border-b border-blue-200 pb-2">
@@ -53,6 +54,31 @@ const App: React.FC = () => {
                 <li className="flex justify-between">
                   <span>Người phụ thuộc:</span>
                   <span className="font-bold">4.4tr → 6.2tr</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-emerald-50 border border-emerald-200 p-5 rounded-xl">
+              <h3 className="font-semibold text-emerald-900 flex items-center gap-2 mb-3">
+                <TrendingDown className="w-5 h-5 text-emerald-600" />
+                Lợi ích từ thay đổi mới
+              </h3>
+              <ul className="space-y-2 text-sm text-emerald-800">
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Người thu nhập thấp/trung bình được giảm thuế đáng kể</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Người có người phụ thuộc được hỗ trợ nhiều hơn</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Mức miễn thuế tăng lên rõ rệt</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Thuế suất các bậc giảm (10% thay vì 10-15%, 20% thay vì 20-25%)</span>
                 </li>
               </ul>
             </div>
@@ -90,7 +116,7 @@ const App: React.FC = () => {
                   {/* NEW CARD */}
                   <div className="bg-white border-2 border-green-500 shadow-sm rounded-xl p-6 relative overflow-hidden">
                     <div className="absolute top-0 right-0 px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-bl-lg">
-                      MỚI (SAU 1/7/2025)
+                      MỚI (SAU 1/7/2026)
                     </div>
                     <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net)</div>
                     <div className="text-3xl font-bold text-emerald-600 mb-4">
@@ -139,6 +165,9 @@ const App: React.FC = () => {
                   </div>
                   <BracketTable />
                 </div>
+
+                {/* Deduction Detail Table */}
+                <DeductionDetailTable />
               </>
             )}
             

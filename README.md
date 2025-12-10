@@ -2,9 +2,11 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Vietnam Tax Calculator 2025
 
-This contains everything you need to run your app locally.
+A Vietnam Personal Income Tax Calculator comparing the old and new tax laws (effective July 1, 2025).
+
+🌐 **Live Demo**: https://vietvudanh.github.io/vietnam-tax-2025/
 
 View your app in AI Studio: https://ai.studio/apps/drive/1Ow3bKeIIdlrhBjB5_CFfT1H3qBXF1xsn
 

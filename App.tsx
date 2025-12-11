@@ -3,18 +3,20 @@ import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
-import { calculateComparison, formatCurrency } from './utils/taxCalculator';
+import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle } from 'lucide-react';
 
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
 
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
-  const handleCalculate = useCallback((gross: number, dependents: number, insurance: number) => {
-    const calcResult = calculateComparison(gross, dependents, insurance);
+  const handleCalculate = useCallback((gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => {
+    const calcResult = calculateComparison(gross, dependents, region, insurance);
     setResult(calcResult);
+    setSelectedRegion(region);
   }, []);
 
   return (
@@ -146,14 +148,174 @@ const App: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Chart Section */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                 {/* Chart Section */}
+                 <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                    <h3 className="text-lg font-bold text-slate-800 mb-4">Biểu đồ so sánh</h3>
                    <ComparisonChart data={result} />
-                </div>
+                 </div>
 
-                {/* Detailed Table Section */}
-                <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                 {/* Detail Breakdown */}
+                 {result && (
+                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100">
+                         <h3 className="text-lg font-bold text-slate-800">Diễn giải chi tiết (VNĐ)</h3>
+                         <p className="text-sm text-slate-500 mt-1">
+                           Áp dụng vùng {selectedRegion} - Mức lương tối thiểu {formatCurrency(REGIONAL_MIN_WAGE[selectedRegion])}
+                         </p>
+                       </div>
+                       <div className="overflow-x-auto">
+                         <table className="min-w-full text-sm text-left text-slate-700">
+                           <thead className="bg-slate-50 text-xs text-slate-500">
+                             <tr>
+                               <th className="px-4 py-3">Diễn giải</th>
+                               <th className="px-4 py-3 text-right">QUY ĐỊNH CŨ</th>
+                               <th className="px-4 py-3 text-right">MỚI (SAU 1/7/2026)</th>
+                             </tr>
+                           </thead>
+                           <tbody className="divide-y divide-slate-100">
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Lương GROSS</th>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.grossIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.grossIncome)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Bảo hiểm xã hội (8%)</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhxh || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhxh || 0)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Bảo hiểm y tế (1.5%)</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhyt || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhyt || 0)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Bảo hiểm thất nghiệp (1%)</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhtn || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhtn || 0)}</td>
+                             </tr>
+                             <tr className="bg-slate-50">
+                               <th className="px-4 py-3 font-semibold">Thu nhập trước thuế</th>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.incomeBeforeTax)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.incomeBeforeTax)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Giảm trừ bản thân</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.personalDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.personalDeduction)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Giảm trừ người phụ thuộc</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.dependentDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.dependentDeduction)}</td>
+                             </tr>
+                             <tr className="bg-slate-50">
+                               <th className="px-4 py-3 font-semibold">Thu nhập chịu thuế</th>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.taxableIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.taxableIncome)}</td>
+                             </tr>
+                             <tr>
+                               <th className="px-4 py-3 font-semibold">Thuế thu nhập cá nhân</th>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.taxAmount)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.taxAmount)}</td>
+                             </tr>
+                             <tr className="bg-emerald-50">
+                               <th className="px-4 py-3 font-semibold">Lương NET</th>
+                               <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.oldReg.netIncome)}</td>
+                               <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.newReg.netIncome)}</td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+
+                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100">
+                         <h3 className="text-lg font-bold text-slate-800">(*) Chi tiết thuế thu nhập cá nhân (VNĐ)</h3>
+                         <p className="text-sm text-slate-500 mt-1">Diễn giải theo từng bậc lũy tiến</p>
+                       </div>
+                       <div className="overflow-x-auto">
+                         <table className="min-w-full text-sm text-left text-slate-700">
+                           <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+                             <tr>
+                               <th className="px-4 py-3">Mức chịu thuế</th>
+                               <th className="px-4 py-3 text-right">Thuế suất</th>
+                               <th className="px-4 py-3 text-right">Tiền nộp</th>
+                             </tr>
+                           </thead>
+                           <tbody className="divide-y divide-slate-100">
+                             {result.newReg.bracketsBreakdown.length === 0 && (
+                               <tr>
+                                 <td className="px-4 py-3" colSpan={3}>Không phát sinh thuế</td>
+                               </tr>
+                             )}
+                             {result.newReg.bracketsBreakdown.map((item, idx) => (
+                               <tr key={idx}>
+                                 <td className="px-4 py-3">
+                                   Bậc {item.level} - Thu nhập trong bậc: {formatCurrency(item.amountInBracket)}
+                                 </td>
+                                 <td className="px-4 py-3 text-right">{item.rate}%</td>
+                                 <td className="px-4 py-3 text-right">{formatCurrency(item.tax)}</td>
+                               </tr>
+                             ))}
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 )}
+
+                 {/* Employer contribution table */}
+                 {result && (
+                   <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                     <div className="p-6 border-b border-slate-100">
+                       <h3 className="text-lg font-bold text-slate-800">Người sử dụng lao động trả (VNĐ)</h3>
+                       <p className="text-sm text-slate-500 mt-1">Tính trên mức đóng bảo hiểm: {formatCurrency(result.newReg.insuranceBase || 0)}</p>
+                     </div>
+                     <div className="overflow-x-auto">
+                       <table className="min-w-full text-sm text-left text-slate-700">
+                         <tbody className="divide-y divide-slate-100">
+                           <tr>
+                             <th className="px-4 py-3 font-semibold">Lương GROSS</th>
+                             <td className="px-4 py-3">{formatCurrency(result.newReg.grossIncome)}</td>
+                           </tr>
+                           <tr>
+                             <th className="px-4 py-3 font-semibold">BHXH (17%)</th>
+                             <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhxh)}</td>
+                           </tr>
+                           <tr>
+                             <th className="px-4 py-3 font-semibold">BHYT (3%)</th>
+                             <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhyt)}</td>
+                           </tr>
+                           <tr>
+                             <th className="px-4 py-3 font-semibold">BHTN (1%)</th>
+                             <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtn)}</td>
+                           </tr>
+                           <tr>
+                             <th className="px-4 py-3 font-semibold">BHTNLĐ-BNN (0.5%)</th>
+                             <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtnld_bnn)}</td>
+                           </tr>
+                           <tr className="bg-slate-50">
+                             <th className="px-4 py-3 font-semibold">Tổng cộng</th>
+                             <td className="px-4 py-3 font-bold text-slate-900">
+                               {formatCurrency(
+                                 result.newReg.grossIncome +
+                                   (result.newReg.insuranceBase || 0) *
+                                     (EMPLOYER_RATES.bhxh +
+                                       EMPLOYER_RATES.bhyt +
+                                       EMPLOYER_RATES.bhtn +
+                                       EMPLOYER_RATES.bhtnld_bnn)
+                               )}
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
+                     </div>
+                   </div>
+                 )}
+
+                 {/* Detailed Table Section */}
+                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   <div className="p-6 border-b border-slate-100">
                     <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                        <AlertCircle className="w-5 h-5 text-orange-500" />

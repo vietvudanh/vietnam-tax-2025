@@ -10,6 +10,16 @@ A Vietnam Personal Income Tax Calculator comparing the old and new tax laws (eff
 
 View your app in AI Studio: https://ai.studio/apps/drive/1Ow3bKeIIdlrhBjB5_CFfT1H3qBXF1xsn
 
+## Project Purpose
+
+- Cho phép nhập lương, người phụ thuộc và vùng lương tối thiểu để tự động tính bảo hiểm, thuế TNCN.
+- So sánh nhanh thu nhập thực lĩnh giữa quy định cũ và mới (hiệu lực 01/07/2025), kèm diễn giải chi tiết.
+- Trình bày bảng thuế lũy tiến, giảm trừ gia cảnh và các khoản đóng bảo hiểm cho người lao động và doanh nghiệp.
+
+## Screenshot
+
+![Vietnam Tax Calculator 2025](https://github.com/user-attachments/assets/76c563a7-4ac1-4550-9d0c-a725ad942ff4)
+
 ## Run Locally
 
 **Prerequisites:**  Node.js

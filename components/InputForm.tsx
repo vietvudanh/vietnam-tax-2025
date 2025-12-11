@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Calculator, Users, ShieldCheck } from 'lucide-react';
-import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
+import { calculateBHXH, formatCurrency, BHXH_MAX_CAP, REGIONAL_MIN_WAGE } from '../utils/taxCalculator';
 
 interface InputFormProps {
-  onCalculate: (gross: number, dependents: number, insurance: number) => void;
+  onCalculate: (gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => void;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
@@ -11,22 +11,24 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
   const [dependents, setDependents] = useState<number>(0);
   const [insuranceStr, setInsuranceStr] = useState<string>('');
   const [autoInsurance, setAutoInsurance] = useState<boolean>(true);
+  const [region, setRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
 
   // Parse strings to numbers safely
   const gross = parseFloat(grossStr.replace(/[^0-9.]/g, '')) || 0;
-  const insurance = parseFloat(insuranceStr.replace(/[^0-9.]/g, '')) || 0;
+  const parsedInsurance = parseFloat(insuranceStr.replace(/[^0-9.]/g, '')) || 0;
+  const insurance = autoInsurance ? calculateBHXH(gross, region) : parsedInsurance;
 
   useEffect(() => {
     if (autoInsurance) {
       // Use the new BHXH calculation with cap
-      const estimated = calculateBHXH(gross);
+      const estimated = calculateBHXH(gross, region);
       setInsuranceStr(estimated.toString());
     }
-  }, [gross, autoInsurance]);
+  }, [gross, autoInsurance, region]);
 
   useEffect(() => {
-    onCalculate(gross, dependents, insurance);
-  }, [gross, dependents, insurance, onCalculate]);
+    onCalculate(gross, dependents, insurance, region);
+  }, [gross, dependents, insurance, region, onCalculate]);
 
   const handleGrossChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGrossStr(e.target.value);
@@ -122,6 +124,35 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           </div>
           <p className="text-xs text-slate-400 mt-1">
             Áp dụng mức tối đa {formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)
+          </p>
+        </div>
+
+        {/* Region Selection */}
+        <div>
+          <p className="text-sm font-medium text-slate-600 mb-2">Vùng lương tối thiểu</p>
+          <div className="grid grid-cols-2 gap-3">
+            {(['I', 'II', 'III', 'IV'] as const).map((r) => (
+              <label
+                key={r}
+                className={`border rounded-lg p-3 cursor-pointer flex items-center justify-between ${region === r ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:border-slate-300'}`}
+              >
+                <div>
+                  <div className="font-semibold text-slate-800">Vùng {r}</div>
+                  <div className="text-xs text-slate-500">Mức tối thiểu: {formatCurrency(REGIONAL_MIN_WAGE[r])}</div>
+                </div>
+                <input
+                  type="radio"
+                  name="region"
+                  value={r}
+                  checked={region === r}
+                  onChange={() => setRegion(r)}
+                  className="w-4 h-4 text-blue-600 border-slate-300"
+                />
+              </label>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 mt-2">
+            Dùng để áp dụng mức lương tối thiểu vùng khi tính đóng bảo hiểm (áp dụng từ 01/07/2025)
           </p>
         </div>
       </div>

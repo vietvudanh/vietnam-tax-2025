@@ -35,6 +35,12 @@ export const NEW_CONFIG: TaxConfig = {
 export const LUONG_CO_BAN = 2_340_000; // Lương cơ bản (base salary)
 export const BHXH_MAX_MULTIPLIER = 20; // Max is 20 times lương cơ bản
 export const BHXH_MAX_CAP = LUONG_CO_BAN * BHXH_MAX_MULTIPLIER; // 46,800,000 VND
+export const REGIONAL_MIN_WAGE: Record<'I' | 'II' | 'III' | 'IV', number> = {
+  I: 4_960_000,
+  II: 4_410_000,
+  III: 3_860_000,
+  IV: 3_450_000,
+};
 
 // Insurance rates
 export const INSURANCE_RATES = {
@@ -43,12 +49,19 @@ export const INSURANCE_RATES = {
   bhtn: 0.01,      // 1% BHTN (Unemployment Insurance)
   total: 0.105     // 10.5% Total
 };
+export const EMPLOYER_RATES = {
+  bhxh: 0.17,
+  bhyt: 0.03,
+  bhtn: 0.01,
+  bhtnld_bnn: 0.005,
+};
 
 /**
  * Calculate BHXH based on gross income with cap at 20x lương cơ bản
  */
-export const calculateBHXH = (grossIncome: number): number => {
-  const baseForBHXH = Math.min(grossIncome, BHXH_MAX_CAP);
+export const calculateBHXH = (grossIncome: number, region: 'I' | 'II' | 'III' | 'IV' = 'I'): number => {
+  const regionFloor = REGIONAL_MIN_WAGE[region];
+  const baseForBHXH = Math.min(Math.max(grossIncome, regionFloor), BHXH_MAX_CAP);
   return baseForBHXH * INSURANCE_RATES.total;
 };
 
@@ -114,16 +127,18 @@ const calculateTaxForConfig = (
   const taxAmount = totalTaxMillion * 1_000_000;
 
   // Calculate insurance breakdown
-  const baseForBHXH = Math.min(gross, BHXH_MAX_CAP);
+  const insuranceBaseRaw = insurance / INSURANCE_RATES.total || 0;
+  const insuranceBase = Math.min(Math.max(insuranceBaseRaw, 0), BHXH_MAX_CAP);
   const insuranceBreakdown = {
-    bhxh: baseForBHXH * INSURANCE_RATES.bhxh,
-    bhyt: baseForBHXH * INSURANCE_RATES.bhyt,
-    bhtn: baseForBHXH * INSURANCE_RATES.bhtn,
+    bhxh: insuranceBase * INSURANCE_RATES.bhxh,
+    bhyt: insuranceBase * INSURANCE_RATES.bhyt,
+    bhtn: insuranceBase * INSURANCE_RATES.bhtn,
   };
 
   return {
     grossIncome: gross,
     insurance,
+    insuranceBase,
     insuranceBreakdown,
     incomeBeforeTax,
     personalDeduction: config.personalDeduction,

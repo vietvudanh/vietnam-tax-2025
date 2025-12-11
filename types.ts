@@ -17,6 +17,7 @@ export interface TaxConfig {
 export interface TaxResult {
   grossIncome: number;
   insurance: number;
+  insuranceBase?: number;
   insuranceBreakdown?: {
     bhxh: number;
     bhyt: number;

@@ -1,41 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { Calculator, Users, ShieldCheck } from 'lucide-react';
-import { calculateBHXH, formatCurrency, BHXH_MAX_CAP, REGIONAL_MIN_WAGE } from '../utils/taxCalculator';
+import { calculateBHXH, formatCurrency, BHXH_MAX_CAP, REGIONAL_MIN_WAGE, INSURANCE_RATES } from '../utils/taxCalculator';
 
 interface InputFormProps {
   onCalculate: (gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => void;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
-  const [grossStr, setGrossStr] = useState<string>('30000000');
+  const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
   const [insuranceStr, setInsuranceStr] = useState<string>('');
   const [autoInsurance, setAutoInsurance] = useState<boolean>(true);
   const [region, setRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
 
   // Parse strings to numbers safely
-  const gross = parseFloat(grossStr.replace(/[^0-9.]/g, '')) || 0;
-  const parsedInsurance = parseFloat(insuranceStr.replace(/[^0-9.]/g, '')) || 0;
-  const insurance = autoInsurance ? calculateBHXH(gross, region) : parsedInsurance;
+  const gross = parseFloat(grossStr.replace(/[^0-9]/g, '')) || 0;
+  const parsedInsurance = parseFloat(insuranceStr.replace(/[^0-9]/g, '')) || 0;
+  const insuranceTotal = autoInsurance ? calculateBHXH(gross, region) : parsedInsurance;
+  // When autoInsurance is false, we expect insurance input to be a TOTAL value (VND).
+  // Convert total insurance back to the salary base used to compute it (approx) to pass as customInsuranceSalary.
+  const parsedInsuranceBase = parsedInsurance > 0 ? Math.round(parsedInsurance / INSURANCE_RATES.total) : 0;
+  const customInsuranceSalaryToPass = autoInsurance ? null : parsedInsuranceBase;
 
   useEffect(() => {
     if (autoInsurance) {
       // Use the new BHXH calculation with cap
       const estimated = calculateBHXH(gross, region);
-      setInsuranceStr(estimated.toString());
+      setInsuranceStr(estimated.toLocaleString('vi-VN'));
     }
   }, [gross, autoInsurance, region]);
 
   useEffect(() => {
-    onCalculate(gross, dependents, insurance, region);
-  }, [gross, dependents, insurance, region, onCalculate]);
+    onCalculate(gross, dependents, customInsuranceSalaryToPass, region);
+  }, [gross, dependents, customInsuranceSalaryToPass, region, onCalculate]);
 
   const handleGrossChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGrossStr(e.target.value);
+    const value = e.target.value;
+    const cleaned = value.replace(/[^0-9]/g, '');
+    const num = parseInt(cleaned) || 0;
+    setGrossStr(num.toLocaleString('vi-VN'));
   };
 
   const handleInsuranceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInsuranceStr(e.target.value);
+    const value = e.target.value;
+    const cleaned = value.replace(/[^0-9]/g, '');
+    const num = parseInt(cleaned) || 0;
+    setInsuranceStr(num.toLocaleString('vi-VN'));
     setAutoInsurance(false);
   };
 
@@ -54,11 +64,11 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           </label>
           <div className="relative">
             <input
-              type="number"
+              type="text"
               value={grossStr}
               onChange={handleGrossChange}
               className="w-full pl-4 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all font-semibold text-slate-800"
-              placeholder="e.g. 30000000"
+              placeholder="e.g. 100,000,000"
             />
             <span className="absolute right-4 top-3 text-slate-400 text-sm">VND</span>
           </div>
@@ -113,7 +123,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           </div>
           <div className="relative">
             <input
-              type="number"
+              type="text"
               value={insuranceStr}
               onChange={handleInsuranceChange}
               disabled={autoInsurance}

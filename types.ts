@@ -14,6 +14,24 @@ export interface TaxConfig {
   brackets: TaxBracket[];
 }
 
+export interface InsuranceBreakdown {
+  social: number;
+  health: number;
+  unemployment: number;
+  total: number;
+}
+
+export type Region = 'I' | 'II' | 'III' | 'IV';
+
+export const REGIONS: Record<Region, { minWage: number }> = {
+  I: { minWage: 4_960_000 },
+  II: { minWage: 4_160_000 },
+  III: { minWage: 3_640_000 },
+  IV: { minWage: 3_250_000 },
+};
+
+export const BASE_SALARY_2024 = 2_340_000;
+
 export interface TaxResult {
   grossIncome: number;
   insurance: number;
@@ -23,6 +41,7 @@ export interface TaxResult {
     bhyt: number;
     bhtn: number;
   };
+  insuranceDetails: InsuranceBreakdown;
   incomeBeforeTax: number;
   personalDeduction: number;
   dependentDeduction: number;

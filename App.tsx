@@ -14,7 +14,7 @@ const App: React.FC = () => {
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
   const handleCalculate = useCallback((gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => {
-    const calcResult = calculateComparison(gross, dependents, insurance);
+    const calcResult = calculateComparison(gross, dependents, region, insurance);
     setResult(calcResult);
     setSelectedRegion(region);
   }, []);
@@ -166,52 +166,63 @@ const App: React.FC = () => {
                        </div>
                        <div className="overflow-x-auto">
                          <table className="min-w-full text-sm text-left text-slate-700">
+                           <thead className="bg-slate-50 text-xs text-slate-500">
+                             <tr>
+                               <th className="px-4 py-3">Diễn giải</th>
+                               <th className="px-4 py-3 text-right">QUY ĐỊNH CŨ</th>
+                               <th className="px-4 py-3 text-right">MỚI (SAU 1/7/2026)</th>
+                             </tr>
+                           </thead>
                            <tbody className="divide-y divide-slate-100">
                              <tr>
                                <th className="px-4 py-3 font-semibold">Lương GROSS</th>
-                               <td className="px-4 py-3">{formatCurrency(result.newReg.grossIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.grossIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.grossIncome)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Bảo hiểm xã hội (8%)</th>
-                               <td className="px-4 py-3 text-red-500">
-                                 - {formatCurrency(result.newReg.insuranceBreakdown?.bhxh || 0)}
-                               </td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhxh || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhxh || 0)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Bảo hiểm y tế (1.5%)</th>
-                               <td className="px-4 py-3 text-red-500">
-                                 - {formatCurrency(result.newReg.insuranceBreakdown?.bhyt || 0)}
-                               </td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhyt || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhyt || 0)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Bảo hiểm thất nghiệp (1%)</th>
-                               <td className="px-4 py-3 text-red-500">
-                                 - {formatCurrency(result.newReg.insuranceBreakdown?.bhtn || 0)}
-                               </td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhtn || 0)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhtn || 0)}</td>
                              </tr>
                              <tr className="bg-slate-50">
                                <th className="px-4 py-3 font-semibold">Thu nhập trước thuế</th>
-                               <td className="px-4 py-3">{formatCurrency(result.newReg.incomeBeforeTax)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.incomeBeforeTax)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.incomeBeforeTax)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Giảm trừ bản thân</th>
-                               <td className="px-4 py-3 text-red-500">- {formatCurrency(result.newReg.personalDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.personalDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.personalDeduction)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Giảm trừ người phụ thuộc</th>
-                               <td className="px-4 py-3 text-red-500">- {formatCurrency(result.newReg.dependentDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.dependentDeduction)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.dependentDeduction)}</td>
                              </tr>
                              <tr className="bg-slate-50">
                                <th className="px-4 py-3 font-semibold">Thu nhập chịu thuế</th>
-                               <td className="px-4 py-3">{formatCurrency(result.newReg.taxableIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.taxableIncome)}</td>
+                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.taxableIncome)}</td>
                              </tr>
                              <tr>
                                <th className="px-4 py-3 font-semibold">Thuế thu nhập cá nhân</th>
-                               <td className="px-4 py-3 text-red-500">- {formatCurrency(result.newReg.taxAmount)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.taxAmount)}</td>
+                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.taxAmount)}</td>
                              </tr>
                              <tr className="bg-emerald-50">
                                <th className="px-4 py-3 font-semibold">Lương NET</th>
-                               <td className="px-4 py-3 font-bold text-emerald-700">{formatCurrency(result.newReg.netIncome)}</td>
+                               <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.oldReg.netIncome)}</td>
+                               <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.newReg.netIncome)}</td>
                              </tr>
                            </tbody>
                          </table>

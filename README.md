@@ -10,6 +10,8 @@ A Vietnam Personal Income Tax Calculator comparing the old and new tax laws (eff
 
 View your app in AI Studio: https://ai.studio/apps/drive/1Ow3bKeIIdlrhBjB5_CFfT1H3qBXF1xsn
 
+[![GitHub Repo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)](https://github.com/vietvudanh/vietnam-tax-2025) [vietvudanh/vietnam-tax-2025](https://github.com/vietvudanh/vietnam-tax-2025)
+
 ## Project Purpose
 
 - Cho phép nhập lương, người phụ thuộc và vùng lương tối thiểu để tự động tính bảo hiểm, thuế TNCN.
@@ -28,3 +30,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1Ow3bKeIIdlrhBjB5_CFfT1
    `npm install`
 2. Run the app:
    `npm run dev`
+
+---
+
+**Made By:** [vietvudanh](https://github.com/vietvudanh)

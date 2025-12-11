@@ -15,12 +15,11 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
 
   // Parse strings to numbers safely
   const gross = parseFloat(grossStr.replace(/[^0-9]/g, '')) || 0;
-  const parsedInsurance = parseFloat(insuranceStr.replace(/[^0-9]/g, '')) || 0;
-  const insuranceTotal = autoInsurance ? calculateBHXH(gross, region) : parsedInsurance;
-  // When autoInsurance is false, we expect insurance input to be a TOTAL value (VND).
-  // Convert total insurance back to the salary base used to compute it (approx) to pass as customInsuranceSalary.
-  const parsedInsuranceBase = parsedInsurance > 0 ? Math.round(parsedInsurance / INSURANCE_RATES.total) : 0;
-  const customInsuranceSalaryToPass = autoInsurance ? null : parsedInsuranceBase;
+  const parsedInsuranceSalary = parseFloat(insuranceStr.replace(/[^0-9]/g, '')) || 0;
+  const insuranceTotal = autoInsurance ? calculateBHXH(gross, region) : calculateBHXH(parsedInsuranceSalary, region);
+  // When autoInsurance is false, we expect insurance input to be the SALARY BASE (capped amount) used for insurance calculation.
+  // This is the actual salary subject to insurance (e.g., 46.8M cap), not the insurance total.
+  const customInsuranceSalaryToPass = autoInsurance ? null : parsedInsuranceSalary;
 
   useEffect(() => {
     if (autoInsurance) {
@@ -108,7 +107,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           <div className="flex justify-between items-center mb-2">
             <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4" />
-              Mức đóng bảo hiểm (10.5%)
+              {autoInsurance ? 'Mức đóng bảo hiểm (10.5%)' : 'Lương đóng bảo hiểm (Capped)'}
             </label>
             <div className="flex items-center gap-2">
                <input 
@@ -133,7 +132,10 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
             <span className="absolute right-4 top-3 text-slate-400 text-sm">VND</span>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Áp dụng mức tối đa {formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)
+            {autoInsurance 
+              ? `Tổng BHXH+BHYT+BHTN (10.5%). Áp dụng mức tối đa ${formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)`
+              : `Nhập lương đóng bảo hiểm (tối đa ${formatCurrency(BHXH_MAX_CAP)}). Hệ thống sẽ tính 10.5% từ giá trị này.`
+            }
           </p>
         </div>
 

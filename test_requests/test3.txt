@@ -1,0 +1,2203 @@
+{
+  "log": {
+    "version": "1.2",
+    "creator": {
+      "name": "Firefox",
+      "version": "145.0.2"
+    },
+    "browser": {
+      "name": "Firefox",
+      "version": "145.0.2"
+    },
+    "pages": [
+      {
+        "id": "page_4",
+        "pageTimings": {
+          "onContentLoad": -1464106,
+          "onLoad": -1462309
+        },
+        "startedDateTime": "2025-12-11T16:25:01.117+07:00",
+        "title": "https://www.topcv.vn/tinh-luong-gross-net"
+      }
+    ],
+    "entries": [
+      {
+        "startedDateTime": "2025-12-11T16:25:01.117+07:00",
+        "request": {
+          "bodySize": 106,
+          "method": "POST",
+          "url": "https://www.topcv.vn/ajax-gross-to-net",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Content-Length",
+              "value": "106"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6IjVxNVBvTkdjVGQzWCtOOHZla1N1UHc9PSIsInZhbHVlIjoiT25ucUY3UXNUTi9UZlRvZ3pwQlREVk00VWJVQlVza1lTTFVXeU83blVsdjBZOEZLOTk5ZlRMMVU1c0dKQkc3RVZnSEVGb0RMSkpTUDFETW9JY0ZWYjdNOUViU21HTTUzeWsvdHVwVlJFV3pCcTQwYk9NZ2tncnV4WGZVeHR3UjkiLCJtYWMiOiJkMjBiNzY4ZDRlNTE5M2IwYWE1MTVkZTg2NzFhMTRjNWQyYWI3ZjM0ZGJiY2EyMDVjNTBiZTFlOGRjMWYxZWI5IiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6IlAxK09vOFdoSllxdkxLTnlPN1YvSHc9PSIsInZhbHVlIjoidG9WN0pzMTUwUCt4L3VLWGZnQ1VFbEpRUmxvWEZ2cENzZmpYWE1vcElsZy92dHJpMjROSkE2NTd3dS94QmZoQUNWZ0dXQURBd2UxWGhQa1c4TTNiQWlZRHh6NXdDYnBSOUUwbXovcld2bHJ6YXZhWWErbGJYY3JKdDVJcHlXTUUiLCJtYWMiOiI0ZjA5ZTUyNGU5ZmM0NDNhMGFmMTRkZWMyMTYyYzkzMDJiNzEwNjI5ODU1ZDkxNTE4NTUzYmQ2YWI1MWQ3YmQ1IiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "Priority",
+              "value": "u=0"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6IjVxNVBvTkdjVGQzWCtOOHZla1N1UHc9PSIsInZhbHVlIjoiT25ucUY3UXNUTi9UZlRvZ3pwQlREVk00VWJVQlVza1lTTFVXeU83blVsdjBZOEZLOTk5ZlRMMVU1c0dKQkc3RVZnSEVGb0RMSkpTUDFETW9JY0ZWYjdNOUViU21HTTUzeWsvdHVwVlJFV3pCcTQwYk9NZ2tncnV4WGZVeHR3UjkiLCJtYWMiOiJkMjBiNzY4ZDRlNTE5M2IwYWE1MTVkZTg2NzFhMTRjNWQyYWI3ZjM0ZGJiY2EyMDVjNTBiZTFlOGRjMWYxZWI5IiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6IlAxK09vOFdoSllxdkxLTnlPN1YvSHc9PSIsInZhbHVlIjoidG9WN0pzMTUwUCt4L3VLWGZnQ1VFbEpRUmxvWEZ2cENzZmpYWE1vcElsZy92dHJpMjROSkE2NTd3dS94QmZoQUNWZ0dXQURBd2UxWGhQa1c4TTNiQWlZRHh6NXdDYnBSOUUwbXovcld2bHJ6YXZhWWErbGJYY3JKdDVJcHlXTUUiLCJtYWMiOiI0ZjA5ZTUyNGU5ZmM0NDNhMGFmMTRkZWMyMTYyYzkzMDJiNzEwNjI5ODU1ZDkxNTE4NTUzYmQ2YWI1MWQ3YmQ1IiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [],
+          "headersSize": 1986,
+          "postData": {
+            "mimeType": "application/x-www-form-urlencoded",
+            "params": [
+              {
+                "name": "luong",
+                "value": "100,000,000"
+              },
+              {
+                "name": "nguoiPhuThuoc",
+                "value": ""
+              },
+              {
+                "name": "dongBaoHiem",
+                "value": "trenChinhThuc"
+              },
+              {
+                "name": "luongDongBaoHiem",
+                "value": ""
+              },
+              {
+                "name": "vung",
+                "value": "1"
+              },
+              {
+                "name": "selectRule",
+                "value": "new2025"
+              }
+            ],
+            "text": "luong=100%2C000%2C000&nguoiPhuThuoc=&dongBaoHiem=trenChinhThuc&luongDongBaoHiem=&vung=1&selectRule=new2025"
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:25:01 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6ImR2c0IrL0trdk1wWGM5ZXBFMFlOWlE9PSIsInZhbHVlIjoiSHBoQU9vYWxEZzM3UE11YU83b2lQcHdpNVM5cGxqNlQrdWRLSkgzdnVLcDZuZCt6ZitOazVUWXNEZGRJei9XN1YvbnVYYm9VanZjYjYvQk5mdWNQSzBRT3g3M2FucE1CcjN2Um5mUjg0T3lBS3I2OUlUMEN6VmsrOFlxNnlMbi8iLCJtYWMiOiI5NDY0M2QyYmRjNzkzN2NlMmE3NDMyOTkzOWRmN2YzOTc0MDdjNGQzYjQyZWJhMmFiYjRiZjQ0NGQ3MTcwZDk2IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:25:01 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6Im5LbzZlaXhZbFpQVHJhUXVRM1BDUXc9PSIsInZhbHVlIjoiK3QxcUx5RVg5TDRiVS84NS8zNFdVajl3TDZhdzJGTXZ3S29VS2tvQTZTUm9LNXUwcU1uSFRoNHNXRjd6L1pqR1p4b28vVkhBOE1rTVlHVWxCaUZSd3lsODFmbGo4dDdoT3Z1Q3pkYnU4N2pFeC9teDMvL1R3OS9ya1NkcXJLREEiLCJtYWMiOiI1NTFiYTJiZmM2ZjE0MzVjNDhjMDExMDk0NjMzYWY3YzJkMTA3M2QxZDVhYzI2YjUyNDE2NDUxZjc3MmVhMmE0IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:25:01 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=0,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3eeaa2980c6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6ImR2c0IrL0trdk1wWGM5ZXBFMFlOWlE9PSIsInZhbHVlIjoiSHBoQU9vYWxEZzM3UE11YU83b2lQcHdpNVM5cGxqNlQrdWRLSkgzdnVLcDZuZCt6ZitOazVUWXNEZGRJei9XN1YvbnVYYm9VanZjYjYvQk5mdWNQSzBRT3g3M2FucE1CcjN2Um5mUjg0T3lBS3I2OUlUMEN6VmsrOFlxNnlMbi8iLCJtYWMiOiI5NDY0M2QyYmRjNzkzN2NlMmE3NDMyOTkzOWRmN2YzOTc0MDdjNGQzYjQyZWJhMmFiYjRiZjQ0NGQ3MTcwZDk2IiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6Im5LbzZlaXhZbFpQVHJhUXVRM1BDUXc9PSIsInZhbHVlIjoiK3QxcUx5RVg5TDRiVS84NS8zNFdVajl3TDZhdzJGTXZ3S29VS2tvQTZTUm9LNXUwcU1uSFRoNHNXRjd6L1pqR1p4b28vVkhBOE1rTVlHVWxCaUZSd3lsODFmbGo4dDdoT3Z1Q3pkYnU4N2pFeC9teDMvL1R3OS9ya1NkcXJLREEiLCJtYWMiOiI1NTFiYTJiZmM2ZjE0MzVjNDhjMDExMDk0NjMzYWY3YzJkMTA3M2QxZDVhYzI2YjUyNDE2NDUxZjc3MmVhMmE0IiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 654,
+            "text": "\n{\"status\":\"success\",\"result\":{\"luongGross\":100000000,\"baoHiemXaHoi\":3744000,\"baoHiemYTe\":702000,\"baoHiemThatNghiep\":992000,\"tongChiPhiBaoHiem\":5438000,\"thuNhapTruocThue\":94562000,\"giamTruGiaCanh\":11000000,\"giamTruNguoiPhuThuoc\":0,\"thuNhapChiuThue\":83562000,\"thueThuNhapCaNhan\":19396700,\"luongNet\":75165300,\"thue_0_5\":250000,\"thue_5_10\":500000,\"thue_10_18\":1200000,\"thue_18_32\":2800000,\"thue_32_52\":5000000,\"thue_52_80\":8400000,\"thue_tren_80\":1246700,\"baoHiemXaHoiDoanhNghiepDong\":7956000,\"baoHiemYTeDoanhNghiepDong\":1404000,\"baoHiemThatNghiepDoanhNghiepDong\":992000,\"baoHiemTaiNanLaoDongDoanhNghiepDong\":234000,\"tongChiPhiDoanhNghiepPhaiTra\":110586000}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 1911
+        },
+        "cache": {},
+        "timings": {
+          "blocked": -1,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 111,
+          "receive": 0
+        },
+        "time": 111,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:25:01.252+07:00",
+        "request": {
+          "bodySize": 0,
+          "method": "GET",
+          "url": "https://www.topcv.vn/get-list-job-corresponding?salary=100000000&ta-source=JobSearchGrossNet",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6ImR2c0IrL0trdk1wWGM5ZXBFMFlOWlE9PSIsInZhbHVlIjoiSHBoQU9vYWxEZzM3UE11YU83b2lQcHdpNVM5cGxqNlQrdWRLSkgzdnVLcDZuZCt6ZitOazVUWXNEZGRJei9XN1YvbnVYYm9VanZjYjYvQk5mdWNQSzBRT3g3M2FucE1CcjN2Um5mUjg0T3lBS3I2OUlUMEN6VmsrOFlxNnlMbi8iLCJtYWMiOiI5NDY0M2QyYmRjNzkzN2NlMmE3NDMyOTkzOWRmN2YzOTc0MDdjNGQzYjQyZWJhMmFiYjRiZjQ0NGQ3MTcwZDk2IiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6Im5LbzZlaXhZbFpQVHJhUXVRM1BDUXc9PSIsInZhbHVlIjoiK3QxcUx5RVg5TDRiVS84NS8zNFdVajl3TDZhdzJGTXZ3S29VS2tvQTZTUm9LNXUwcU1uSFRoNHNXRjd6L1pqR1p4b28vVkhBOE1rTVlHVWxCaUZSd3lsODFmbGo4dDdoT3Z1Q3pkYnU4N2pFeC9teDMvL1R3OS9ya1NkcXJLREEiLCJtYWMiOiI1NTFiYTJiZmM2ZjE0MzVjNDhjMDExMDk0NjMzYWY3YzJkMTA3M2QxZDVhYzI2YjUyNDE2NDUxZjc3MmVhMmE0IiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6ImR2c0IrL0trdk1wWGM5ZXBFMFlOWlE9PSIsInZhbHVlIjoiSHBoQU9vYWxEZzM3UE11YU83b2lQcHdpNVM5cGxqNlQrdWRLSkgzdnVLcDZuZCt6ZitOazVUWXNEZGRJei9XN1YvbnVYYm9VanZjYjYvQk5mdWNQSzBRT3g3M2FucE1CcjN2Um5mUjg0T3lBS3I2OUlUMEN6VmsrOFlxNnlMbi8iLCJtYWMiOiI5NDY0M2QyYmRjNzkzN2NlMmE3NDMyOTkzOWRmN2YzOTc0MDdjNGQzYjQyZWJhMmFiYjRiZjQ0NGQ3MTcwZDk2IiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6Im5LbzZlaXhZbFpQVHJhUXVRM1BDUXc9PSIsInZhbHVlIjoiK3QxcUx5RVg5TDRiVS84NS8zNFdVajl3TDZhdzJGTXZ3S29VS2tvQTZTUm9LNXUwcU1uSFRoNHNXRjd6L1pqR1p4b28vVkhBOE1rTVlHVWxCaUZSd3lsODFmbGo4dDdoT3Z1Q3pkYnU4N2pFeC9teDMvL1R3OS9ya1NkcXJLREEiLCJtYWMiOiI1NTFiYTJiZmM2ZjE0MzVjNDhjMDExMDk0NjMzYWY3YzJkMTA3M2QxZDVhYzI2YjUyNDE2NDUxZjc3MmVhMmE0IiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [
+            {
+              "name": "salary",
+              "value": "100000000"
+            },
+            {
+              "name": "ta-source",
+              "value": "JobSearchGrossNet"
+            }
+          ],
+          "headersSize": 1909
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:25:01 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6IlpYN0NDVldYVWNXaWtieDVRV1JPakE9PSIsInZhbHVlIjoiOStuR3VKK3RWL3ROQUJlT3RuRDE4OGdqa2psL1BSdVg3NFhmbzBaSDBMd0xRdW95eUY3YnJGdHJ3d3NwZXo3MVNPRnJ3SHgwb2dSWkFYdGdaaklrVkEydmRFeG1WUDdwVkZDRS9KM1hId0hQQk9QMGJEL2p1NFZzcDhQdWJiZUsiLCJtYWMiOiI0OGExM2E0Y2RjMjNjMDFkYjgzYmVkMDg1OTZiNjlhNGM0NmNkMjM1NWJmMjllOTM5NDlhYWI3NTM2ZTgwOGJjIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:25:01 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6IlJGZStsMC9nZ0xwZDh5ZXUyeExDS3c9PSIsInZhbHVlIjoiNU9mYzhOdlN4UUwxT0dxUkVKQVZTckpuMHM0aXRxU1BsalllR0VrWEZrbWtBeXk2WENDeVp0Y1pLZklTdnBMcXI0ZDBudnYwTGxjRm1ZVXFKbFJUSHhqSDIxYmF3YUF1MXd0MnlUb0NycjhyeVFkZXNRRkl4THJVdDF5Mkw0TW8iLCJtYWMiOiJmNmU0ZTNmNTYxMThjYzdhMDYyNDQyMGM4ZDNjMmEwZmMyNDY5ZDMxOTA5OThhM2I5MTI1OWQxMTAyZWFkZDA5IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:25:01 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=3,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3eeaaf99cc6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6IlpYN0NDVldYVWNXaWtieDVRV1JPakE9PSIsInZhbHVlIjoiOStuR3VKK3RWL3ROQUJlT3RuRDE4OGdqa2psL1BSdVg3NFhmbzBaSDBMd0xRdW95eUY3YnJGdHJ3d3NwZXo3MVNPRnJ3SHgwb2dSWkFYdGdaaklrVkEydmRFeG1WUDdwVkZDRS9KM1hId0hQQk9QMGJEL2p1NFZzcDhQdWJiZUsiLCJtYWMiOiI0OGExM2E0Y2RjMjNjMDFkYjgzYmVkMDg1OTZiNjlhNGM0NmNkMjM1NWJmMjllOTM5NDlhYWI3NTM2ZTgwOGJjIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6IlJGZStsMC9nZ0xwZDh5ZXUyeExDS3c9PSIsInZhbHVlIjoiNU9mYzhOdlN4UUwxT0dxUkVKQVZTckpuMHM0aXRxU1BsalllR0VrWEZrbWtBeXk2WENDeVp0Y1pLZklTdnBMcXI0ZDBudnYwTGxjRm1ZVXFKbFJUSHhqSDIxYmF3YUF1MXd0MnlUb0NycjhyeVFkZXNRRkl4THJVdDF5Mkw0TW8iLCJtYWMiOiJmNmU0ZTNmNTYxMThjYzdhMDYyNDQyMGM4ZDNjMmEwZmMyNDY5ZDMxOTA5OThhM2I5MTI1OWQxMTAyZWFkZDA5IiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 26986,
+            "text": "\n{\"success\":true,\"data\":{\"html\":\"<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1950901\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/68edae06409b51760407046.jpg\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\\" title=\\\"Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-tap-doan-phat-trien-bat-dong-san-ssm-group\\/234026.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t50 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 6 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 15 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 15 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1950901\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1976184\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-sale-bat-dong-san-vinhomes-luong-cung-upto-10m-khong-yeu-cau-kinh-nghiem-thu-nhap-tu-50-200m-thang-dao-tao-bai-ban\\/1976184.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/cong-ty-co-phan-mgland-viet-nam-5b331213df82a_rs.jpg\\\" alt=\\\"C\\u00f4ng ty C\\u1ed5 ph\\u1ea7n MGLAND Vi\\u1ec7t Nam\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Sale B\\u1ea5t \\u0110\\u1ed9ng S\\u1ea3n Vinhomes - L\\u01b0\\u01a1ng C\\u1ee9ng Upto 10M - Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m- Thu Nh\\u1eadp T\\u1eeb 50 - 200M\\/ Th\\u00e1ng - \\u0110\\u00e0o T\\u1ea1o B\\u00e0i B\\u1ea3n\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-sale-bat-dong-san-vinhomes-luong-cung-upto-10m-khong-yeu-cau-kinh-nghiem-thu-nhap-tu-50-200m-thang-dao-tao-bai-ban\\/1976184.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Sale B\\u1ea5t \\u0110\\u1ed9ng S\\u1ea3n Vinhomes - L\\u01b0\\u01a1ng C\\u1ee9ng Upto 10M - Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m- Thu Nh\\u1eadp T\\u1eeb 50 - 200M\\/ Th\\u00e1ng - \\u0110\\u00e0o T\\u1ea1o B\\u00e0i B\\u1ea3n\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Sale B\\u1ea5t \\u0110\\u1ed9ng S\\u1ea3n Vinhomes - L\\u01b0\\u01a1ng C\\u1ee9ng Upto 10M - Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m- Thu Nh\\u1eadp T\\u1eeb 50 - 200M\\/ Th\\u00e1ng - \\u0110\\u00e0o T\\u1ea1o B\\u00e0i B\\u1ea3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-mgland-viet-nam\\/11269.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00f4ng ty C\\u1ed5 ph\\u1ea7n MGLAND Vi\\u1ec7t Nam\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00f4ng ty C\\u1ed5 ph\\u1ea7n MGLAND Vi\\u1ec7t Nam\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t50 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 9 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u00e0 N\\u1ed9i &amp; 3 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u00e0 N\\u1ed9i &amp; 3 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>30<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1976184\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-sale-bat-dong-san-vinhomes-luong-cung-upto-10m-khong-yeu-cau-kinh-nghiem-thu-nhap-tu-50-200m-thang-dao-tao-bai-ban\\/1976184.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1948336\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/aKK6WrUn7PZGoCsh0TzDB8PnOrCYN5Yw_1755155351____d2460bd636118c57d59cd3fc5a58f1ac.png\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-dkra-rigel\\/59121.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t80 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 13 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng An Kh\\u00e1nh\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng An Kh\\u00e1nh\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1948336\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1970842\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/682c36f01dc861747728112.png\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-dich-vu-bat-dong-san-danh-khoi\\/222628.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t50 - 100 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 13 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 9 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 9 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>51<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1970842\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1935604\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/ngan-hang-tmcp-quoc-te-viet-nam-vib-cb23bc508baaeebfa730b85b18f37e9e-67b6deb018a68.jpg\\\" alt=\\\"NG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\\" title=\\\"C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/ngan-hang-tmcp-quoc-te-viet-nam-vib\\/199116.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"NG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tNG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t22 - 100 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 13 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 67 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 67 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1935604\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n<script>\\n  $(document).on('click touch', '.btn-apply-now', function(e) {\\n    var link = $(this).attr('data-redirect-to');\\n\\tvar jobId = $(this).data('job-id');\\n    let applyUrl = $(this).attr('data-apply-url');\\n    if (applyUrl) {\\n      window.setCookieBySecond('trigger_apply_now', true, 15);\\n\\n    }\\n    else {\\n      localStorage.setItem('trigger_apply_now', true);\\n    }\\n    if (link) {\\n      if (window.qgTracking && window.qg) {\\n        window.qg('event', 'hit_to_apply_now', window.qgTracking);\\n      }\\n      if (window.fbq) {\\n        window.fbq('event', 'hit_to_apply_now');\\n      }\\n      window.open(link, '_blank');\\n\\t  window.trackingTopCV?.sendClickApplyButtonInListV2(jobId);\\n    }\\n  });\\n\\n<\\/script>\\n\",\"total\":236,\"seemore\":\"https:\\/\\/www.topcv.vn\\/tim-viec-lam-moi-nhat?salary_min=90000000&salary_max=110000000\",\"taSource\":\"JobSearchGrossNet\"}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 5149
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 233,
+          "receive": 0
+        },
+        "time": 233,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:29:41.376+07:00",
+        "request": {
+          "bodySize": 492,
+          "method": "POST",
+          "url": "https://ta-imp.topcv.vn/collect-queue",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "ta-imp.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Content-Length",
+              "value": "492"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-site"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [],
+          "queryString": [],
+          "headersSize": 464,
+          "postData": {
+            "mimeType": "application/json",
+            "params": [],
+            "text": "{\"referer\":\"\",\"c_id\":\"3WzC8ibdqQ.1765419115531\",\"w\":2816,\"h\":1584,\"p_f\":\"MacIntel\",\"a_v\":\"5.0 (Macintosh)\",\"host\":\"www.topcv.vn\",\"hrf\":\"https%3A%2F%2Fwww.topcv.vn%2Ftinh-luong-gross-net\",\"o\":\"https://www.topcv.vn\",\"p_n\":\"/tinh-luong-gross-net\",\"q\":{},\"f_p\":\"0e60144f226f48f4d3518359f0bdeb0b\",\"type\":\"Impressions\",\"u_id\":\"\",\"id\":\"topcv_vn\",\"src\":\"\",\"tab_id\":\"kUM6rHzIhc\",\"sc_v\":\"1.1.5\",\"imprs\":[{\"jb_id\":1950901,\"ts\":1765445377598,\"p\":\"GrossNet\",\"b\":\"JobListBySalary\",\"type\":\"JobInViewPort\"}]}"
+          }
+        },
+        "response": {
+          "status": 201,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:29:41 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "name": "content-length",
+              "value": "13"
+            },
+            {
+              "name": "priority",
+              "value": "u=3,i=?0"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "etag",
+              "value": "W/\"d-YZFbqphLxhlq9pqY81k0m8ksj5A\""
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f5830d425dfa-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "mimeType": "text/html; charset=utf-8",
+            "size": 13,
+            "text": "1765445381653"
+          },
+          "redirectURL": "",
+          "headersSize": 336,
+          "bodySize": 349
+        },
+        "cache": {},
+        "timings": {
+          "blocked": -1,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 97,
+          "receive": 0
+        },
+        "time": 97,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:29:41.381+07:00",
+        "request": {
+          "bodySize": 0,
+          "method": "OPTIONS",
+          "url": "https://ta-imp.topcv.vn/collect-queue",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "ta-imp.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Access-Control-Request-Method",
+              "value": "POST"
+            },
+            {
+              "name": "Access-Control-Request-Headers",
+              "value": "content-type"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-site"
+            },
+            {
+              "name": "Priority",
+              "value": "u=4"
+            }
+          ],
+          "cookies": [],
+          "queryString": [],
+          "headersSize": 512
+        },
+        "response": {
+          "status": 204,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:29:41 GMT"
+            },
+            {
+              "name": "priority",
+              "value": "u=4,i=?0"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET,HEAD,PUT,PATCH,POST,DELETE"
+            },
+            {
+              "name": "vary",
+              "value": "Access-Control-Request-Headers"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "content-type"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f5827d3b5dfa-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "mimeType": "text/plain",
+            "size": 0,
+            "text": ""
+          },
+          "redirectURL": "",
+          "headersSize": 379,
+          "bodySize": 379
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 0,
+          "connect": 39,
+          "ssl": 0,
+          "send": 0,
+          "wait": 96,
+          "receive": 0
+        },
+        "time": 135,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:30:35.806+07:00",
+        "request": {
+          "bodySize": 492,
+          "method": "POST",
+          "url": "https://ta-imp.topcv.vn/collect-queue",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "ta-imp.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Content-Length",
+              "value": "492"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-site"
+            }
+          ],
+          "cookies": [],
+          "queryString": [],
+          "headersSize": 0,
+          "postData": {
+            "mimeType": "application/json",
+            "params": [],
+            "text": "{\"referer\":\"\",\"c_id\":\"3WzC8ibdqQ.1765419115531\",\"w\":2816,\"h\":1584,\"p_f\":\"MacIntel\",\"a_v\":\"5.0 (Macintosh)\",\"host\":\"www.topcv.vn\",\"hrf\":\"https%3A%2F%2Fwww.topcv.vn%2Ftinh-luong-gross-net\",\"o\":\"https://www.topcv.vn\",\"p_n\":\"/tinh-luong-gross-net\",\"q\":{},\"f_p\":\"0e60144f226f48f4d3518359f0bdeb0b\",\"type\":\"Impressions\",\"u_id\":\"\",\"id\":\"topcv_vn\",\"src\":\"\",\"tab_id\":\"kUM6rHzIhc\",\"sc_v\":\"1.1.5\",\"imprs\":[{\"jb_id\":1976184,\"ts\":1765445434797,\"p\":\"GrossNet\",\"b\":\"JobListBySalary\",\"type\":\"JobInViewPort\"}]}"
+          }
+        },
+        "response": {
+          "status": 201,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:30:36 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "name": "content-length",
+              "value": "13"
+            },
+            {
+              "name": "priority",
+              "value": "u=3,i=?0"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "etag",
+              "value": "W/\"d-XBpJ948QpqR0UtOazW/dr7uXosw\""
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f6d72c8c046c-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "mimeType": "text/html; charset=utf-8",
+            "size": 13,
+            "text": "1765445436058"
+          },
+          "redirectURL": "",
+          "headersSize": 336,
+          "bodySize": 349
+        },
+        "cache": {},
+        "timings": {
+          "blocked": -1,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 157,
+          "receive": 0
+        },
+        "time": 157,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:30:35.809+07:00",
+        "request": {
+          "bodySize": 0,
+          "method": "OPTIONS",
+          "url": "https://ta-imp.topcv.vn/collect-queue",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "ta-imp.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Access-Control-Request-Method",
+              "value": "POST"
+            },
+            {
+              "name": "Access-Control-Request-Headers",
+              "value": "content-type"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-site"
+            },
+            {
+              "name": "Priority",
+              "value": "u=4"
+            }
+          ],
+          "cookies": [],
+          "queryString": [],
+          "headersSize": 512
+        },
+        "response": {
+          "status": 204,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:30:35 GMT"
+            },
+            {
+              "name": "priority",
+              "value": "u=4,i=?0"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET,HEAD,PUT,PATCH,POST,DELETE"
+            },
+            {
+              "name": "vary",
+              "value": "Access-Control-Request-Headers"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "content-type"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f6d69c83046c-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "mimeType": "text/plain",
+            "size": 0,
+            "text": ""
+          },
+          "redirectURL": "",
+          "headersSize": 379,
+          "bodySize": 379
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 0,
+          "connect": 34,
+          "ssl": 0,
+          "send": 0,
+          "wait": 78,
+          "receive": 0
+        },
+        "time": 112,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:31:32.164+07:00",
+        "request": {
+          "bodySize": 110,
+          "method": "POST",
+          "url": "https://www.topcv.vn/ajax-gross-to-net",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Content-Length",
+              "value": "110"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6IlpYN0NDVldYVWNXaWtieDVRV1JPakE9PSIsInZhbHVlIjoiOStuR3VKK3RWL3ROQUJlT3RuRDE4OGdqa2psL1BSdVg3NFhmbzBaSDBMd0xRdW95eUY3YnJGdHJ3d3NwZXo3MVNPRnJ3SHgwb2dSWkFYdGdaaklrVkEydmRFeG1WUDdwVkZDRS9KM1hId0hQQk9QMGJEL2p1NFZzcDhQdWJiZUsiLCJtYWMiOiI0OGExM2E0Y2RjMjNjMDFkYjgzYmVkMDg1OTZiNjlhNGM0NmNkMjM1NWJmMjllOTM5NDlhYWI3NTM2ZTgwOGJjIiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6IlJGZStsMC9nZ0xwZDh5ZXUyeExDS3c9PSIsInZhbHVlIjoiNU9mYzhOdlN4UUwxT0dxUkVKQVZTckpuMHM0aXRxU1BsalllR0VrWEZrbWtBeXk2WENDeVp0Y1pLZklTdnBMcXI0ZDBudnYwTGxjRm1ZVXFKbFJUSHhqSDIxYmF3YUF1MXd0MnlUb0NycjhyeVFkZXNRRkl4THJVdDF5Mkw0TW8iLCJtYWMiOiJmNmU0ZTNmNTYxMThjYzdhMDYyNDQyMGM4ZDNjMmEwZmMyNDY5ZDMxOTA5OThhM2I5MTI1OWQxMTAyZWFkZDA5IiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "Priority",
+              "value": "u=0"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6IlpYN0NDVldYVWNXaWtieDVRV1JPakE9PSIsInZhbHVlIjoiOStuR3VKK3RWL3ROQUJlT3RuRDE4OGdqa2psL1BSdVg3NFhmbzBaSDBMd0xRdW95eUY3YnJGdHJ3d3NwZXo3MVNPRnJ3SHgwb2dSWkFYdGdaaklrVkEydmRFeG1WUDdwVkZDRS9KM1hId0hQQk9QMGJEL2p1NFZzcDhQdWJiZUsiLCJtYWMiOiI0OGExM2E0Y2RjMjNjMDFkYjgzYmVkMDg1OTZiNjlhNGM0NmNkMjM1NWJmMjllOTM5NDlhYWI3NTM2ZTgwOGJjIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6IlJGZStsMC9nZ0xwZDh5ZXUyeExDS3c9PSIsInZhbHVlIjoiNU9mYzhOdlN4UUwxT0dxUkVKQVZTckpuMHM0aXRxU1BsalllR0VrWEZrbWtBeXk2WENDeVp0Y1pLZklTdnBMcXI0ZDBudnYwTGxjRm1ZVXFKbFJUSHhqSDIxYmF3YUF1MXd0MnlUb0NycjhyeVFkZXNRRkl4THJVdDF5Mkw0TW8iLCJtYWMiOiJmNmU0ZTNmNTYxMThjYzdhMDYyNDQyMGM4ZDNjMmEwZmMyNDY5ZDMxOTA5OThhM2I5MTI1OWQxMTAyZWFkZDA5IiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [],
+          "headersSize": 1986,
+          "postData": {
+            "mimeType": "application/x-www-form-urlencoded",
+            "params": [
+              {
+                "name": "luong",
+                "value": "100,000,000"
+              },
+              {
+                "name": "nguoiPhuThuoc",
+                "value": ""
+              },
+              {
+                "name": "dongBaoHiem",
+                "value": "khac"
+              },
+              {
+                "name": "luongDongBaoHiem",
+                "value": "5,000,000"
+              },
+              {
+                "name": "vung",
+                "value": "1"
+              },
+              {
+                "name": "selectRule",
+                "value": "new2025"
+              }
+            ],
+            "text": "luong=100%2C000%2C000&nguoiPhuThuoc=&dongBaoHiem=khac&luongDongBaoHiem=5%2C000%2C000&vung=1&selectRule=new2025"
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:31:32 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6InhmQWlORHg1c1JQUzBrOFdGWUllb2c9PSIsInZhbHVlIjoiU3daQ0YyREFMQ3hxU2J1ak93dEtOc1dtZDBvNlo5VnBZQ2FKdG5SOVlTMW1IR3p0TkduYVFsOXdVaElZTmFXMlZ4cVZNZXppcEJhWVNPcmRzK1BzRVNaaWlqaWlteW0vR01uMkJYRWhsQXFBTnQxd0VaS1NJUGtRMWFIZXVqVnQiLCJtYWMiOiI1MTU2ZTBhZmQ3MzM3MDg2YzhiMGFjMzVmZGQ5NmRjNzE3MjlmZjM3NWQ5Y2RlZTJiNmQ5YzYzMDgwMzlkZWVlIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:31:32 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6Imw4ZlRjZFRhK0NXSGNWcVpVWldoN2c9PSIsInZhbHVlIjoiKytEMThldXdXQ2tsQ1poT3ZuY0pmaXpuYytpZ3E5Q0xWYkt3VjFiWktYT1hTNXc5Z3hiWVQvNUg3NUlNbUpiLzVqZlRhQmNucWtBTVNtdXJVdjlXRGpWc21Oa2NxUno5U1pBV0dlcThoK2REZWlSUE9uaW9PNEJSZ1p2SVJ4eHgiLCJtYWMiOiIyYjc4ZDA1NjgzZGJiMTEwMWU0ZjA4YzIxZDllNDE3ZjFjM2UwODg1ZTUyZTI1OWVmZDMxNGQzYzc0ZGYxN2I2IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:31:32 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=0,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f836ffaec6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6InhmQWlORHg1c1JQUzBrOFdGWUllb2c9PSIsInZhbHVlIjoiU3daQ0YyREFMQ3hxU2J1ak93dEtOc1dtZDBvNlo5VnBZQ2FKdG5SOVlTMW1IR3p0TkduYVFsOXdVaElZTmFXMlZ4cVZNZXppcEJhWVNPcmRzK1BzRVNaaWlqaWlteW0vR01uMkJYRWhsQXFBTnQxd0VaS1NJUGtRMWFIZXVqVnQiLCJtYWMiOiI1MTU2ZTBhZmQ3MzM3MDg2YzhiMGFjMzVmZGQ5NmRjNzE3MjlmZjM3NWQ5Y2RlZTJiNmQ5YzYzMDgwMzlkZWVlIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6Imw4ZlRjZFRhK0NXSGNWcVpVWldoN2c9PSIsInZhbHVlIjoiKytEMThldXdXQ2tsQ1poT3ZuY0pmaXpuYytpZ3E5Q0xWYkt3VjFiWktYT1hTNXc5Z3hiWVQvNUg3NUlNbUpiLzVqZlRhQmNucWtBTVNtdXJVdjlXRGpWc21Oa2NxUno5U1pBV0dlcThoK2REZWlSUE9uaW9PNEJSZ1p2SVJ4eHgiLCJtYWMiOiIyYjc4ZDA1NjgzZGJiMTEwMWU0ZjA4YzIxZDllNDE3ZjFjM2UwODg1ZTUyZTI1OWVmZDMxNGQzYzc0ZGYxN2I2IiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 646,
+            "text": "\n{\"status\":\"success\",\"result\":{\"luongGross\":100000000,\"baoHiemXaHoi\":400000,\"baoHiemYTe\":75000,\"baoHiemThatNghiep\":50000,\"tongChiPhiBaoHiem\":525000,\"thuNhapTruocThue\":99475000,\"giamTruGiaCanh\":11000000,\"giamTruNguoiPhuThuoc\":0,\"thuNhapChiuThue\":88475000,\"thueThuNhapCaNhan\":21116250,\"luongNet\":78358750,\"thue_0_5\":250000,\"thue_5_10\":500000,\"thue_10_18\":1200000,\"thue_18_32\":2800000,\"thue_32_52\":5000000,\"thue_52_80\":8400000,\"thue_tren_80\":2966250,\"baoHiemXaHoiDoanhNghiepDong\":850000,\"baoHiemYTeDoanhNghiepDong\":150000,\"baoHiemThatNghiepDoanhNghiepDong\":50000,\"baoHiemTaiNanLaoDongDoanhNghiepDong\":25000,\"tongChiPhiDoanhNghiepPhaiTra\":101075000}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 1899
+        },
+        "cache": {},
+        "timings": {
+          "blocked": -1,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 159,
+          "receive": 0
+        },
+        "time": 159,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:31:32.335+07:00",
+        "request": {
+          "bodySize": 0,
+          "method": "GET",
+          "url": "https://www.topcv.vn/get-list-job-corresponding?salary=100000000&ta-source=JobSearchGrossNet",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6InhmQWlORHg1c1JQUzBrOFdGWUllb2c9PSIsInZhbHVlIjoiU3daQ0YyREFMQ3hxU2J1ak93dEtOc1dtZDBvNlo5VnBZQ2FKdG5SOVlTMW1IR3p0TkduYVFsOXdVaElZTmFXMlZ4cVZNZXppcEJhWVNPcmRzK1BzRVNaaWlqaWlteW0vR01uMkJYRWhsQXFBTnQxd0VaS1NJUGtRMWFIZXVqVnQiLCJtYWMiOiI1MTU2ZTBhZmQ3MzM3MDg2YzhiMGFjMzVmZGQ5NmRjNzE3MjlmZjM3NWQ5Y2RlZTJiNmQ5YzYzMDgwMzlkZWVlIiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6Imw4ZlRjZFRhK0NXSGNWcVpVWldoN2c9PSIsInZhbHVlIjoiKytEMThldXdXQ2tsQ1poT3ZuY0pmaXpuYytpZ3E5Q0xWYkt3VjFiWktYT1hTNXc5Z3hiWVQvNUg3NUlNbUpiLzVqZlRhQmNucWtBTVNtdXJVdjlXRGpWc21Oa2NxUno5U1pBV0dlcThoK2REZWlSUE9uaW9PNEJSZ1p2SVJ4eHgiLCJtYWMiOiIyYjc4ZDA1NjgzZGJiMTEwMWU0ZjA4YzIxZDllNDE3ZjFjM2UwODg1ZTUyZTI1OWVmZDMxNGQzYzc0ZGYxN2I2IiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6InhmQWlORHg1c1JQUzBrOFdGWUllb2c9PSIsInZhbHVlIjoiU3daQ0YyREFMQ3hxU2J1ak93dEtOc1dtZDBvNlo5VnBZQ2FKdG5SOVlTMW1IR3p0TkduYVFsOXdVaElZTmFXMlZ4cVZNZXppcEJhWVNPcmRzK1BzRVNaaWlqaWlteW0vR01uMkJYRWhsQXFBTnQxd0VaS1NJUGtRMWFIZXVqVnQiLCJtYWMiOiI1MTU2ZTBhZmQ3MzM3MDg2YzhiMGFjMzVmZGQ5NmRjNzE3MjlmZjM3NWQ5Y2RlZTJiNmQ5YzYzMDgwMzlkZWVlIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6Imw4ZlRjZFRhK0NXSGNWcVpVWldoN2c9PSIsInZhbHVlIjoiKytEMThldXdXQ2tsQ1poT3ZuY0pmaXpuYytpZ3E5Q0xWYkt3VjFiWktYT1hTNXc5Z3hiWVQvNUg3NUlNbUpiLzVqZlRhQmNucWtBTVNtdXJVdjlXRGpWc21Oa2NxUno5U1pBV0dlcThoK2REZWlSUE9uaW9PNEJSZ1p2SVJ4eHgiLCJtYWMiOiIyYjc4ZDA1NjgzZGJiMTEwMWU0ZjA4YzIxZDllNDE3ZjFjM2UwODg1ZTUyZTI1OWVmZDMxNGQzYzc0ZGYxN2I2IiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [
+            {
+              "name": "salary",
+              "value": "100000000"
+            },
+            {
+              "name": "ta-source",
+              "value": "JobSearchGrossNet"
+            }
+          ],
+          "headersSize": 1909
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:31:32 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6Imo3RmJNeWo3NmxSam5NVFJlSjd2TVE9PSIsInZhbHVlIjoicXl1TmFLYUFKL3BOVk9jbnNFQVhOTzJCNW5UQXBDeUE1OUFOSnQ5UTd6Ym1LbUxrUDhpSlRTS0ZOeWQ2eGdmY2g0ekNHa2VLQnFSbm5FdUpwYnE0MXFOMVdCSlBLSW9HWUlUdnBZcHlDQTlHaHJ6U2JoVUpDSS9Velp1MEx4alUiLCJtYWMiOiJkMDcwNzU0ODE2YzY4MjkzNzAzODFhNjBhYTM2NzkxYTYwNGZhMGQzOGZiZTBiZDI0ODk4YTNhZTIxMDQ1OGQ0IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:31:32 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6IjBKdlJnS2N1cHN3K0FLdGI0UEVsZ2c9PSIsInZhbHVlIjoiaGxYNWxRQ09rb0FBbmptMEoxZ1dsS1BXdkdER1lCTW9iM2pvWjJyNGRpczBBSG1VRVFXZG1iNGhtWU9WUnJrUklzdkh3V0p3UHV2Zzg4Rm9GQnBXaTd3NzEyLzl4NE82RDhPNFBuWVZsNVBVd1pjTDRGbTVsb05xVzFlUFhPVUciLCJtYWMiOiIxMGViMmQzMjM0NDMxY2I3MTg0ZDI1ZGVkZmM4ZjRhNzRlOWEyNjVkY2FkYjcwNzE5Mzk1NjE3OTVlN2JkNTVlIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:31:32 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=3,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f837bfc3c6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6Imo3RmJNeWo3NmxSam5NVFJlSjd2TVE9PSIsInZhbHVlIjoicXl1TmFLYUFKL3BOVk9jbnNFQVhOTzJCNW5UQXBDeUE1OUFOSnQ5UTd6Ym1LbUxrUDhpSlRTS0ZOeWQ2eGdmY2g0ekNHa2VLQnFSbm5FdUpwYnE0MXFOMVdCSlBLSW9HWUlUdnBZcHlDQTlHaHJ6U2JoVUpDSS9Velp1MEx4alUiLCJtYWMiOiJkMDcwNzU0ODE2YzY4MjkzNzAzODFhNjBhYTM2NzkxYTYwNGZhMGQzOGZiZTBiZDI0ODk4YTNhZTIxMDQ1OGQ0IiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6IjBKdlJnS2N1cHN3K0FLdGI0UEVsZ2c9PSIsInZhbHVlIjoiaGxYNWxRQ09rb0FBbmptMEoxZ1dsS1BXdkdER1lCTW9iM2pvWjJyNGRpczBBSG1VRVFXZG1iNGhtWU9WUnJrUklzdkh3V0p3UHV2Zzg4Rm9GQnBXaTd3NzEyLzl4NE82RDhPNFBuWVZsNVBVd1pjTDRGbTVsb05xVzFlUFhPVUciLCJtYWMiOiIxMGViMmQzMjM0NDMxY2I3MTg0ZDI1ZGVkZmM4ZjRhNzRlOWEyNjVkY2FkYjcwNzE5Mzk1NjE3OTVlN2JkNTVlIiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 26229,
+            "text": "\n{\"success\":true,\"data\":{\"html\":\"<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1950901\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/68edae06409b51760407046.jpg\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\\" title=\\\"Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Gi\\u00e1m \\u0110\\u1ed1c Kinh Doanh<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-tap-doan-phat-trien-bat-dong-san-ssm-group\\/234026.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N T\\u1eacP \\u0110O\\u00c0N PH\\u00c1T TRI\\u1ec2N B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N SSM GROUP\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t50 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 13 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 15 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 15 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1950901\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/giam-doc-kinh-doanh\\/1950901.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1948336\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/aKK6WrUn7PZGoCsh0TzDB8PnOrCYN5Yw_1755155351____d2460bd636118c57d59cd3fc5a58f1ac.png\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ Th\\u1ef1c T\\u1eadp Sinh Kinh Doanh - Thu Nh\\u1eadp 80 \\u0110\\u1ebfn 200 Tri\\u1ec7u\\/ Th\\u00e1ng-Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m-H\\u1ed7 Tr\\u1ee3 D\\u1ea5u M\\u1ed9c Th\\u1ef1c T\\u1eadp-\\u0110\\u00e0o T\\u1ea1o Sinh Vi\\u00ean M\\u1edbi Ra Tr\\u01b0\\u1eddng &amp; Ch\\u1edd B\\u1eb1ng (TPHCM)<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-dkra-rigel\\/59121.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N DKRA RIGEL\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t80 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 14 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng An Kh\\u00e1nh\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng An Kh\\u00e1nh\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1948336\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-thuc-tap-sinh-kinh-doanh-thu-nhap-80-den-200-trieu-thang-khong-yeu-cau-kinh-nghiem-ho-tro-dau-moc-thuc-tap-dao-tao-sinh-vien-moi-ra-truong-cho-bang-tphcm\\/1948336.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1970842\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/682c36f01dc861747728112.png\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh\\/ T\\u01b0 V\\u1ea5n B\\u0110S -(L\\u01b0\\u01a1ng C\\u01a1 B\\u1ea3n 8 - 15 Tri\\u1ec7u, Hoa H\\u1ed3ng 45%, Kh\\u00f4ng Y\\u00eau C\\u1ea7u Kinh Nghi\\u1ec7m, \\u0110\\u01b0\\u1ee3c \\u0110\\u00e0o T\\u1ea1o, Kh\\u00f4ng \\u00c1p Doanh S\\u1ed1, Ch\\u1ea5p Nh\\u1eadn Sinh Vi\\u00ean \\u0110ang Ch\\u1edd B\\u1eb1ng<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-dich-vu-bat-dong-san-danh-khoi\\/222628.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N D\\u1ecaCH V\\u1ee4 B\\u1ea4T \\u0110\\u1ed8NG S\\u1ea2N DANH KH\\u00d4I\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t50 - 100 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 15 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 9 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 9 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>51<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1970842\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-bds-luong-co-ban-8-15-trieu-hoa-hong-45-khong-yeu-cau-kinh-nghiem-duoc-dao-tao-khong-ap-doanh-so-chap-nhan-sinh-vien-dang-cho-bang\\/1970842.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1935604\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/ngan-hang-tmcp-quoc-te-viet-nam-vib-cb23bc508baaeebfa730b85b18f37e9e-67b6deb018a68.jpg\\\" alt=\\\"NG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\\" title=\\\"C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">C\\u1ed9ng T\\u00e1c Vi\\u00ean Th\\u1ebb T\\u00edn D\\u1ee5ng-Trung T\\u00e2m Quan H\\u1ec7 \\u0110\\u1ed1i T\\u00e1c-H\\u1ed9i S\\u1edf Ng\\u00e2n H\\u00e0ng VIB (Remote-To\\u00e0n Qu\\u1ed1c-\\u01afu Ti\\u00ean Telesales, Sales Th\\u1ecb Tr\\u01b0\\u1eddng, K\\u00eanh POST, Sales, CSKH, Freelancer C\\u00e1c Ng\\u00e0nh Ngh\\u1ec1<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/ngan-hang-tmcp-quoc-te-viet-nam-vib\\/199116.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"NG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tNG\\u00c2N H\\u00c0NG TMCP QU\\u1ed0C T\\u1ebe VI\\u1ec6T NAM ( VIB)\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t22 - 100 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 15 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 67 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 67 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>20<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1935604\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/cong-tac-vien-the-tin-dung-trung-tam-quan-he-doi-tac-hoi-so-ngan-hang-vib-remote-toan-quoc-uu-tien-telesales-sales-thi-truong-kenh-post-sales-cskh-freelancer-cac-nganh-nghe\\/1935604.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1971840\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-logistics-thu-nhap-hap-dan\\/1971840.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/77d68fe12d35dca9ac669c5be7b3edcc-678638de877b1.jpg\\\" alt=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N LOGISTICS \\u0110\\u00d4NG \\u00c1\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh Logistics (Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn)\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-logistics-thu-nhap-hap-dan\\/1971840.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh Logistics (Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn)\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh Logistics (Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn)<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-co-phan-logistics-dong-a\\/208051.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N LOGISTICS \\u0110\\u00d4NG \\u00c1\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY C\\u1ed4 PH\\u1ea6N LOGISTICS \\u0110\\u00d4NG \\u00c1\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t8 - 200 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 15 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 5 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 5 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>66<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1971840\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-logistics-thu-nhap-hap-dan\\/1971840.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n<script>\\n  $(document).on('click touch', '.btn-apply-now', function(e) {\\n    var link = $(this).attr('data-redirect-to');\\n\\tvar jobId = $(this).data('job-id');\\n    let applyUrl = $(this).attr('data-apply-url');\\n    if (applyUrl) {\\n      window.setCookieBySecond('trigger_apply_now', true, 15);\\n\\n    }\\n    else {\\n      localStorage.setItem('trigger_apply_now', true);\\n    }\\n    if (link) {\\n      if (window.qgTracking && window.qg) {\\n        window.qg('event', 'hit_to_apply_now', window.qgTracking);\\n      }\\n      if (window.fbq) {\\n        window.fbq('event', 'hit_to_apply_now');\\n      }\\n      window.open(link, '_blank');\\n\\t  window.trackingTopCV?.sendClickApplyButtonInListV2(jobId);\\n    }\\n  });\\n\\n<\\/script>\\n\",\"total\":236,\"seemore\":\"https:\\/\\/www.topcv.vn\\/tim-viec-lam-moi-nhat?salary_min=90000000&salary_max=110000000\",\"taSource\":\"JobSearchGrossNet\"}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 5032
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 178,
+          "receive": 20
+        },
+        "time": 198,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:32:09.232+07:00",
+        "request": {
+          "bodySize": 110,
+          "method": "POST",
+          "url": "https://www.topcv.vn/ajax-gross-to-net",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Content-Length",
+              "value": "110"
+            },
+            {
+              "name": "Origin",
+              "value": "https://www.topcv.vn"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6Imo3RmJNeWo3NmxSam5NVFJlSjd2TVE9PSIsInZhbHVlIjoicXl1TmFLYUFKL3BOVk9jbnNFQVhOTzJCNW5UQXBDeUE1OUFOSnQ5UTd6Ym1LbUxrUDhpSlRTS0ZOeWQ2eGdmY2g0ekNHa2VLQnFSbm5FdUpwYnE0MXFOMVdCSlBLSW9HWUlUdnBZcHlDQTlHaHJ6U2JoVUpDSS9Velp1MEx4alUiLCJtYWMiOiJkMDcwNzU0ODE2YzY4MjkzNzAzODFhNjBhYTM2NzkxYTYwNGZhMGQzOGZiZTBiZDI0ODk4YTNhZTIxMDQ1OGQ0IiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6IjBKdlJnS2N1cHN3K0FLdGI0UEVsZ2c9PSIsInZhbHVlIjoiaGxYNWxRQ09rb0FBbmptMEoxZ1dsS1BXdkdER1lCTW9iM2pvWjJyNGRpczBBSG1VRVFXZG1iNGhtWU9WUnJrUklzdkh3V0p3UHV2Zzg4Rm9GQnBXaTd3NzEyLzl4NE82RDhPNFBuWVZsNVBVd1pjTDRGbTVsb05xVzFlUFhPVUciLCJtYWMiOiIxMGViMmQzMjM0NDMxY2I3MTg0ZDI1ZGVkZmM4ZjRhNzRlOWEyNjVkY2FkYjcwNzE5Mzk1NjE3OTVlN2JkNTVlIiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "Priority",
+              "value": "u=0"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6Imo3RmJNeWo3NmxSam5NVFJlSjd2TVE9PSIsInZhbHVlIjoicXl1TmFLYUFKL3BOVk9jbnNFQVhOTzJCNW5UQXBDeUE1OUFOSnQ5UTd6Ym1LbUxrUDhpSlRTS0ZOeWQ2eGdmY2g0ekNHa2VLQnFSbm5FdUpwYnE0MXFOMVdCSlBLSW9HWUlUdnBZcHlDQTlHaHJ6U2JoVUpDSS9Velp1MEx4alUiLCJtYWMiOiJkMDcwNzU0ODE2YzY4MjkzNzAzODFhNjBhYTM2NzkxYTYwNGZhMGQzOGZiZTBiZDI0ODk4YTNhZTIxMDQ1OGQ0IiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6IjBKdlJnS2N1cHN3K0FLdGI0UEVsZ2c9PSIsInZhbHVlIjoiaGxYNWxRQ09rb0FBbmptMEoxZ1dsS1BXdkdER1lCTW9iM2pvWjJyNGRpczBBSG1VRVFXZG1iNGhtWU9WUnJrUklzdkh3V0p3UHV2Zzg4Rm9GQnBXaTd3NzEyLzl4NE82RDhPNFBuWVZsNVBVd1pjTDRGbTVsb05xVzFlUFhPVUciLCJtYWMiOiIxMGViMmQzMjM0NDMxY2I3MTg0ZDI1ZGVkZmM4ZjRhNzRlOWEyNjVkY2FkYjcwNzE5Mzk1NjE3OTVlN2JkNTVlIiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [],
+          "headersSize": 1986,
+          "postData": {
+            "mimeType": "application/x-www-form-urlencoded",
+            "params": [
+              {
+                "name": "luong",
+                "value": "25,000,000"
+              },
+              {
+                "name": "nguoiPhuThuoc",
+                "value": "2"
+              },
+              {
+                "name": "dongBaoHiem",
+                "value": "khac"
+              },
+              {
+                "name": "luongDongBaoHiem",
+                "value": "8,000,000"
+              },
+              {
+                "name": "vung",
+                "value": "1"
+              },
+              {
+                "name": "selectRule",
+                "value": "new2025"
+              }
+            ],
+            "text": "luong=25%2C000%2C000&nguoiPhuThuoc=2&dongBaoHiem=khac&luongDongBaoHiem=8%2C000%2C000&vung=1&selectRule=new2025"
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:32:09 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6ImNMN3FhUmRvN09GV1dlUktSTHhyUVE9PSIsInZhbHVlIjoieXA0Nms1ZCtaek8yaGNVaFBuWUJDMzlFd1BmOEdVb1pxQ0dRZVo2WGZucWlwOWJ4K0F3cEVlK1RhRjVseHF5TU10TlYxWWpEdkxlU3B0YksvVm1qd05HOXVMZERSQ1hKUUlIVVFZUzNnemdxRTF0ZzErbHl0ZllVMitlOHZlWGMiLCJtYWMiOiI1MWQ5OTkzMmQ4MWVjZmFjZmZjZTE2NDgxZmU1YmE0M2RjMDk3ZjQ0NmRjOWRkOTQ5ZTE0M2UzNDI2NmZmMjNhIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:32:09 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6ImM3TjlJdWNCWTJIRmhabzhuTGQ1elE9PSIsInZhbHVlIjoiUEtHY2hKRG4zWmV0VFo1dTBXTCs0Z2VZWXlTTXJvWVB3cHNzWUk4RzV5eUVmRXJadjNMY3BxOWdyd1ZlOUZ3OVdHREJLNjczNXl6eHo4cnRsYmFYTlNLejBxU3gxY2V0Qi96c2JhMlRCU1luVW9ZNTlrN2xHZkFKOFA1NmVUTUMiLCJtYWMiOiI2Mjc3NDNkMGIzZWE2MzQ5NDk4ZGQ0ZDBhMGUxMWZlMTZiNjg3MGIzNGU0MDEwMGY1NDhlODE4ODQ0ZGY4NzY4IiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:32:09 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=0,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f91e595ac6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6ImNMN3FhUmRvN09GV1dlUktSTHhyUVE9PSIsInZhbHVlIjoieXA0Nms1ZCtaek8yaGNVaFBuWUJDMzlFd1BmOEdVb1pxQ0dRZVo2WGZucWlwOWJ4K0F3cEVlK1RhRjVseHF5TU10TlYxWWpEdkxlU3B0YksvVm1qd05HOXVMZERSQ1hKUUlIVVFZUzNnemdxRTF0ZzErbHl0ZllVMitlOHZlWGMiLCJtYWMiOiI1MWQ5OTkzMmQ4MWVjZmFjZmZjZTE2NDgxZmU1YmE0M2RjMDk3ZjQ0NmRjOWRkOTQ5ZTE0M2UzNDI2NmZmMjNhIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6ImM3TjlJdWNCWTJIRmhabzhuTGQ1elE9PSIsInZhbHVlIjoiUEtHY2hKRG4zWmV0VFo1dTBXTCs0Z2VZWXlTTXJvWVB3cHNzWUk4RzV5eUVmRXJadjNMY3BxOWdyd1ZlOUZ3OVdHREJLNjczNXl6eHo4cnRsYmFYTlNLejBxU3gxY2V0Qi96c2JhMlRCU1luVW9ZNTlrN2xHZkFKOFA1NmVUTUMiLCJtYWMiOiI2Mjc3NDNkMGIzZWE2MzQ5NDk4ZGQ0ZDBhMGUxMWZlMTZiNjg3MGIzNGU0MDEwMGY1NDhlODE4ODQ0ZGY4NzY4IiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 614,
+            "text": "\n{\"status\":\"success\",\"result\":{\"luongGross\":25000000,\"baoHiemXaHoi\":640000,\"baoHiemYTe\":120000,\"baoHiemThatNghiep\":80000,\"tongChiPhiBaoHiem\":840000,\"thuNhapTruocThue\":24160000,\"giamTruGiaCanh\":11000000,\"giamTruNguoiPhuThuoc\":8800000,\"thuNhapChiuThue\":4360000,\"thueThuNhapCaNhan\":218000,\"luongNet\":23942000,\"thue_0_5\":218000,\"thue_5_10\":0,\"thue_10_18\":0,\"thue_18_32\":0,\"thue_32_52\":0,\"thue_52_80\":0,\"thue_tren_80\":0,\"baoHiemXaHoiDoanhNghiepDong\":1360000,\"baoHiemYTeDoanhNghiepDong\":240000,\"baoHiemThatNghiepDoanhNghiepDong\":80000,\"baoHiemTaiNanLaoDongDoanhNghiepDong\":40000,\"tongChiPhiDoanhNghiepPhaiTra\":26720000}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 1880
+        },
+        "cache": {},
+        "timings": {
+          "blocked": -1,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 116,
+          "receive": 0
+        },
+        "time": 116,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      },
+      {
+        "startedDateTime": "2025-12-11T16:32:09.357+07:00",
+        "request": {
+          "bodySize": 0,
+          "method": "GET",
+          "url": "https://www.topcv.vn/get-list-job-corresponding?salary=25000000&ta-source=JobSearchGrossNet",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "Host",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/javascript, */*; q=0.01"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.5"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "X-CSRF-TOKEN",
+              "value": "Hs14elGG1BQ1N5vSJY5fvzc2k3NTHGuu4CnfGDTn"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Sec-GPC",
+              "value": "1"
+            },
+            {
+              "name": "Alt-Used",
+              "value": "www.topcv.vn"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.topcv.vn/tinh-luong-gross-net"
+            },
+            {
+              "name": "Cookie",
+              "value": "cf_clearance=cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I; g_state={\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}; _taid=3WzC8ibdqQ.1765419115531; popup-ebook-cv=1; _tafp=0e60144f226f48f4d3518359f0bdeb0b; popup-anti-scam=false; XSRF-TOKEN=eyJpdiI6ImNMN3FhUmRvN09GV1dlUktSTHhyUVE9PSIsInZhbHVlIjoieXA0Nms1ZCtaek8yaGNVaFBuWUJDMzlFd1BmOEdVb1pxQ0dRZVo2WGZucWlwOWJ4K0F3cEVlK1RhRjVseHF5TU10TlYxWWpEdkxlU3B0YksvVm1qd05HOXVMZERSQ1hKUUlIVVFZUzNnemdxRTF0ZzErbHl0ZllVMitlOHZlWGMiLCJtYWMiOiI1MWQ5OTkzMmQ4MWVjZmFjZmZjZTE2NDgxZmU1YmE0M2RjMDk3ZjQ0NmRjOWRkOTQ5ZTE0M2UzNDI2NmZmMjNhIiwidGFnIjoiIn0%3D; topcv_session=eyJpdiI6ImM3TjlJdWNCWTJIRmhabzhuTGQ1elE9PSIsInZhbHVlIjoiUEtHY2hKRG4zWmV0VFo1dTBXTCs0Z2VZWXlTTXJvWVB3cHNzWUk4RzV5eUVmRXJadjNMY3BxOWdyd1ZlOUZ3OVdHREJLNjczNXl6eHo4cnRsYmFYTlNLejBxU3gxY2V0Qi96c2JhMlRCU1luVW9ZNTlrN2xHZkFKOFA1NmVUTUMiLCJtYWMiOiI2Mjc3NDNkMGIzZWE2MzQ5NDk4ZGQ0ZDBhMGUxMWZlMTZiNjg3MGIzNGU0MDEwMGY1NDhlODE4ODQ0ZGY4NzY4IiwidGFnIjoiIn0%3D"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "TE",
+              "value": "trailers"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "cf_clearance",
+              "value": "cEAPkBj2sniBQTLyLOUTUxRdq4BxPlEMPbzdGUyVqrw-1765443637-1.2.1.1-nvL6j08_OVd78Izw7h.tMNJEYxuqgqc9XVYvWi77hmdaIB55XLyZXuIcYdNigToRNSSa.f0UN41628CnP07mFUW9FY_vUyZnC9zpxC.cevmv3KpqE2cOqvSj2Xzgt4nDeBoNVdWdyMgg97IaF6GdoYN5WV54r3jU2vupqzU9DoY.a6tmQjWJvFG3sdc3_.bcP5d0YLxGJyVibo7laKgKdm5flVhibkv_GfY9PM6p60I"
+            },
+            {
+              "name": "g_state",
+              "value": "{\"i_l\":1,\"i_ll\":1765443638817,\"i_b\":\"ecsAZcYiy5pVr7ahtIvBt5032VOJFvMUdO3NciV1jFY\",\"i_p\":1765426319825,\"i_e\":{\"enable_itp_optimization\":0}}"
+            },
+            {
+              "name": "_taid",
+              "value": "3WzC8ibdqQ.1765419115531"
+            },
+            {
+              "name": "popup-ebook-cv",
+              "value": "1"
+            },
+            {
+              "name": "_tafp",
+              "value": "0e60144f226f48f4d3518359f0bdeb0b"
+            },
+            {
+              "name": "popup-anti-scam",
+              "value": "false"
+            },
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6ImNMN3FhUmRvN09GV1dlUktSTHhyUVE9PSIsInZhbHVlIjoieXA0Nms1ZCtaek8yaGNVaFBuWUJDMzlFd1BmOEdVb1pxQ0dRZVo2WGZucWlwOWJ4K0F3cEVlK1RhRjVseHF5TU10TlYxWWpEdkxlU3B0YksvVm1qd05HOXVMZERSQ1hKUUlIVVFZUzNnemdxRTF0ZzErbHl0ZllVMitlOHZlWGMiLCJtYWMiOiI1MWQ5OTkzMmQ4MWVjZmFjZmZjZTE2NDgxZmU1YmE0M2RjMDk3ZjQ0NmRjOWRkOTQ5ZTE0M2UzNDI2NmZmMjNhIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6ImM3TjlJdWNCWTJIRmhabzhuTGQ1elE9PSIsInZhbHVlIjoiUEtHY2hKRG4zWmV0VFo1dTBXTCs0Z2VZWXlTTXJvWVB3cHNzWUk4RzV5eUVmRXJadjNMY3BxOWdyd1ZlOUZ3OVdHREJLNjczNXl6eHo4cnRsYmFYTlNLejBxU3gxY2V0Qi96c2JhMlRCU1luVW9ZNTlrN2xHZkFKOFA1NmVUTUMiLCJtYWMiOiI2Mjc3NDNkMGIzZWE2MzQ5NDk4ZGQ0ZDBhMGUxMWZlMTZiNjg3MGIzNGU0MDEwMGY1NDhlODE4ODQ0ZGY4NzY4IiwidGFnIjoiIn0="
+            }
+          ],
+          "queryString": [
+            {
+              "name": "salary",
+              "value": "25000000"
+            },
+            {
+              "name": "ta-source",
+              "value": "JobSearchGrossNet"
+            }
+          ],
+          "headersSize": 1908
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "httpVersion": "HTTP/3",
+          "headers": [
+            {
+              "name": "server",
+              "value": "cloudflare"
+            },
+            {
+              "name": "date",
+              "value": "Thu, 11 Dec 2025 09:32:09 GMT"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache, private"
+            },
+            {
+              "name": "set-cookie",
+              "value": "XSRF-TOKEN=eyJpdiI6IjFMbmFVUmU3Q2haS1VzeUxDUENmZWc9PSIsInZhbHVlIjoiM1d5TUNLNm9uRlFoNFBDNUdiWHNIMGVxQnF6QTZhRmpXYzJaUG0zb3lIam5TTDVNMGxvczcrQ2s4MkI5WE1rRzE1Yjl4MnJyKzMzOFdGTXE5SElMelF4MTdHRXN1K0dBcFNjenREOE5PTXIrNno2WVh0ZmlGcGVmdm5TQUh5QjMiLCJtYWMiOiI2YzUzMDRmYzBiN2IwY2U3MTc2MGE3MDZlZTgxN2I4YTk2MjhmZGMxNGY3Y2IwN2E0OGZiZWVjYjA4MDU0MTYwIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:32:09 GMT; Max-Age=7776000; path=/; domain=.topcv.vn"
+            },
+            {
+              "name": "set-cookie",
+              "value": "topcv_session=eyJpdiI6Ijk1dzlpYTNZK3I4ZitneVJlSGlZZWc9PSIsInZhbHVlIjoiejdvYzN1RS9LTEZ5anYrMFltSTJ4QTFVL3dNOHVudUFrS0YweHJGVk9ocnRIM2dvbG5xT1p5ZkVDSElIMnhKZ2ZqZWhycWdMdldvNGRUZlBVTURuK3NMNkVDODhkRGFvWHpVQkJ1b3NVK09neHdWTEhrLzF0SWNsMjhtN2h5ckMiLCJtYWMiOiI1MzQ1MzUwMDJlZjVjODJlYzQyNGI5ODM1MjlhODQwOWZjOTFiNjQzMjBlY2MzZWU0ZDQyM2UyMjBlNmIzZWZjIiwidGFnIjoiIn0%3D; expires=Wed, 11 Mar 2026 09:32:09 GMT; Max-Age=7776000; path=/; domain=.topcv.vn; httponly"
+            },
+            {
+              "name": "strict-transport-security",
+              "value": "max-age=15768000"
+            },
+            {
+              "name": "x-frame-options",
+              "value": "ALLOWALL"
+            },
+            {
+              "name": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+            },
+            {
+              "name": "access-control-allow-methods",
+              "value": "*"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+            },
+            {
+              "name": "access-control-allow-headers",
+              "value": "*"
+            },
+            {
+              "name": "access-control-max-age",
+              "value": "1728000"
+            },
+            {
+              "name": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "name": "priority",
+              "value": "u=3,i=?0"
+            },
+            {
+              "name": "content-encoding",
+              "value": "br"
+            },
+            {
+              "name": "cf-ray",
+              "value": "9ac3f91f49a3c6b8-HKG"
+            },
+            {
+              "name": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            },
+            {
+              "name": "server-timing",
+              "value": "cfExtPri"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "XSRF-TOKEN",
+              "value": "eyJpdiI6IjFMbmFVUmU3Q2haS1VzeUxDUENmZWc9PSIsInZhbHVlIjoiM1d5TUNLNm9uRlFoNFBDNUdiWHNIMGVxQnF6QTZhRmpXYzJaUG0zb3lIam5TTDVNMGxvczcrQ2s4MkI5WE1rRzE1Yjl4MnJyKzMzOFdGTXE5SElMelF4MTdHRXN1K0dBcFNjenREOE5PTXIrNno2WVh0ZmlGcGVmdm5TQUh5QjMiLCJtYWMiOiI2YzUzMDRmYzBiN2IwY2U3MTc2MGE3MDZlZTgxN2I4YTk2MjhmZGMxNGY3Y2IwN2E0OGZiZWVjYjA4MDU0MTYwIiwidGFnIjoiIn0="
+            },
+            {
+              "name": "topcv_session",
+              "value": "eyJpdiI6Ijk1dzlpYTNZK3I4ZitneVJlSGlZZWc9PSIsInZhbHVlIjoiejdvYzN1RS9LTEZ5anYrMFltSTJ4QTFVL3dNOHVudUFrS0YweHJGVk9ocnRIM2dvbG5xT1p5ZkVDSElIMnhKZ2ZqZWhycWdMdldvNGRUZlBVTURuK3NMNkVDODhkRGFvWHpVQkJ1b3NVK09neHdWTEhrLzF0SWNsMjhtN2h5ckMiLCJtYWMiOiI1MzQ1MzUwMDJlZjVjODJlYzQyNGI5ODM1MjlhODQwOWZjOTFiNjQzMjBlY2MzZWU0ZDQyM2UyMjBlNmIzZWZjIiwidGFnIjoiIn0="
+            }
+          ],
+          "content": {
+            "mimeType": "application/json",
+            "size": 22882,
+            "text": "\n{\"success\":true,\"data\":{\"html\":\"<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1979361\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/chuyen-vien-tu-van-tai-chinh-toan-thoi-gian-thu-nhap-hap-dan-tai-ha-noi\\/1979361.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/rFfCTiYjDH73ZSrsmQXq4DUd19W3Xapw_1763975901____63783e7cab923e052add4d26ac789154.png\\\" alt=\\\"C\\u00f4ng Ty TNHH B\\u1ea3o Hi\\u1ec3m Nh\\u00e2n Th\\u1ecd Prudential Vi\\u1ec7t Nam\\\" title=\\\"Chuy\\u00ean Vi\\u00ean T\\u01b0 V\\u1ea5n T\\u00e0i Ch\\u00ednh To\\u00e0n Th\\u1eddi Gian - Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn T\\u1ea1i H\\u00e0 N\\u1ed9i\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/chuyen-vien-tu-van-tai-chinh-toan-thoi-gian-thu-nhap-hap-dan-tai-ha-noi\\/1979361.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Chuy\\u00ean Vi\\u00ean T\\u01b0 V\\u1ea5n T\\u00e0i Ch\\u00ednh To\\u00e0n Th\\u1eddi Gian - Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn T\\u1ea1i H\\u00e0 N\\u1ed9i\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Chuy\\u00ean Vi\\u00ean T\\u01b0 V\\u1ea5n T\\u00e0i Ch\\u00ednh To\\u00e0n Th\\u1eddi Gian - Thu Nh\\u1eadp H\\u1ea5p D\\u1eabn T\\u1ea1i H\\u00e0 N\\u1ed9i<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-tnhh-bao-hiem-nhan-tho-prudential-viet-nam\\/22177.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00f4ng Ty TNHH B\\u1ea3o Hi\\u1ec3m Nh\\u00e2n Th\\u1ecd Prudential Vi\\u1ec7t Nam\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00f4ng Ty TNHH B\\u1ea3o Hi\\u1ec3m Nh\\u00e2n Th\\u1ecd Prudential Vi\\u1ec7t Nam\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t20 - 50 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 8 gi\\u00e2y t\\u1edbi\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u00e0 N\\u1ed9i, Ph\\u01b0\\u1eddng T\\u00e2y H\\u1ed3\\\">\\n                            H\\u00e0 N\\u1ed9i, Ph\\u01b0\\u1eddng T\\u00e2y H\\u1ed3\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>29<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1979361\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/chuyen-vien-tu-van-tai-chinh-toan-thoi-gian-thu-nhap-hap-dan-tai-ha-noi\\/1979361.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1977044\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-sale-thi-truong-nam-luong-cung-8-12-trieu-thu-nhap-upto-40-trieu\\/1977044.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/1qSV6GZnlrLv29SgT90gdB1P8fRkxb42_1645416278____604702d4ddf5d79ef304f2f97721c299.jfif\\\" alt=\\\"C\\u00d4NG TY TNHH VN \\u0110\\u1ea0I PHONG\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh \\/T\\u01b0 V\\u1ea5n\\/ Sale Th\\u1ecb Tr\\u01b0\\u1eddng (Nam) - L\\u01b0\\u01a1ng C\\u1ee9ng 8 - 12 Tri\\u1ec7u, Thu Nh\\u1eadp Upto 40 Tri\\u1ec7u\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-sale-thi-truong-nam-luong-cung-8-12-trieu-thu-nhap-upto-40-trieu\\/1977044.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean Kinh Doanh \\/T\\u01b0 V\\u1ea5n\\/ Sale Th\\u1ecb Tr\\u01b0\\u1eddng (Nam) - L\\u01b0\\u01a1ng C\\u1ee9ng 8 - 12 Tri\\u1ec7u, Thu Nh\\u1eadp Upto 40 Tri\\u1ec7u\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean Kinh Doanh \\/T\\u01b0 V\\u1ea5n\\/ Sale Th\\u1ecb Tr\\u01b0\\u1eddng (Nam) - L\\u01b0\\u01a1ng C\\u1ee9ng 8 - 12 Tri\\u1ec7u, Thu Nh\\u1eadp Upto 40 Tri\\u1ec7u<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<span class=\\\"icon-verified-employer level-five\\\">\\n<i class=\\\"fa-solid fa-circle-check icon-verified-employer-tooltip\\\" data-toggle=\\\"tooltip\\\" data-container=\\\"body\\\"\\n   data-html=\\\"true\\\" title=\\\"\\n  <b>Nh\\u00e0 tuy\\u1ec3n d\\u1ee5ng<\\/b><span> \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c x\\u00e1c th\\u1ef1c:<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c email t\\u00ean mi\\u1ec1n c\\u00f4ng ty<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 x\\u00e1c th\\u1ef1c s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> \\u0110\\u00e3 \\u0111\\u01b0\\u1ee3c duy\\u1ec7t Gi\\u1ea5y ph\\u00e9p kinh doanh<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> T\\u00e0i kho\\u1ea3n NTD \\u0111\\u01b0\\u1ee3c t\\u1ea1o t\\u1ed1i thi\\u1ec3u 6 th\\u00e1ng<\\/span><br>\\n  <span><i class='fa-solid fa-circle-check color-green'><\\/i> Ch\\u01b0a c\\u00f3 l\\u1ecbch s\\u1eed b\\u1ecb b\\u00e1o c\\u00e1o tin \\u0111\\u0103ng<\\/span><br>\\\"\\n   data-placement=\\\"top\\\"><\\/i><\\/span>\\n\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-tnhh-vn-dai-phong\\/200952.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY TNHH VN \\u0110\\u1ea0I PHONG\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY TNHH VN \\u0110\\u1ea0I PHONG\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t12 - 40 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 52 gi\\u00e2y tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh, X\\u00e3 B\\u00e0 \\u0110i\\u1ec3m\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh, X\\u00e3 B\\u00e0 \\u0110i\\u1ec3m\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>27<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1977044\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-kinh-doanh-tu-van-sale-thi-truong-nam-luong-cung-8-12-trieu-thu-nhap-upto-40-trieu\\/1977044.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1876643\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-xu-ly-tin-dung-qua-dien-thoai-tphcm-thu-nhap-12-40-trieu\\/1876643.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/6850dd7cec9f31750130044.jpg\\\" alt=\\\"C\\u00d4NG TY T\\u00c0I CH\\u00cdNH T\\u00cdN D\\u1ee4NG TI\\u00caU D\\u00d9NG TNHH MB SHINSEI (Mcredit)\\\" title=\\\"Nh\\u00e2n Vi\\u00ean X\\u1eed L\\u00fd T\\u00edn D\\u1ee5ng Qua \\u0110i\\u1ec7n Tho\\u1ea1i (TPHCM, Thu Nh\\u1eadp 12 - 40 Tri\\u1ec7u)\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-xu-ly-tin-dung-qua-dien-thoai-tphcm-thu-nhap-12-40-trieu\\/1876643.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Nh\\u00e2n Vi\\u00ean X\\u1eed L\\u00fd T\\u00edn D\\u1ee5ng Qua \\u0110i\\u1ec7n Tho\\u1ea1i (TPHCM, Thu Nh\\u1eadp 12 - 40 Tri\\u1ec7u)\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Nh\\u00e2n Vi\\u00ean X\\u1eed L\\u00fd T\\u00edn D\\u1ee5ng Qua \\u0110i\\u1ec7n Tho\\u1ea1i (TPHCM, Thu Nh\\u1eadp 12 - 40 Tri\\u1ec7u)<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-tai-chinh-tin-dung-tieu-dung-tnhh-mb-shinsei-mcredit\\/226134.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00d4NG TY T\\u00c0I CH\\u00cdNH T\\u00cdN D\\u1ee4NG TI\\u00caU D\\u00d9NG TNHH MB SHINSEI (Mcredit)\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00d4NG TY T\\u00c0I CH\\u00cdNH T\\u00cdN D\\u1ee4NG TI\\u00caU D\\u00d9NG TNHH MB SHINSEI (Mcredit)\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t12 - 40 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 52 gi\\u00e2y tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng B\\u1ea3y Hi\\u1ec1n\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng B\\u1ea3y Hi\\u1ec1n\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>29<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1876643\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/nhan-vien-xu-ly-tin-dung-qua-dien-thoai-tphcm-thu-nhap-12-40-trieu\\/1876643.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1977042\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/trinh-duoc-vien-otc-tai-ho-chi-minh-thu-nhap-tu-15-30-trieu-thang\\/1977042.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/cong-ty-tnhh-duoc-pham-stabled-5fc0c21394021.jpg\\\" alt=\\\"C\\u00f4ng ty TNHH D\\u01b0\\u1ee3c Ph\\u1ea9m Stabled\\\" title=\\\"Tr\\u00ecnh D\\u01b0\\u1ee3c Vi\\u00ean OTC T\\u1ea1i H\\u1ed3 Ch\\u00ed Minh - Thu Nh\\u1eadp T\\u1eeb 15 - 30 Tri\\u1ec7u\\/Th\\u00e1ng\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/trinh-duoc-vien-otc-tai-ho-chi-minh-thu-nhap-tu-15-30-trieu-thang\\/1977042.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Tr\\u00ecnh D\\u01b0\\u1ee3c Vi\\u00ean OTC T\\u1ea1i H\\u1ed3 Ch\\u00ed Minh - Thu Nh\\u1eadp T\\u1eeb 15 - 30 Tri\\u1ec7u\\/Th\\u00e1ng\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Tr\\u00ecnh D\\u01b0\\u1ee3c Vi\\u00ean OTC T\\u1ea1i H\\u1ed3 Ch\\u00ed Minh - Thu Nh\\u1eadp T\\u1eeb 15 - 30 Tri\\u1ec7u\\/Th\\u00e1ng<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-tnhh-duoc-pham-stabled\\/49504.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00f4ng ty TNHH D\\u01b0\\u1ee3c Ph\\u1ea9m Stabled\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00f4ng ty TNHH D\\u01b0\\u1ee3c Ph\\u1ea9m Stabled\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t15 - 30 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 1 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh &amp; 168 n\\u01a1i kh\\u00e1c\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh &amp; 168 n\\u01a1i kh\\u00e1c\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>28<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1977042\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/trinh-duoc-vien-otc-tai-ho-chi-minh-thu-nhap-tu-15-30-trieu-thang\\/1977042.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n\\t\\t<div\\n\\t\\t\\tclass=\\\"corresponding-job__item job-ta\\n             bg-highlight         \\\" data-job-id=\\\"1941923\\\" data-box=\\\"JobListBySalary\\\">\\n\\t\\t<div class=\\\"image-job\\\">\\n\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/store-manager-luxury-fashion-brand-good-english\\/1941923.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n\\t\\t\\t\\t<img src=\\\"https:\\/\\/cdn-new.topcv.vn\\/unsafe\\/150x\\/https:\\/\\/static.topcv.vn\\/company_logos\\/68cd284fb3e341758275663.png\\\" alt=\\\"C\\u00f4ng ty TNHH SX - TM - DV B.Y.F.A.S\\\" title=\\\"Store Manager Luxury Fashion Brand (Good English)\\\">\\n\\t\\t\\t<\\/a>\\n\\t\\t<\\/div>\\n\\t\\t<div class=\\\"detail\\\">\\n\\t\\t\\t<div class=\\\"detail-content\\\">\\n\\t\\t\\t\\t<div class=\\\"detail-content__info\\\">\\n\\t\\t\\t\\t\\t<div class=\\\"detail-content__info--content\\\">\\n\\t\\t\\t\\t\\t\\t<h3 class=\\\"detail__title\\\">\\n\\t\\t\\t\\t\\t\\t\\t<p class=\\\"detail__title--icon\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t<p>\\n\\t\\t\\t\\t\\t\\t\\t\\t<a target=\\\"_blank\\\" href=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/store-manager-luxury-fashion-brand-good-english\\/1941923.html?ta_source=JobSearchGrossNet_LinkDetail\\\">\\n                                    <span data-toggle=\\\"tooltip\\\" title=\\\"Store Manager Luxury Fashion Brand (Good English)\\\" data-placement=\\\"top\\\"\\n                                          data-container=\\\"body\\\">Store Manager Luxury Fashion Brand (Good English)<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t<\\/h3>\\n\\t\\t\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\t\\t\\t<a class=\\\"company\\\" href=\\\"https:\\/\\/www.topcv.vn\\/cong-ty\\/cong-ty-tnhh-sx-tm-dv-b-y-f-a-s\\/236282.html\\\" data-toggle=\\\"tooltip\\\"\\n\\t\\t\\t\\t\\t\\t\\t   title=\\\"C\\u00f4ng ty TNHH SX - TM - DV B.Y.F.A.S\\\" data-placement=\\\"top\\\" data-container=\\\"body\\\" target=\\\"_blank\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\tC\\u00f4ng ty TNHH SX - TM - DV B.Y.F.A.S\\n\\t\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t\\t<p class=\\\"salary\\\">\\n\\t\\t\\t\\t\\t\\t20 - 40 tri\\u1ec7u\\n\\t\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<p class=\\\"company-name\\\">\\n\\t\\t\\t\\t\\tC\\u1eadp nh\\u1eadt 1 ph\\u00fat tr\\u01b0\\u1edbc\\n\\t\\t\\t\\t<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<div class=\\\"detail_footer  display-wrap \\\">\\n\\t\\t\\t\\t<div class=\\\"tag-list\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\" data-toggle=\\\"tooltip\\\" title=\\\"H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng B\\u1ebfn Th\\u00e0nh\\\">\\n                            H\\u1ed3 Ch\\u00ed Minh, Ph\\u01b0\\u1eddng B\\u1ebfn Th\\u00e0nh\\n                        <\\/span>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<span class=\\\"tag\\\">\\n                        \\t\\t\\t\\t\\t\\t\\tC\\u00f2n <strong>27<\\/strong>\\n\\t\\t\\t\\t\\t\\t\\tng\\u00e0y \\u0111\\u1ec3 \\u1ee9ng tuy\\u1ec3n\\n\\t\\t\\t\\t\\t\\t                    <\\/span>\\n\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t\\t<div class=\\\"icon-apply\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<button data-job-id=\\\"1941923\\\" data-apply-url=\\\"\\\" data-redirect-to=\\\"https:\\/\\/www.topcv.vn\\/viec-lam\\/store-manager-luxury-fashion-brand-good-english\\/1941923.html?ta_source=JobSearchGrossNet_ButtonApplyFormCard\\\"\\n\\t\\t\\t\\t\\t\\t\\t        class=\\\"corresponding-btn-apply btn-apply-now\\\">\\n\\t\\t\\t\\t\\t\\t\\t\\t<span>\\u1ee8ng tuy\\u1ec3n<\\/span>\\n\\t\\t\\t\\t\\t\\t\\t<\\/button>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href=\\\"javascript:showLoginPopup(null, '\\u0110\\u0103ng nh\\u1eadp ho\\u1eb7c \\u0110\\u0103ng k\\u00fd \\u0111\\u1ec3 l\\u01b0u tin tuy\\u1ec3n d\\u1ee5ng')\\\"\\n\\t\\t\\t\\t\\t\\t   class=\\\"btn-save-job\\\">\\n\\t\\t\\t\\t\\t\\t\\t<i class=\\\"fa-light fa-heart\\\"><\\/i>\\n\\t\\t\\t\\t\\t\\t<\\/a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<\\/div>\\n\\t\\t\\t<\\/div>\\n\\t\\t<\\/div>\\n\\t<\\/div>\\n<script>\\n  $(document).on('click touch', '.btn-apply-now', function(e) {\\n    var link = $(this).attr('data-redirect-to');\\n\\tvar jobId = $(this).data('job-id');\\n    let applyUrl = $(this).attr('data-apply-url');\\n    if (applyUrl) {\\n      window.setCookieBySecond('trigger_apply_now', true, 15);\\n\\n    }\\n    else {\\n      localStorage.setItem('trigger_apply_now', true);\\n    }\\n    if (link) {\\n      if (window.qgTracking && window.qg) {\\n        window.qg('event', 'hit_to_apply_now', window.qgTracking);\\n      }\\n      if (window.fbq) {\\n        window.fbq('event', 'hit_to_apply_now');\\n      }\\n      window.open(link, '_blank');\\n\\t  window.trackingTopCV?.sendClickApplyButtonInListV2(jobId);\\n    }\\n  });\\n\\n<\\/script>\\n\",\"total\":6372,\"seemore\":\"https:\\/\\/www.topcv.vn\\/tim-viec-lam-moi-nhat?salary_min=22500000&salary_max=27500000\",\"taSource\":\"JobSearchGrossNet\"}}"
+          },
+          "redirectURL": "",
+          "headersSize": 1581,
+          "bodySize": 4804
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 0,
+          "connect": 0,
+          "ssl": 0,
+          "send": 0,
+          "wait": 243,
+          "receive": 0
+        },
+        "time": 243,
+        "_securityState": "secure",
+        "serverIPAddress": "172.66.158.110",
+        "connection": "443",
+        "pageref": "page_4"
+      }
+    ]
+  }
+}

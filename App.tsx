@@ -5,7 +5,7 @@ import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, GitHub } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github } from 'lucide-react';
 
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
@@ -20,7 +20,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -346,7 +346,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between text-sm text-slate-500">
           <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
           <a className="flex items-center gap-2 text-slate-600 hover:text-slate-800" href="https://github.com/vietvudanh/vietnam-tax-2025" target="_blank" rel="noopener noreferrer">
-            <GitHub className="w-5 h-5" />
+            <Github className="w-5 h-5" />
             <span>vietvudanh/vietnam-tax-2025</span>
           </a>
         </div>

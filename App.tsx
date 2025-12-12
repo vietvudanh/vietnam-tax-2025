@@ -6,6 +6,7 @@ import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle, Github } from 'lucide-react';
+import { ResultCard } from './components/ResultCard';
 
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
@@ -92,60 +93,22 @@ const App: React.FC = () => {
               <>
                 {/* Key Metrics Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* OLD CARD */}
-                  <div className="bg-slate-100 border border-slate-200 rounded-xl p-6 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 px-3 py-1 bg-slate-200 text-slate-600 text-xs font-bold rounded-bl-lg">
-                      QUY ĐỊNH CŨ
-                    </div>
-                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net)</div>
-                    <div className="text-3xl font-bold text-slate-700 mb-4">
-                      {formatCurrency(result.oldReg.netIncome)}
-                    </div>
-                    <div className="space-y-2 text-sm border-t border-slate-200 pt-3">
-                      <div className="flex justify-between text-slate-600">
-                        <span>Thuế phải đóng:</span>
-                        <span className="font-medium text-red-500">{formatCurrency(result.oldReg.taxAmount)}</span>
-                      </div>
-                      <div className="flex justify-between text-slate-600">
-                        <span>Tổng giảm trừ:</span>
-                        <span className="font-medium">
-                          {formatCurrency(result.oldReg.personalDeduction + result.oldReg.dependentDeduction)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* NEW CARD */}
-                  <div className="bg-white border-2 border-green-500 shadow-sm rounded-xl p-6 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-bl-lg">
-                      MỚI (SAU 1/7/2026)
-                    </div>
-                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net)</div>
-                    <div className="text-3xl font-bold text-emerald-600 mb-4">
-                      {formatCurrency(result.newReg.netIncome)}
-                    </div>
-                    <div className="space-y-2 text-sm border-t border-slate-100 pt-3">
-                      <div className="flex justify-between text-slate-600">
-                        <span>Thuế phải đóng:</span>
-                        <span className="font-medium text-red-500">{formatCurrency(result.newReg.taxAmount)}</span>
-                      </div>
-                      <div className="flex justify-between text-slate-600">
-                        <span>Tổng giảm trừ:</span>
-                        <span className="font-medium">
-                          {formatCurrency(result.newReg.personalDeduction + result.newReg.dependentDeduction)}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    {/* Savings Badge */}
-                    <div className="mt-4 bg-emerald-50 text-emerald-700 px-3 py-2 rounded-lg text-sm font-semibold flex items-center justify-between border border-emerald-100">
-                      <span>Bạn tiết kiệm được:</span>
-                      <span className="text-lg flex items-center gap-1">
-                        {formatCurrency(result.diffNet)}
-                        <TrendingDown className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
+                  <ResultCard
+                    title="QUY ĐỊNH CŨ"
+                    netIncome={result.oldReg.netIncome}
+                    taxAmount={result.oldReg.taxAmount}
+                    personalDeduction={result.oldReg.personalDeduction}
+                    dependentDeduction={result.oldReg.dependentDeduction}
+                  />
+                  <ResultCard
+                    title="MỚI (SAU 1/7/2026)"
+                    netIncome={result.newReg.netIncome}
+                    taxAmount={result.newReg.taxAmount}
+                    personalDeduction={result.newReg.personalDeduction}
+                    dependentDeduction={result.newReg.dependentDeduction}
+                    isNew={true}
+                    savings={result.diffNet}
+                  />
                 </div>
 
                  {/* Chart Section */}

@@ -2,7 +2,7 @@ import { TaxConfig, TaxResult, ComparisonResult, Region, REGIONS, BASE_SALARY_20
 
 export const OLD_CONFIG: TaxConfig = {
   name: "Quy định cũ (Hiện hành)",
-  effectiveDate: "Trước 1/7/2025",
+  effectiveDate: "Trước 1/7/2026",
   personalDeduction: 11_000_000,
   dependentDeduction: 4_400_000,
   brackets: [
@@ -18,7 +18,7 @@ export const OLD_CONFIG: TaxConfig = {
 
 export const NEW_CONFIG: TaxConfig = {
   name: "Quy định mới (Đề xuất)",
-  effectiveDate: "Sau 1/7/2025",
+  effectiveDate: "Sau 1/7/2026",
   personalDeduction: 15_500_000,
   dependentDeduction: 6_200_000,
   brackets: [

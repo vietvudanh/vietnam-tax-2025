@@ -107,7 +107,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           <div className="flex justify-between items-center mb-2">
             <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4" />
-              {autoInsurance ? 'Mức đóng bảo hiểm (10.5%)' : 'Lương đóng bảo hiểm (Capped)'}
+              {autoInsurance ? 'Mức đóng bảo hiểm (10.5%)' : 'Lương đóng bảo hiểm'}
             </label>
             <div className="flex items-center gap-2">
                <input 
@@ -134,7 +134,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
           <p className="text-xs text-slate-400 mt-1">
             {autoInsurance 
               ? `Tổng BHXH+BHYT+BHTN (10.5%). Áp dụng mức tối đa ${formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)`
-              : `Nhập lương đóng bảo hiểm (tối đa ${formatCurrency(BHXH_MAX_CAP)}). Hệ thống sẽ tính 10.5% từ giá trị này.`
+              : `Nhập lương làm căn cứ đóng bảo hiểm (tối đa ${formatCurrency(BHXH_MAX_CAP)}). Hệ thống sẽ tính 10.5% trên lương này.`
             }
           </p>
         </div>

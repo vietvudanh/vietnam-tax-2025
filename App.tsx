@@ -10,14 +10,15 @@ import { TrendingDown, TrendingUp, Info, AlertCircle, Github } from 'lucide-reac
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
+  const [useNewDeduction, setUseNewDeduction] = useState<boolean>(true);
 
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
   const handleCalculate = useCallback((gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => {
-    const calcResult = calculateComparison(gross, dependents, region, insurance);
+    const calcResult = calculateComparison(gross, dependents, region, insurance, useNewDeduction);
     setResult(calcResult);
     setSelectedRegion(region);
-  }, []);
+  }, [useNewDeduction]);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -46,16 +47,27 @@ const App: React.FC = () => {
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl">
               <h3 className="font-semibold text-blue-900 flex items-center gap-2 mb-3">
                 <Info className="w-5 h-5 text-blue-600" />
-                Thông tin giảm trừ mới (từ 1/1/2026)
+                Thông tin giảm trừ {useNewDeduction ? 'mới (từ 1/1/2026)' : 'cũ (trước 1/1/2026)'}
               </h3>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-blue-800">Áp dụng mức giảm trừ mới (từ 1/1/2026)</span>
+                <button
+                  onClick={() => setUseNewDeduction(!useNewDeduction)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${useNewDeduction ? 'bg-blue-600' : 'bg-slate-300'}`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${useNewDeduction ? 'translate-x-6' : 'translate-x-1'}`}
+                  />
+                </button>
+              </div>
               <ul className="space-y-3 text-sm text-blue-800">
                 <li className="flex justify-between border-b border-blue-200 pb-2">
                   <span>Bản thân:</span>
-                  <span className="font-bold">11tr → 15.5tr</span>
+                  <span className="font-bold">{useNewDeduction ? '15.5tr' : '11tr'}</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Người phụ thuộc:</span>
-                  <span className="font-bold">4.4tr → 6.2tr</span>
+                  <span className="font-bold">{useNewDeduction ? '6.2tr' : '4.4tr'}</span>
                 </li>
               </ul>
             </div>

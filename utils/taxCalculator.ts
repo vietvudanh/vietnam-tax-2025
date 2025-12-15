@@ -129,7 +129,8 @@ export const calculateComparison = (
   gross: number,
   dependents: number,
   region: Region,
-  customInsuranceSalary: number | null // If null, use gross
+  customInsuranceSalary: number | null, // If null, use gross
+  useNewDeduction: boolean = true // Default to new deduction values (from 1/1/2026)
 ): ComparisonResult => {
   const insuranceSalary = customInsuranceSalary !== null ? customInsuranceSalary : gross;
   
@@ -137,8 +138,27 @@ export const calculateComparison = (
   // but here we focus on Tax law changes). We assume insurance law stays constant for this sim.
   const insuranceDetails = calculateInsurance(insuranceSalary, region);
 
-  const oldReg = calculateTaxForConfig(gross, dependents, insuranceDetails, OLD_CONFIG);
-  const newReg = calculateTaxForConfig(gross, dependents, insuranceDetails, NEW_CONFIG);
+  // Select deduction values based on the toggle (old vs new deduction amounts)
+  // This affects both old and new tax bracket calculations
+  const personalDeductionToUse = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
+  const dependentDeductionToUse = useNewDeduction ? NEW_CONFIG.dependentDeduction : OLD_CONFIG.dependentDeduction;
+
+  // Old tax law config (7 brackets) with selected deduction values
+  const oldTaxConfig: TaxConfig = {
+    ...OLD_CONFIG,
+    personalDeduction: personalDeductionToUse,
+    dependentDeduction: dependentDeductionToUse,
+  };
+  
+  // New tax law config (5 brackets) with selected deduction values
+  const newTaxConfig: TaxConfig = {
+    ...NEW_CONFIG,
+    personalDeduction: personalDeductionToUse,
+    dependentDeduction: dependentDeductionToUse,
+  };
+
+  const oldReg = calculateTaxForConfig(gross, dependents, insuranceDetails, oldTaxConfig);
+  const newReg = calculateTaxForConfig(gross, dependents, insuranceDetails, newTaxConfig);
 
   return {
     oldReg,

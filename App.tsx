@@ -5,7 +5,7 @@ import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } from 'lucide-react';
 
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
@@ -20,6 +20,16 @@ const App: React.FC = () => {
     setSelectedRegion(region);
   }, [useNewDeduction]);
 
+  // Google Analytics tracking helper
+  const trackEvent = (eventName: string) => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', eventName, {
+        event_category: 'blog_link',
+        event_label: 'Mình đã tạo page này thế nào?'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -33,6 +43,21 @@ const App: React.FC = () => {
               <h1 className="text-xl font-bold text-slate-900">Tính Thuế TNCN 2026</h1>
               <p className="text-xs text-slate-500">So sánh luật cũ & mới (Hiệu lực 1/7/2026)</p>
             </div>
+          </div>
+        </div>
+        {/* Top Banner */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-100">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+            <a
+              href="https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('top_banner_blog_click')}
+              className="flex items-center justify-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors"
+            >
+              <span>Mình đã tạo page này thế nào?</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </header>
@@ -355,12 +380,26 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-white border-t border-slate-200 mt-8">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between text-sm text-slate-500">
-          <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
-          <a className="flex items-center gap-2 text-slate-600 hover:text-slate-800" href="https://github.com/vietvudanh/vietnam-tax-2025" target="_blank" rel="noopener noreferrer">
-            <Github className="w-5 h-5" />
-            <span>vietvudanh/vietnam-tax-2025</span>
-          </a>
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('footer_blog_click')}
+                className="flex items-center gap-1 text-slate-600 hover:text-blue-600 hover:underline transition-colors"
+              >
+                <span>Mình đã tạo page này thế nào?</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+              <a className="flex items-center gap-2 text-slate-600 hover:text-slate-800" href="https://github.com/vietvudanh/vietnam-tax-2025" target="_blank" rel="noopener noreferrer">
+                <Github className="w-5 h-5" />
+                <span>vietvudanh/vietnam-tax-2025</span>
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

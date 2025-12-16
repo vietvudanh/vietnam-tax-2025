@@ -7,6 +7,18 @@ import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES 
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } from 'lucide-react';
 
+// Constants
+const BLOG_URL = 'https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt';
+const BLOG_LINK_TEXT = 'Mình đã tạo page này thế nào?';
+
+// Type definition for Google Analytics
+declare global {
+  interface Window {
+    gtag?: (command: string, ...args: any[]) => void;
+    dataLayer?: any[];
+  }
+}
+
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
@@ -22,10 +34,10 @@ const App: React.FC = () => {
 
   // Google Analytics tracking helper
   const trackEvent = (eventName: string) => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', eventName, {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', eventName, {
         event_category: 'blog_link',
-        event_label: 'Mình đã tạo page này thế nào?'
+        event_label: BLOG_LINK_TEXT
       });
     }
   };
@@ -49,13 +61,13 @@ const App: React.FC = () => {
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-100">
           <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
             <a
-              href="https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt"
+              href={BLOG_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('top_banner_blog_click')}
               className="flex items-center justify-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors"
             >
-              <span>Mình đã tạo page này thế nào?</span>
+              <span>{BLOG_LINK_TEXT}</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
@@ -385,13 +397,13 @@ const App: React.FC = () => {
             <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
             <div className="flex items-center gap-4">
               <a
-                href="https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt"
+                href={BLOG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('footer_blog_click')}
                 className="flex items-center gap-1 text-slate-600 hover:text-blue-600 hover:underline transition-colors"
               >
-                <span>Mình đã tạo page này thế nào?</span>
+                <span>{BLOG_LINK_TEXT}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a className="flex items-center gap-2 text-slate-600 hover:text-slate-800" href="https://github.com/vietvudanh/vietnam-tax-2025" target="_blank" rel="noopener noreferrer">

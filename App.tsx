@@ -10,11 +10,16 @@ import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } fro
 // Constants
 const BLOG_URL = 'https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026?r=1qz1dt';
 const BLOG_LINK_TEXT = 'Mình đã tạo page này thế nào?';
+const GA_EVENT_CATEGORY = 'blog_link';
 
 // Type definition for Google Analytics
 declare global {
   interface Window {
-    gtag?: (command: string, ...args: any[]) => void;
+    gtag?: (
+      command: 'event' | 'config' | 'js',
+      targetIdOrEventName: string,
+      params?: Record<string, any>
+    ) => void;
     dataLayer?: any[];
   }
 }
@@ -36,7 +41,7 @@ const App: React.FC = () => {
   const trackEvent = (eventName: string) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', eventName, {
-        event_category: 'blog_link',
+        event_category: GA_EVENT_CATEGORY,
         event_label: BLOG_LINK_TEXT
       });
     }

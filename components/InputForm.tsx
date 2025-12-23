@@ -81,7 +81,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
             Số người phụ thuộc
           </label>
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setDependents(Math.max(0, dependents - 1))}
               className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xl flex items-center justify-center transition-colors"
             >
@@ -93,7 +93,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
               onChange={(e) => setDependents(Math.max(0, parseInt(e.target.value) || 0))}
               className="w-20 text-center py-2 border border-slate-300 rounded-lg font-semibold text-slate-800"
             />
-            <button 
+            <button
               onClick={() => setDependents(dependents + 1)}
               className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xl flex items-center justify-center transition-colors"
             >
@@ -104,37 +104,53 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
 
         {/* Insurance */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4" />
-              {autoInsurance ? 'Mức đóng bảo hiểm (10.5%)' : 'Lương đóng bảo hiểm (Capped)'}
-            </label>
-            <div className="flex items-center gap-2">
-               <input 
-                type="checkbox" 
-                id="autoIns" 
-                checked={autoInsurance} 
-                onChange={(e) => setAutoInsurance(e.target.checked)}
-                className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+          <label className="block text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4" />
+            Mức đóng bảo hiểm
+          </label>
+
+          <div className="space-y-3 mb-3">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                name="insuranceOption"
+                checked={autoInsurance}
+                onChange={() => setAutoInsurance(true)}
+                className="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
               />
-              <label htmlFor="autoIns" className="text-xs text-slate-500 cursor-pointer">Tự động tính (10.5%)</label>
-            </div>
+              <span className="text-sm text-slate-700">Đóng bảo hiểm theo toàn bộ lương (Trần = x20 lần lương vùng cơ bản)</span>
+            </label>
+
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                name="insuranceOption"
+                checked={!autoInsurance}
+                onChange={() => {
+                  setAutoInsurance(false);
+                  setInsuranceStr(''); // Clear input when choosing "Other"
+                }}
+                className="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
+              />
+              <span className="text-sm text-slate-700">Mức khác</span>
+            </label>
           </div>
+
           <div className="relative">
             <input
               type="text"
               value={insuranceStr}
               onChange={handleInsuranceChange}
               disabled={autoInsurance}
-              className={`w-full pl-4 pr-4 py-3 border border-slate-300 rounded-lg transition-all font-medium text-slate-800 ${autoInsurance ? 'bg-slate-50 text-slate-500' : 'focus:ring-2 focus:ring-blue-500'}`}
-              placeholder="0"
+              className={`w-full pl-4 pr-4 py-3 border border-slate-300 rounded-lg transition-all font-medium text-slate-800 ${autoInsurance ? 'bg-slate-50 text-slate-500 cursor-not-allowed' : 'focus:ring-2 focus:ring-blue-500'}`}
+              placeholder={autoInsurance ? '' : 'Nhập mức đóng bảo hiểm...'}
             />
             <span className="absolute right-4 top-3 text-slate-400 text-sm">VND</span>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            {autoInsurance 
-              ? `Tổng BHXH+BHYT+BHTN (10.5%). Áp dụng mức tối đa ${formatCurrency(BHXH_MAX_CAP)} (20x lương cơ bản)`
-              : `Nhập lương đóng bảo hiểm (tối đa ${formatCurrency(BHXH_MAX_CAP)}). Hệ thống sẽ tính 10.5% từ giá trị này.`
+            {autoInsurance
+              ? `Tổng BHXH+BHYT+BHTN (10.5%) sẽ được tính dựa trên mức này.`
+              : `Nhập mức lương dùng để đóng bảo hiểm. Hệ thống sẽ tính 10.5% từ giá trị này.`
             }
           </p>
         </div>

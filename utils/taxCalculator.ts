@@ -31,12 +31,16 @@ export const NEW_CONFIG: TaxConfig = {
 };
 
 const calculateInsurance = (
-  insuranceSalary: number, 
-  region: Region
+  insuranceSalary: number,
+  region: Region,
+  regionalMinWage?: number
 ): InsuranceBreakdown => {
   // Caps
   const socialHealthCap = 20 * BASE_SALARY_2024; // 20 x Base Salary
-  const unemploymentCap = 20 * REGIONS[region].minWage; // 20 x Regional Min Wage
+
+  // Use provided regionalMinWage or look up from REGIONS
+  const minWage = regionalMinWage ?? REGIONS[region].minWage;
+  const unemploymentCap = 20 * minWage; // 20 x Regional Min Wage
 
   // Social Insurance (BHXH): 8%
   const socialBase = Math.min(insuranceSalary, socialHealthCap);
@@ -67,39 +71,39 @@ const calculateTaxForConfig = (
   const incomeBeforeTax = gross - insuranceDetails.total;
   const totalDependentDeduction = dependents * config.dependentDeduction;
   const totalDeductions = config.personalDeduction + totalDependentDeduction;
-  
+
   const taxableIncome = Math.max(0, incomeBeforeTax - totalDeductions);
-  
+
   let totalTaxMillion = 0;
   const breakdown = [];
 
   for (let i = 0; i < config.brackets.length; i++) {
     const bracket = config.brackets[i];
-    
+
     const lowerBound = bracket.min;
     const upperBound = bracket.max;
-    
+
     let amountInLevel = 0;
-    
+
     if (upperBound === null) {
-        // Last bracket
-        amountInLevel = Math.max(0, (taxableIncome / 1_000_000) - lowerBound);
+      // Last bracket
+      amountInLevel = Math.max(0, (taxableIncome / 1_000_000) - lowerBound);
     } else {
-        // Intermediate bracket
-        if ((taxableIncome / 1_000_000) > lowerBound) {
-            amountInLevel = Math.min((taxableIncome / 1_000_000), upperBound) - lowerBound;
-        }
+      // Intermediate bracket
+      if ((taxableIncome / 1_000_000) > lowerBound) {
+        amountInLevel = Math.min((taxableIncome / 1_000_000), upperBound) - lowerBound;
+      }
     }
-    
+
     if (amountInLevel > 0) {
-        const taxForLevel = amountInLevel * (bracket.rate / 100);
-        totalTaxMillion += taxForLevel;
-        breakdown.push({
-            level: i + 1,
-            amountInBracket: amountInLevel * 1_000_000,
-            rate: bracket.rate,
-            tax: taxForLevel * 1_000_000
-        });
+      const taxForLevel = amountInLevel * (bracket.rate / 100);
+      totalTaxMillion += taxForLevel;
+      breakdown.push({
+        level: i + 1,
+        amountInBracket: amountInLevel * 1_000_000,
+        rate: bracket.rate,
+        tax: taxForLevel * 1_000_000
+      });
     }
   }
 
@@ -130,31 +134,28 @@ export const calculateComparison = (
   dependents: number,
   region: Region,
   customInsuranceSalary: number | null, // If null, use gross
-  useNewDeduction: boolean = true // Default to new deduction values (from 1/1/2026)
+  personalDeduction: number,
+  dependentDeduction: number,
+  customRegionalMinWage?: number // Optional override for min wage
 ): ComparisonResult => {
   const insuranceSalary = customInsuranceSalary !== null ? customInsuranceSalary : gross;
-  
+
   // Insurance is usually the same for both old/new tax laws (unless social insurance laws change, 
   // but here we focus on Tax law changes). We assume insurance law stays constant for this sim.
-  const insuranceDetails = calculateInsurance(insuranceSalary, region);
-
-  // Select deduction values based on the toggle (old vs new deduction amounts)
-  // This affects both old and new tax bracket calculations
-  const personalDeductionToUse = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
-  const dependentDeductionToUse = useNewDeduction ? NEW_CONFIG.dependentDeduction : OLD_CONFIG.dependentDeduction;
+  const insuranceDetails = calculateInsurance(insuranceSalary, region, customRegionalMinWage);
 
   // Old tax law config (7 brackets) with selected deduction values
   const oldTaxConfig: TaxConfig = {
     ...OLD_CONFIG,
-    personalDeduction: personalDeductionToUse,
-    dependentDeduction: dependentDeductionToUse,
+    personalDeduction: personalDeduction,
+    dependentDeduction: dependentDeduction,
   };
-  
+
   // New tax law config (5 brackets) with selected deduction values
   const newTaxConfig: TaxConfig = {
     ...NEW_CONFIG,
-    personalDeduction: personalDeductionToUse,
-    dependentDeduction: dependentDeductionToUse,
+    personalDeduction: personalDeduction,
+    dependentDeduction: dependentDeduction,
   };
 
   const oldReg = calculateTaxForConfig(gross, dependents, insuranceDetails, oldTaxConfig);

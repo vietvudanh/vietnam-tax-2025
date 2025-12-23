@@ -3,7 +3,7 @@ import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
-import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES } from './utils/taxCalculator';
+import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES, OLD_CONFIG, NEW_CONFIG } from './utils/taxCalculator';
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } from 'lucide-react';
 
@@ -32,7 +32,10 @@ const App: React.FC = () => {
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
   const handleCalculate = useCallback((gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => {
-    const calcResult = calculateComparison(gross, dependents, region, insurance, useNewDeduction);
+    const personalDeduction = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
+    const dependentDeduction = useNewDeduction ? NEW_CONFIG.dependentDeduction : OLD_CONFIG.dependentDeduction;
+
+    const calcResult = calculateComparison(gross, dependents, region, insurance, personalDeduction, dependentDeduction);
     setResult(calcResult);
     setSelectedRegion(region);
   }, [useNewDeduction]);

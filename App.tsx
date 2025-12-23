@@ -284,32 +284,72 @@ const App: React.FC = () => {
                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                       <div className="p-6 border-b border-slate-100">
                         <h3 className="text-lg font-bold text-slate-800">(*) Chi tiết thuế thu nhập cá nhân (VNĐ)</h3>
-                        <p className="text-sm text-slate-500 mt-1">Diễn giải theo từng bậc lũy tiến</p>
+                        <p className="text-sm text-slate-500 mt-1">So sánh chi tiết theo từng bậc lũy tiến</p>
                       </div>
                       <div className="overflow-x-auto">
                         <table className="min-w-full text-sm text-left text-slate-700">
                           <thead className="bg-slate-50 text-xs uppercase text-slate-500">
                             <tr>
-                              <th className="px-4 py-3">Mức chịu thuế</th>
-                              <th className="px-4 py-3 text-right">Thuế suất</th>
-                              <th className="px-4 py-3 text-right">Tiền nộp</th>
+                              <th className="px-4 py-3 w-16 text-center">Bậc</th>
+                              <th className="px-4 py-3 text-right bg-slate-100/50">QUY ĐỊNH CŨ</th>
+                              <th className="px-4 py-3 text-right text-emerald-700 bg-emerald-50/30">MỚI (DỰ KIẾN)</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100">
-                            {result.newReg.bracketsBreakdown.length === 0 && (
-                              <tr>
-                                <td className="px-4 py-3" colSpan={3}>Không phát sinh thuế</td>
-                              </tr>
-                            )}
-                            {result.newReg.bracketsBreakdown.map((item, idx) => (
-                              <tr key={idx}>
-                                <td className="px-4 py-3">
-                                  Bậc {item.level} - Thu nhập trong bậc: {formatCurrency(item.amountInBracket)}
-                                </td>
-                                <td className="px-4 py-3 text-right">{item.rate}%</td>
-                                <td className="px-4 py-3 text-right">{formatCurrency(item.tax)}</td>
-                              </tr>
-                            ))}
+                            {Array.from({ length: 7 }).map((_, idx) => {
+                              const level = idx + 1;
+                              const oldItem = result.oldReg.bracketsBreakdown.find(b => b.level === level);
+                              const newItem = result.newReg.bracketsBreakdown.find(b => b.level === level);
+
+                              if (!oldItem && !newItem) return null;
+
+                              return (
+                                <tr key={level} className="hover:bg-slate-50 transition-colors">
+                                  <td className="px-4 py-3 font-bold text-center text-slate-400">
+                                    {level}
+                                  </td>
+
+                                  {/* OLD COLUMN */}
+                                  <td className="px-4 py-3 text-right align-top bg-slate-50/30">
+                                    {oldItem ? (
+                                      <div>
+                                        <div className="font-medium text-slate-900">{formatCurrency(oldItem.tax)}</div>
+                                        <div className="text-xs text-slate-500 mt-0.5">
+                                          {formatCurrency(oldItem.amountInBracket)} × {oldItem.rate}%
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <span className="text-slate-300">-</span>
+                                    )}
+                                  </td>
+
+                                  {/* NEW COLUMN */}
+                                  <td className="px-4 py-3 text-right align-top bg-emerald-50/10">
+                                    {newItem ? (
+                                      <div>
+                                        <div className="font-bold text-emerald-700">{formatCurrency(newItem.tax)}</div>
+                                        <div className="text-xs text-emerald-600/70 mt-0.5">
+                                          {formatCurrency(newItem.amountInBracket)} × {newItem.rate}%
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <span className="text-slate-300">-</span>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+
+                            {/* Summary Row */}
+                            <tr className="bg-slate-50 font-bold border-t-2 border-slate-200">
+                              <td className="px-4 py-3 text-center">Tổng</td>
+                              <td className="px-4 py-3 text-right text-red-600">
+                                {formatCurrency(result.oldReg.taxAmount)}
+                              </td>
+                              <td className="px-4 py-3 text-right text-red-600 bg-emerald-50/30">
+                                {formatCurrency(result.newReg.taxAmount)}
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>

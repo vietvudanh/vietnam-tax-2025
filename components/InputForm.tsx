@@ -23,11 +23,9 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
 
   useEffect(() => {
     if (autoInsurance) {
-      // Use the new BHXH calculation with cap
-      const estimated = calculateBHXH(gross, region);
-      setInsuranceStr(estimated.toLocaleString('vi-VN'));
+      setInsuranceStr('');
     }
-  }, [gross, autoInsurance, region]);
+  }, [autoInsurance]);
 
   useEffect(() => {
     onCalculate(gross, dependents, customInsuranceSalaryToPass, region);

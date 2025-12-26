@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Calculator, Users, ShieldCheck } from 'lucide-react';
-import { calculateBHXH, formatCurrency, BHXH_MAX_CAP, REGIONAL_MIN_WAGE, INSURANCE_RATES } from '../utils/taxCalculator';
+import { calculateBHXH, formatCurrency } from '../utils/taxCalculator';
 
 interface InputFormProps {
   onCalculate: (gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => void;
+  regionalMinWageMap: Record<'I' | 'II' | 'III' | 'IV', number>;
+  minWageNote: string;
 }
 
-export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
+export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWageMap, minWageNote }) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
   const [insuranceStr, setInsuranceStr] = useState<string>('');
@@ -164,7 +166,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
               >
                 <div>
                   <div className="font-semibold text-slate-800">Vùng {r}</div>
-                  <div className="text-xs text-slate-500">Mức tối thiểu: {formatCurrency(REGIONAL_MIN_WAGE[r])}</div>
+                  <div className="text-xs text-slate-500">Mức tối thiểu: {formatCurrency(regionalMinWageMap[r])}</div>
                 </div>
                 <input
                   type="radio"
@@ -178,7 +180,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate }) => {
             ))}
           </div>
           <p className="text-xs text-slate-400 mt-2">
-            Dùng để áp dụng mức lương tối thiểu vùng khi tính đóng bảo hiểm (áp dụng từ 01/07/2025)
+            {minWageNote}
           </p>
         </div>
       </div>

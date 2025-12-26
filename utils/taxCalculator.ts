@@ -1,4 +1,13 @@
-import { TaxConfig, TaxResult, ComparisonResult, Region, REGIONS, BASE_SALARY_2024, InsuranceBreakdown } from '../types.ts';
+import {
+  TaxConfig,
+  TaxResult,
+  ComparisonResult,
+  Region,
+  BASE_SALARY_2024,
+  InsuranceBreakdown,
+  REGIONAL_MIN_WAGE_CURRENT,
+  REGIONAL_MIN_WAGE_2026
+} from '../types.ts';
 
 export const OLD_CONFIG: TaxConfig = {
   name: "Quy định cũ (Hiện hành)",
@@ -38,8 +47,8 @@ const calculateInsurance = (
   // Caps
   const socialHealthCap = 20 * BASE_SALARY_2024; // 20 x Base Salary
 
-  // Use provided regionalMinWage or look up from REGIONS
-  const minWage = regionalMinWage ?? REGIONS[region].minWage;
+  // Use provided regionalMinWage or look up from current rates
+  const minWage = regionalMinWage ?? REGIONAL_MIN_WAGE_CURRENT[region];
   const unemploymentCap = 20 * minWage; // 20 x Regional Min Wage
 
   // Social Insurance (BHXH): 8%
@@ -185,12 +194,8 @@ export const LUONG_CO_BAN = BASE_SALARY_2024;
 
 export const BHXH_MAX_CAP = 20 * BASE_SALARY_2024;
 
-export const REGIONAL_MIN_WAGE = {
-  I: REGIONS.I.minWage,
-  II: REGIONS.II.minWage,
-  III: REGIONS.III.minWage,
-  IV: REGIONS.IV.minWage,
-};
+export const REGIONAL_MIN_WAGE = REGIONAL_MIN_WAGE_CURRENT;
+export { REGIONAL_MIN_WAGE_CURRENT, REGIONAL_MIN_WAGE_2026 };
 
 export const calculateBHXH = (gross: number, region: Region): number => {
   return calculateInsurance(gross, region).total;

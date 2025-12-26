@@ -3,7 +3,15 @@ import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
-import { calculateComparison, formatCurrency, REGIONAL_MIN_WAGE, EMPLOYER_RATES, OLD_CONFIG, NEW_CONFIG } from './utils/taxCalculator';
+import {
+  calculateComparison,
+  formatCurrency,
+  REGIONAL_MIN_WAGE_CURRENT,
+  REGIONAL_MIN_WAGE_2026,
+  EMPLOYER_RATES,
+  OLD_CONFIG,
+  NEW_CONFIG
+} from './utils/taxCalculator';
 import { ComparisonResult } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } from 'lucide-react';
 
@@ -28,6 +36,12 @@ const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
   const [useNewDeduction, setUseNewDeduction] = useState<boolean>(true);
+  const [useNewRegionalMinWage, setUseNewRegionalMinWage] = useState<boolean>(true);
+
+  const activeRegionalMinWage = useNewRegionalMinWage ? REGIONAL_MIN_WAGE_2026 : REGIONAL_MIN_WAGE_CURRENT;
+  const minWageNote = useNewRegionalMinWage
+    ? 'Áp dụng mức lương tối thiểu vùng mới (từ 01/01/2026 - Nghị định 293/2025/NĐ-CP) khi tính trần BHTN'
+    : 'Áp dụng mức lương tối thiểu vùng hiện hành (trước 01/01/2026) khi tính trần BHTN';
 
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
@@ -35,10 +49,18 @@ const App: React.FC = () => {
     const personalDeduction = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
     const dependentDeduction = useNewDeduction ? NEW_CONFIG.dependentDeduction : OLD_CONFIG.dependentDeduction;
 
-    const calcResult = calculateComparison(gross, dependents, region, insurance, personalDeduction, dependentDeduction);
+    const calcResult = calculateComparison(
+      gross,
+      dependents,
+      region,
+      insurance,
+      personalDeduction,
+      dependentDeduction,
+      activeRegionalMinWage[region]
+    );
     setResult(calcResult);
     setSelectedRegion(region);
-  }, [useNewDeduction]);
+  }, [activeRegionalMinWage, useNewDeduction]);
 
   // Google Analytics tracking helper
   const trackEvent = (eventName: string) => {
@@ -82,9 +104,13 @@ const App: React.FC = () => {
 
           {/* Left Column: Input */}
           <div className="lg:col-span-4 space-y-6">
-            <InputForm onCalculate={handleCalculate} />
+            <InputForm
+              onCalculate={handleCalculate}
+              regionalMinWageMap={activeRegionalMinWage}
+              minWageNote={minWageNote}
+            />
 
-            <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl">
+            <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">
               <h3 className="font-semibold text-blue-900 flex items-center gap-2 mb-3">
                 <Info className="w-5 h-5 text-blue-600" />
                 Thông tin giảm trừ {useNewDeduction ? 'mới (từ 1/1/2026)' : 'cũ (trước 1/1/2026)'}
@@ -110,6 +136,41 @@ const App: React.FC = () => {
                   <span className="font-bold">{useNewDeduction ? '6.2tr' : '4.4tr'}</span>
                 </li>
               </ul>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-100 p-5 rounded-xl shadow-sm">
+              <h3 className="font-semibold text-amber-900 flex items-center gap-2 mb-3">
+                <Info className="w-5 h-5 text-amber-600" />
+                Lương tối thiểu vùng {useNewRegionalMinWage ? 'mới (từ 1/1/2026)' : 'hiện hành'}
+              </h3>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-amber-800">Áp dụng mức lương tối thiểu mới (từ 1/1/2026)</span>
+                <button
+                  onClick={() => setUseNewRegionalMinWage(!useNewRegionalMinWage)}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors ${useNewRegionalMinWage ? 'bg-amber-600' : 'bg-slate-300'}`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${useNewRegionalMinWage ? 'translate-x-6' : 'translate-x-1'}`}
+                  />
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                {(['I', 'II', 'III', 'IV'] as const).map((r) => (
+                  <div
+                    key={r}
+                    className="rounded-lg border border-amber-200 bg-white/70 p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-semibold text-slate-800">Vùng {r}</span>
+                      <span className="text-[11px] font-medium text-amber-700">{useNewRegionalMinWage ? 'Mới' : 'Cũ'}</span>
+                    </div>
+                    <div className="text-xl font-bold text-slate-900 leading-tight">{formatCurrency(activeRegionalMinWage[r])}</div>
+                    <div className="text-[11px] text-slate-500 mt-1">
+                      Cũ: {formatCurrency(REGIONAL_MIN_WAGE_CURRENT[r])} → Mới: {formatCurrency(REGIONAL_MIN_WAGE_2026[r])}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="bg-emerald-50 border border-emerald-200 p-5 rounded-xl">
@@ -213,7 +274,7 @@ const App: React.FC = () => {
                       <div className="p-6 border-b border-slate-100">
                         <h3 className="text-lg font-bold text-slate-800">Diễn giải chi tiết (VNĐ)</h3>
                         <p className="text-sm text-slate-500 mt-1">
-                          Áp dụng vùng {selectedRegion} - Mức lương tối thiểu {formatCurrency(REGIONAL_MIN_WAGE[selectedRegion])}
+                          Áp dụng vùng {selectedRegion} - Mức lương tối thiểu {formatCurrency(activeRegionalMinWage[selectedRegion])}
                         </p>
                       </div>
                       <div className="overflow-x-auto">

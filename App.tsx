@@ -138,7 +138,7 @@ const App: React.FC = () => {
               </ul>
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 p-5 rounded-xl">
+            <div className="bg-amber-50 border border-amber-100 p-5 rounded-xl shadow-sm">
               <h3 className="font-semibold text-amber-900 flex items-center gap-2 mb-3">
                 <Info className="w-5 h-5 text-amber-600" />
                 Lương tối thiểu vùng {useNewRegionalMinWage ? 'mới (từ 1/1/2026)' : 'hiện hành'}
@@ -147,7 +147,7 @@ const App: React.FC = () => {
                 <span className="text-sm text-amber-800">Áp dụng mức lương tối thiểu mới theo NĐ 293/2025/NĐ-CP</span>
                 <button
                   onClick={() => setUseNewRegionalMinWage(!useNewRegionalMinWage)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${useNewRegionalMinWage ? 'bg-amber-600' : 'bg-slate-300'}`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${useNewRegionalMinWage ? 'bg-amber-500' : 'bg-slate-300'}`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${useNewRegionalMinWage ? 'translate-x-6' : 'translate-x-1'}`}
@@ -156,13 +156,16 @@ const App: React.FC = () => {
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 {(['I', 'II', 'III', 'IV'] as const).map((r) => (
-                  <div key={r} className="border border-amber-200 bg-white/70 rounded-lg p-3">
-                    <div className="flex items-center justify-between">
+                  <div
+                    key={r}
+                    className="rounded-lg border border-amber-200 bg-white/70 p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                  >
+                    <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-slate-800">Vùng {r}</span>
-                      <span className="text-[11px] text-slate-500">{useNewRegionalMinWage ? 'Mới' : 'Cũ'}</span>
+                      <span className="text-[11px] font-medium text-amber-700">{useNewRegionalMinWage ? 'Mới' : 'Cũ'}</span>
                     </div>
-                    <div className="text-lg font-bold text-slate-900">{formatCurrency(activeRegionalMinWage[r])}</div>
-                    <div className="text-[11px] text-slate-500">
+                    <div className="text-xl font-bold text-slate-900 leading-tight">{formatCurrency(activeRegionalMinWage[r])}</div>
+                    <div className="text-[11px] text-slate-500 mt-1">
                       Cũ: {formatCurrency(REGIONAL_MIN_WAGE_CURRENT[r])} → Mới: {formatCurrency(REGIONAL_MIN_WAGE_2026[r])}
                     </div>
                   </div>

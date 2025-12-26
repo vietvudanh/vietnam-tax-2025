@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Calculator, Users, ShieldCheck } from 'lucide-react';
-import { calculateBHXH, formatCurrency } from '../utils/taxCalculator';
+import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
 
 interface InputFormProps {
   onCalculate: (gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => void;
   regionalMinWageMap: Record<'I' | 'II' | 'III' | 'IV', number>;
   minWageNote: string;
+  useNewMinWage: boolean;
+  onToggleNewMinWage: () => void;
 }
 
-export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWageMap, minWageNote }) => {
+export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWageMap, minWageNote, useNewMinWage, onToggleNewMinWage }) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
   const [insuranceStr, setInsuranceStr] = useState<string>('');
@@ -22,6 +24,11 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
   // When autoInsurance is false, we expect insurance input to be the SALARY BASE (capped amount) used for insurance calculation.
   // This is the actual salary subject to insurance (e.g., 46.8M cap), not the insurance total.
   const customInsuranceSalaryToPass = autoInsurance ? null : parsedInsuranceSalary;
+
+  // Calculate the actual insurance salary base used - capped at 20 × mức tham chiếu (base salary)
+  const insuranceSalary = autoInsurance ? gross : parsedInsuranceSalary;
+  // Cap = 20 × mức tham chiếu (2,340,000₫) = 46,800,000₫
+  const insuranceSalaryBase = Math.min(insuranceSalary, BHXH_MAX_CAP);
 
   useEffect(() => {
     if (autoInsurance) {
@@ -106,7 +113,7 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
         <div>
           <label className="block text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
             <ShieldCheck className="w-4 h-4" />
-            Mức đóng bảo hiểm
+            Mức đóng bảo hiểm: {formatCurrency(insuranceSalaryBase)}
           </label>
 
           <div className="space-y-3 mb-3">
@@ -157,7 +164,20 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
 
         {/* Region Selection */}
         <div>
-          <p className="text-sm font-medium text-slate-600 mb-2">Vùng lương tối thiểu</p>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-medium text-slate-600">Vùng lương tối thiểu</p>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-500">{useNewMinWage ? 'Mới (từ 1/1/2026)' : 'Hiện hành'}</span>
+              <button
+                onClick={onToggleNewMinWage}
+                className={`relative inline-flex h-5 w-9 flex-shrink-0 items-center rounded-full transition-colors ${useNewMinWage ? 'bg-blue-600' : 'bg-slate-300'}`}
+              >
+                <span
+                  className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${useNewMinWage ? 'translate-x-5' : 'translate-x-0.5'}`}
+                />
+              </button>
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-3">
             {(['I', 'II', 'III', 'IV'] as const).map((r) => (
               <label

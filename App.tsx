@@ -110,7 +110,7 @@ const App: React.FC = () => {
               minWageNote={minWageNote}
             />
 
-            <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl">
+            <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">
               <h3 className="font-semibold text-blue-900 flex items-center gap-2 mb-3">
                 <Info className="w-5 h-5 text-blue-600" />
                 Thông tin giảm trừ {useNewDeduction ? 'mới (từ 1/1/2026)' : 'cũ (trước 1/1/2026)'}
@@ -144,10 +144,10 @@ const App: React.FC = () => {
                 Lương tối thiểu vùng {useNewRegionalMinWage ? 'mới (từ 1/1/2026)' : 'hiện hành'}
               </h3>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm text-amber-800">Áp dụng mức lương tối thiểu mới theo NĐ 293/2025/NĐ-CP</span>
+                <span className="text-sm text-amber-800">Áp dụng mức lương tối thiểu mới (từ 1/1/2026)</span>
                 <button
                   onClick={() => setUseNewRegionalMinWage(!useNewRegionalMinWage)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${useNewRegionalMinWage ? 'bg-amber-500' : 'bg-slate-300'}`}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors ${useNewRegionalMinWage ? 'bg-amber-600' : 'bg-slate-300'}`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${useNewRegionalMinWage ? 'translate-x-6' : 'translate-x-1'}`}

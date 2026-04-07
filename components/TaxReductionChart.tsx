@@ -62,7 +62,8 @@ const calculateTax = (
 };
 
 export const TaxReductionChart: React.FC = () => {
-  const [dependents, setDependents] = useState(0);
+  const [dependentsStr, setDependentsStr] = useState('0');
+  const dependents = parseInt(dependentsStr) || 0;
 
   const data = useMemo(() => {
     const chartData = [];
@@ -119,8 +120,11 @@ export const TaxReductionChart: React.FC = () => {
           <input
             type="number"
             min="0"
-            value={dependents}
-            onChange={(e) => setDependents(parseInt(e.target.value) || 0)}
+            value={dependentsStr}
+            onChange={(e) => {
+              const num = parseInt(e.target.value);
+              setDependentsStr(isNaN(num) || num < 0 ? '0' : String(num));
+            }}
             className="w-full p-2 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white"
           />
         </div>

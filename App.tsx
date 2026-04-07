@@ -3,6 +3,7 @@ import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
+import { TaxReductionChart } from './components/TaxReductionChart';
 import {
   calculateComparison,
   formatCurrency,
@@ -459,6 +460,11 @@ const App: React.FC = () => {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Tax Reduction Chart Section */}
+        <div className="mt-8">
+          <TaxReductionChart />
         </div>
       </main>
 

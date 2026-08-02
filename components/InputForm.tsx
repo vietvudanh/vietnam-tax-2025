@@ -6,25 +6,37 @@ import {
   MEAL_ALLOWANCE_CAP_NEW,
   MEDICAL_DEDUCTION_CAP_YEAR,
   EDUCATION_DEDUCTION_CAP_YEAR,
+  MinWageSet,
 } from '../types';
 
 interface InputFormProps {
   onCalculate: (
     gross: number,
     dependents: number,
-    insurance: number,
+    // null = đóng bảo hiểm theo toàn bộ lương gross
+    insurance: number | null,
     region: 'I' | 'II' | 'III' | 'IV',
     extra: ExtraIncomeInput
   ) => void;
   regionalMinWageMap: Record<'I' | 'II' | 'III' | 'IV', number>;
   minWageNote: string;
-  useNewMinWage: boolean;
-  onToggleNewMinWage: () => void;
+  minWageSet: MinWageSet;
+  minWageSetLabels: Record<MinWageSet, string>;
+  onChangeMinWageSet: (set: MinWageSet) => void;
 }
 
 const parseAmount = (value: string): number => parseFloat(value.replace(/[^0-9]/g, '')) || 0;
 
-export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWageMap, minWageNote, useNewMinWage, onToggleNewMinWage }) => {
+const MIN_WAGE_SET_ORDER: MinWageSet[] = ['legacy', 'current2026', 'draft2027'];
+
+export const InputForm: React.FC<InputFormProps> = ({
+  onCalculate,
+  regionalMinWageMap,
+  minWageNote,
+  minWageSet,
+  minWageSetLabels,
+  onChangeMinWageSet,
+}) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
   const [insuranceStr, setInsuranceStr] = useState<string>('');
@@ -273,19 +285,21 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
 
         {/* Region Selection */}
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-slate-600">Vùng lương tối thiểu</p>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-500">{useNewMinWage ? 'Mới (từ 1/1/2026)' : 'Hiện hành'}</span>
+          <p className="text-sm font-medium text-slate-600 mb-2">Vùng lương tối thiểu</p>
+          <div className="grid grid-cols-3 gap-1 p-1 mb-3 bg-slate-100 rounded-lg">
+            {MIN_WAGE_SET_ORDER.map((set) => (
               <button
-                onClick={onToggleNewMinWage}
-                className={`relative inline-flex h-5 w-9 flex-shrink-0 items-center rounded-full transition-colors ${useNewMinWage ? 'bg-blue-600' : 'bg-slate-300'}`}
+                key={set}
+                onClick={() => onChangeMinWageSet(set)}
+                className={`text-xs font-medium py-1.5 px-2 rounded-md transition-colors ${
+                  minWageSet === set
+                    ? 'bg-white text-slate-900 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
+                }`}
               >
-                <span
-                  className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${useNewMinWage ? 'translate-x-5' : 'translate-x-0.5'}`}
-                />
+                {minWageSetLabels[set]}
               </button>
-            </div>
+            ))}
           </div>
           <div className="grid grid-cols-2 gap-3">
             {(['I', 'II', 'III', 'IV'] as const).map((r) => (
@@ -308,7 +322,13 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
               </label>
             ))}
           </div>
-          <p className="text-xs text-slate-400 mt-2">
+          <p
+            className={`text-xs mt-2 ${
+              minWageSet === 'draft2027'
+                ? 'text-amber-700 bg-amber-50 border border-amber-100 rounded-lg p-2'
+                : 'text-slate-400'
+            }`}
+          >
             {minWageNote}
           </p>
         </div>

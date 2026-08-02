@@ -10,6 +10,7 @@ import {
   formatCurrency,
   REGIONAL_MIN_WAGE_CURRENT,
   REGIONAL_MIN_WAGE_2026,
+  REGIONAL_MIN_WAGE_2027_DRAFT,
   EMPLOYER_RATES,
   OLD_CONFIG,
   NEW_CONFIG
@@ -24,6 +25,7 @@ import {
   DEPENDENT_INCOME_THRESHOLD,
   CASUAL_INCOME_WITHHOLDING_THRESHOLD,
   CASUAL_INCOME_NO_FINALIZATION_THRESHOLD,
+  MinWageSet,
 } from './types';
 import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History } from 'lucide-react';
 
@@ -46,24 +48,54 @@ declare global {
   }
 }
 
+// Defined at module scope so the map identities stay stable across renders —
+// handleCalculate depends on them and an unstable reference would loop forever.
+const MIN_WAGE_OPTIONS: Record<
+  MinWageSet,
+  { map: Record<'I' | 'II' | 'III' | 'IV', number>; label: string; note: string }
+> = {
+  legacy: {
+    map: REGIONAL_MIN_WAGE_CURRENT,
+    label: 'Trước 2026',
+    note: 'Áp dụng mức lương tối thiểu vùng trước 01/01/2026 khi tính trần BHTN',
+  },
+  current2026: {
+    map: REGIONAL_MIN_WAGE_2026,
+    label: 'Hiện hành',
+    note: 'Áp dụng mức lương tối thiểu vùng hiện hành (từ 01/01/2026 - Nghị định 293/2025/NĐ-CP) khi tính trần BHTN',
+  },
+  draft2027: {
+    map: REGIONAL_MIN_WAGE_2027_DRAFT,
+    label: 'Dự kiến 2027',
+    note: 'Mức DỰ KIẾN từ 01/01/2027 theo Dự thảo Nghị định thay thế NĐ 293/2025/NĐ-CP (Bộ Nội vụ công bố 20/7/2026) - chưa ban hành chính thức',
+  },
+};
+
+// Chọn bộ lương tối thiểu vùng theo ngày hiện tại: mỗi mốc tự có hiệu lực khi đến hạn.
+// Mức 2027 mới là dự thảo nên chỉ được chọn mặc định khi đã sang 01/01/2027.
+const getDefaultMinWageSet = (today: Date = new Date()): MinWageSet => {
+  if (today >= new Date(2027, 0, 1)) return 'draft2027';
+  if (today >= new Date(2026, 0, 1)) return 'current2026';
+  return 'legacy';
+};
+
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
   const [useNewDeduction, setUseNewDeduction] = useState<boolean>(true);
-  const [useNewRegionalMinWage, setUseNewRegionalMinWage] = useState<boolean>(false);
+  // Mặc định là bộ lương tối thiểu vùng đang có hiệu lực tại thời điểm truy cập.
+  const [minWageSet, setMinWageSet] = useState<MinWageSet>(() => getDefaultMinWageSet());
   const [activeTab, setActiveTab] = useState<Tab>('calculator');
 
-  const activeRegionalMinWage = useNewRegionalMinWage ? REGIONAL_MIN_WAGE_2026 : REGIONAL_MIN_WAGE_CURRENT;
-  const minWageNote = useNewRegionalMinWage
-    ? 'Áp dụng mức lương tối thiểu vùng mới (từ 01/01/2026 - Nghị định 293/2025/NĐ-CP) khi tính trần BHTN'
-    : 'Áp dụng mức lương tối thiểu vùng hiện hành (trước 01/01/2026) khi tính trần BHTN';
+  const activeRegionalMinWage = MIN_WAGE_OPTIONS[minWageSet].map;
+  const minWageNote = MIN_WAGE_OPTIONS[minWageSet].note;
 
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
   const handleCalculate = useCallback((
     gross: number,
     dependents: number,
-    insurance: number,
+    insurance: number | null,
     region: 'I' | 'II' | 'III' | 'IV',
     extra: ExtraIncomeInput = EMPTY_EXTRA_INCOME
   ) => {
@@ -155,8 +187,13 @@ const App: React.FC = () => {
               onCalculate={handleCalculate}
               regionalMinWageMap={activeRegionalMinWage}
               minWageNote={minWageNote}
-              useNewMinWage={useNewRegionalMinWage}
-              onToggleNewMinWage={() => setUseNewRegionalMinWage(!useNewRegionalMinWage)}
+              minWageSet={minWageSet}
+              minWageSetLabels={{
+                legacy: MIN_WAGE_OPTIONS.legacy.label,
+                current2026: MIN_WAGE_OPTIONS.current2026.label,
+                draft2027: MIN_WAGE_OPTIONS.draft2027.label,
+              }}
+              onChangeMinWageSet={setMinWageSet}
             />
 
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">

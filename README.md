@@ -5,7 +5,7 @@
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-2ea44f?style=for-the-badge)](https://vietvudanh.github.io/vietnam-tax-2025/)
 [![GitHub](https://img.shields.io/github/stars/vietvudanh/vietnam-tax-2025?style=for-the-badge&logo=github)](https://github.com/vietvudanh/vietnam-tax-2025)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
 ---
@@ -31,7 +31,8 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 🍱 **Meal Allowance Exemption** | Miễn thuế tiền ăn giữa ca đến 1,2 triệu đồng/tháng (NĐ 253/2026/NĐ-CP) |
 | 🌙 **Overtime Exemption** | Miễn thuế toàn bộ tiền lương làm thêm giờ, làm ban đêm |
 | 🏥 **Medical & Education Deductions** | Giảm trừ chi phí y tế (23tr/năm) và giáo dục - đào tạo (24tr/năm) |
-| 🕘 **Law Changelog Tab** | Tab riêng ghi lại lịch sử thay đổi luật thuế TNCN từ Luật 2007 đến nay |
+| 🕘 **Law Changelog Tab** | Tab riêng ghi lại lịch sử thay đổi luật thuế TNCN từ Luật 2007 đến nay, có link toàn văn trên Thư Viện Pháp Luật |
+| 📅 **Minimum Wage Sets** | Chọn giữa mức lương tối thiểu vùng trước 2026, hiện hành (NĐ 293/2025) và dự kiến 2027 (dự thảo); mặc định tự chọn theo ngày truy cập |
 
 ---
 
@@ -90,7 +91,7 @@ npm run preview
 | Technology | Purpose |
 |------------|---------|
 | **React 19** | UI Framework |
-| **TypeScript 5.8** | Type Safety |
+| **TypeScript 7** | Type Safety (native Go compiler) |
 | **Vite 6** | Build Tool & Dev Server |
 | **Recharts** | Charts & Data Visualization |
 | **Lucide React** | Icons |
@@ -135,11 +136,12 @@ The calculator implements two rule sets side by side:
 
 **Căn cứ pháp lý chính:**
 
-- Luật Thuế thu nhập cá nhân 2025 (Luật 109/2025/QH15) - hiệu lực 01/7/2026
-- Nghị định 253/2026/NĐ-CP - hướng dẫn chi tiết Luật Thuế TNCN 2025
-- Thông tư 87/2026/TT-BTC - ngưỡng thu nhập xác định người phụ thuộc (3 triệu đồng/tháng)
-- Nghị quyết 110/2025/UBTVQH15 - mức giảm trừ gia cảnh áp dụng từ kỳ tính thuế 2026
-- Nghị định 293/2025/NĐ-CP - lương tối thiểu vùng từ 01/01/2026
+- [Luật Thuế thu nhập cá nhân 2025 (Luật 109/2025/QH15)](https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-Thue-thu-nhap-ca-nhan-2025-so-109-2025-QH15-665870.aspx) - hiệu lực 01/7/2026
+- [Nghị định 253/2026/NĐ-CP](https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-253-2026-ND-CP-huong-dan-Luat-Thue-thu-nhap-ca-nhan-699193.aspx) - hướng dẫn chi tiết Luật Thuế TNCN 2025
+- [Thông tư 87/2026/TT-BTC](https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-87-2026-TT-BTC-huong-dan-Luat-Thue-thu-nhap-ca-nhan-Nghi-dinh-253-2026-ND-CP-713265.aspx) - ngưỡng thu nhập xác định người phụ thuộc (3 triệu đồng/tháng)
+- [Nghị quyết 110/2025/UBTVQH15](https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-quyet-110-2025-UBTVQH15-muc-giam-tru-gia-canh-thue-thu-nhap-ca-nhan-665865.aspx) - mức giảm trừ gia cảnh áp dụng từ kỳ tính thuế 2026
+- [Nghị định 293/2025/NĐ-CP](https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Nghi-dinh-293-2025-ND-CP-quy-dinh-muc-luong-toi-thieu-lao-dong-lam-viec-theo-hop-dong-lao-dong-665866.aspx) - lương tối thiểu vùng từ 01/01/2026
+- [Dự thảo Nghị định lương tối thiểu vùng 2027](https://thuvienphapluat.vn/lao-dong-tien-luong/da-co-bang-luong-toi-thieu-vung-moi-tu-01012027-cho-toan-bo-nguoi-lao-dong-34-tinh-thanh-theo-du-ki-63150.html) - Bộ Nội vụ công bố 20/7/2026, **chưa ban hành chính thức**
 
 Xem đầy đủ dòng thời gian thay đổi luật trong tab **"Lịch sử thay đổi luật"** của ứng dụng.
 

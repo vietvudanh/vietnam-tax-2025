@@ -19,7 +19,7 @@ npm install
 npm run dev      # Vite dev server on http://localhost:3000/vietnam-tax-2025/
 npm run build    # production build to dist/
 npm run preview
-npx tsc --noEmit # typecheck
+npx tsc --noEmit # typecheck (TypeScript 7, native Go compiler)
 npx tsx test.ts  # regression tests against recorded HAR fixtures
 ```
 
@@ -75,14 +75,19 @@ switching tabs preserves the user's inputs and results.
 | Chi phí giáo dục | — | 24tr/năm |
 
 Insurance: BHXH 8% + BHYT 1,5% + BHTN 1%. BHXH/BHYT capped at 20 × mức tham chiếu (2.340.000 ₫);
-BHTN capped at 20 × lương tối thiểu vùng, with a toggle for the 2026 rates (NĐ 293/2025/NĐ-CP).
+BHTN capped at 20 × lương tối thiểu vùng. Three selectable wage sets in `MIN_WAGE_OPTIONS` (App.tsx):
+`legacy` (pre-2026), `current2026` (NĐ 293/2025/NĐ-CP) and `draft2027` (dự thảo, Bộ Nội vụ 20/7/2026 —
+not yet issued, so always label it as a draft in the UI). `getDefaultMinWageSet()` picks the set in
+force on the current date, so the default rolls over on its own; keep `MIN_WAGE_OPTIONS` at module
+scope — an in-component object would give `handleCalculate` a new dependency every render and loop.
 
 Sanity check used when touching deduction logic: gross 28,6tr with 1 dependent and the full
 23tr + 24tr medical/education deductions must produce **0 tax** under the new rules.
 
 ## Conventions
 
-- TypeScript everywhere, React function components with hooks.
+- TypeScript 7 everywhere, React function components with hooks. `noImplicitAny` is on by default in
+  TS 7, so new code must be explicitly typed.
 - TailwindCSS via CDN (see `index.html`) — no Tailwind build step, no CSS files.
 - Currency always rendered through `formatCurrency()`.
 - Vietnamese for user-facing strings; cite the article/decree (e.g. "Điều 26 NĐ 253/2026/NĐ-CP")
@@ -93,5 +98,5 @@ Sanity check used when touching deduction logic: gross 28,6tr with 1 dependent a
 1. Add or update the constant in `types.ts` with a comment naming the văn bản.
 2. Adjust `OLD_CONFIG` / `NEW_CONFIG` in `utils/taxCalculator.ts`.
 3. Update the static tables (`BracketTable`, `DeductionDetailTable`) and add a timeline entry to
-   `components/LawChangelog.tsx`.
+   `components/LawChangelog.tsx`, including a `url` pointing at the full text on thuvienphapluat.vn.
 4. Refresh `README.md` (feature table + tax law reference) and the screenshots in `assets/`.

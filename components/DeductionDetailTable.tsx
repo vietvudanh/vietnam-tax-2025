@@ -1,6 +1,13 @@
 import React from 'react';
 import { Info } from 'lucide-react';
 import { INSURANCE_RATES, LUONG_CO_BAN, BHXH_MAX_CAP, formatCurrency } from '../utils/taxCalculator';
+import {
+  MEAL_ALLOWANCE_CAP_OLD,
+  MEAL_ALLOWANCE_CAP_NEW,
+  MEDICAL_DEDUCTION_CAP_YEAR,
+  EDUCATION_DEDUCTION_CAP_YEAR,
+  DEPENDENT_INCOME_THRESHOLD,
+} from '../types';
 
 export const DeductionDetailTable: React.FC = () => {
   return (
@@ -97,6 +104,58 @@ export const DeductionDetailTable: React.FC = () => {
               </td>
             </tr>
 
+            {/* Exemptions - Nghị định 253/2026/NĐ-CP */}
+            <tr className="bg-emerald-50/50">
+              <td colSpan={5} className="px-4 py-2 font-semibold text-emerald-900">
+                Miễn thuế & giảm trừ khác (Nghị định 253/2026/NĐ-CP, từ 1/7/2026)
+              </td>
+            </tr>
+            <tr className="hover:bg-slate-50">
+              <td className="px-4 py-3">Tiền ăn giữa ca, ăn trưa</td>
+              <td className="px-4 py-3 font-medium text-slate-500">-</td>
+              <td className="px-4 py-3 text-slate-500">{formatCurrency(MEAL_ALLOWANCE_CAP_OLD)}</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(MEAL_ALLOWANCE_CAP_NEW)}</td>
+              <td className="px-4 py-3 text-slate-500">
+                /người/tháng - phần vượt hạn mức tính vào thu nhập chịu thuế
+              </td>
+            </tr>
+            <tr className="hover:bg-slate-50">
+              <td className="px-4 py-3">Lương làm thêm giờ, làm ban đêm</td>
+              <td className="px-4 py-3 font-medium text-slate-500">-</td>
+              <td className="px-4 py-3 text-slate-500">Chỉ miễn phần chênh lệch</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">Miễn toàn bộ</td>
+              <td className="px-4 py-3 text-slate-500">
+                Điều 26 NĐ 253/2026/NĐ-CP - cần bảng kê giờ làm thêm, làm đêm
+              </td>
+            </tr>
+            <tr className="hover:bg-slate-50">
+              <td className="px-4 py-3">Chi phí khám, chữa bệnh</td>
+              <td className="px-4 py-3 font-medium text-slate-500">-</td>
+              <td className="px-4 py-3 text-slate-500">Không có</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(MEDICAL_DEDUCTION_CAP_YEAR)}</td>
+              <td className="px-4 py-3 text-slate-500">
+                /năm - tại cơ sở y tế trong nước, trong danh mục BHYT chi trả
+              </td>
+            </tr>
+            <tr className="hover:bg-slate-50">
+              <td className="px-4 py-3">Chi phí giáo dục - đào tạo</td>
+              <td className="px-4 py-3 font-medium text-slate-500">-</td>
+              <td className="px-4 py-3 text-slate-500">Không có</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(EDUCATION_DEDUCTION_CAP_YEAR)}</td>
+              <td className="px-4 py-3 text-slate-500">
+                /năm - học phí mầm non đến đại học tại cơ sở trong nước
+              </td>
+            </tr>
+            <tr className="hover:bg-slate-50">
+              <td className="px-4 py-3">Ngưỡng thu nhập của người phụ thuộc</td>
+              <td className="px-4 py-3 font-medium text-slate-500">-</td>
+              <td className="px-4 py-3 text-slate-500">{formatCurrency(1_000_000)}</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(DEPENDENT_INCOME_THRESHOLD)}</td>
+              <td className="px-4 py-3 text-slate-500">
+                Bình quân tháng - Thông tư 87/2026/TT-BTC
+              </td>
+            </tr>
+
             {/* Tax Brackets Section */}
             <tr className="bg-orange-50/50">
               <td colSpan={5} className="px-4 py-2 font-semibold text-orange-900">
@@ -144,7 +203,9 @@ export const DeductionDetailTable: React.FC = () => {
 
       <div className="p-4 bg-amber-50 border-t border-amber-100">
         <p className="text-xs text-amber-800">
-          <strong>Lưu ý:</strong> Mức giảm trừ mới có hiệu lực từ 1/1/2026, trong khi biểu thuế mới có hiệu lực từ 1/7/2026. 
+          <strong>Lưu ý:</strong> Nghị định 253/2026/NĐ-CP có hiệu lực từ 1/7/2026. Các quy định về thu nhập từ tiền lương,
+          tiền công của cá nhân cư trú (mức giảm trừ, biểu thuế 5 bậc) áp dụng từ kỳ tính thuế năm 2026;
+          riêng quy định về tiền ăn giữa ca, ăn trưa áp dụng từ 1/7/2026.
           BHXH được tính trên mức lương tối đa là 20 lần lương cơ bản (46.800.000 VND).
         </p>
       </div>

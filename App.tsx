@@ -4,6 +4,7 @@ import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { TaxReductionChart } from './components/TaxReductionChart';
+import { LawChangelog } from './components/LawChangelog';
 import {
   calculateComparison,
   formatCurrency,
@@ -13,8 +14,20 @@ import {
   OLD_CONFIG,
   NEW_CONFIG
 } from './utils/taxCalculator';
-import { ComparisonResult } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink } from 'lucide-react';
+import {
+  ComparisonResult,
+  ExtraIncomeInput,
+  EMPTY_EXTRA_INCOME,
+  MEAL_ALLOWANCE_CAP_NEW,
+  MEDICAL_DEDUCTION_CAP_YEAR,
+  EDUCATION_DEDUCTION_CAP_YEAR,
+  DEPENDENT_INCOME_THRESHOLD,
+  CASUAL_INCOME_WITHHOLDING_THRESHOLD,
+  CASUAL_INCOME_NO_FINALIZATION_THRESHOLD,
+} from './types';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History } from 'lucide-react';
+
+type Tab = 'calculator' | 'changelog';
 
 // Constants
 const BLOG_URL = 'https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026';
@@ -38,6 +51,7 @@ const App: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
   const [useNewDeduction, setUseNewDeduction] = useState<boolean>(true);
   const [useNewRegionalMinWage, setUseNewRegionalMinWage] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<Tab>('calculator');
 
   const activeRegionalMinWage = useNewRegionalMinWage ? REGIONAL_MIN_WAGE_2026 : REGIONAL_MIN_WAGE_CURRENT;
   const minWageNote = useNewRegionalMinWage
@@ -46,7 +60,13 @@ const App: React.FC = () => {
 
   // Memoize the callback to ensure stable function reference across renders.
   // This prevents the useEffect in InputForm from triggering an infinite update loop.
-  const handleCalculate = useCallback((gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => {
+  const handleCalculate = useCallback((
+    gross: number,
+    dependents: number,
+    insurance: number,
+    region: 'I' | 'II' | 'III' | 'IV',
+    extra: ExtraIncomeInput = EMPTY_EXTRA_INCOME
+  ) => {
     const personalDeduction = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
     const dependentDeduction = useNewDeduction ? NEW_CONFIG.dependentDeduction : OLD_CONFIG.dependentDeduction;
 
@@ -57,7 +77,8 @@ const App: React.FC = () => {
       insurance,
       personalDeduction,
       dependentDeduction,
-      activeRegionalMinWage[region]
+      activeRegionalMinWage[region],
+      extra
     );
     setResult(calcResult);
     setSelectedRegion(region);
@@ -100,8 +121,33 @@ const App: React.FC = () => {
         </div>
       </header>
 
+      {/* Tabs */}
+      <nav className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1">
+          {([
+            { id: 'calculator' as const, label: 'Tính thuế', icon: Calculator },
+            { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
+          ]).map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                activeTab === id
+                  ? 'border-blue-600 text-blue-700'
+                  : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </nav>
+
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {activeTab === 'changelog' && <LawChangelog />}
+
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
 
           {/* Left Column: Input */}
           <div className="lg:col-span-4 space-y-6">
@@ -163,7 +209,60 @@ const App: React.FC = () => {
                   <span className="text-emerald-600">✓</span>
                   <span>Thuế suất các bậc giảm (10% thay vì 10-15%, 20% thay vì 20-25%)</span>
                 </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Miễn thuế tiền làm thêm giờ, làm ban đêm</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-600">✓</span>
+                  <span>Thêm giảm trừ chi phí y tế và giáo dục (tối đa 47tr/năm)</span>
+                </li>
               </ul>
+            </div>
+
+            {/* Điểm mới theo Nghị định 253/2026/NĐ-CP */}
+            <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+              <h3 className="font-semibold text-slate-900 flex items-center gap-2 mb-1">
+                <AlertCircle className="w-5 h-5 text-orange-500" />
+                Điểm mới từ 1/7/2026
+              </h3>
+              <p className="text-xs text-slate-500 mb-3">
+                Nghị định 253/2026/NĐ-CP & Thông tư 87/2026/TT-BTC
+              </p>
+              <ul className="space-y-3 text-sm text-slate-700">
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Miễn thuế tiền ăn giữa ca</span>
+                  <span className="font-semibold whitespace-nowrap">đến {formatCurrency(MEAL_ALLOWANCE_CAP_NEW)}/tháng</span>
+                </li>
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Miễn thuế lương làm thêm giờ, ban đêm</span>
+                  <span className="font-semibold whitespace-nowrap">Toàn bộ</span>
+                </li>
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Giảm trừ chi phí y tế</span>
+                  <span className="font-semibold whitespace-nowrap">đến {formatCurrency(MEDICAL_DEDUCTION_CAP_YEAR)}/năm</span>
+                </li>
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Giảm trừ chi phí giáo dục - đào tạo</span>
+                  <span className="font-semibold whitespace-nowrap">đến {formatCurrency(EDUCATION_DEDUCTION_CAP_YEAR)}/năm</span>
+                </li>
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Ngưỡng thu nhập của người phụ thuộc</span>
+                  <span className="font-semibold whitespace-nowrap">{formatCurrency(DEPENDENT_INCOME_THRESHOLD)}/tháng</span>
+                </li>
+                <li className="flex justify-between gap-3 border-b border-slate-100 pb-2">
+                  <span>Khấu trừ 10% thu nhập vãng lai</span>
+                  <span className="font-semibold whitespace-nowrap">từ {formatCurrency(CASUAL_INCOME_WITHHOLDING_THRESHOLD)}/lần</span>
+                </li>
+                <li className="flex justify-between gap-3">
+                  <span>Không phải quyết toán thu nhập vãng lai</span>
+                  <span className="font-semibold whitespace-nowrap">dưới {formatCurrency(CASUAL_INCOME_NO_FINALIZATION_THRESHOLD)}/tháng</span>
+                </li>
+              </ul>
+              <p className="text-xs text-slate-500 mt-4 bg-slate-50 border border-slate-100 rounded-lg p-3">
+                Với 1 người phụ thuộc và giảm trừ y tế, giáo dục tối đa, thu nhập trên khoảng
+                <strong> 28,6 triệu đồng/tháng</strong> mới bắt đầu phát sinh thuế TNCN.
+              </p>
             </div>
           </div>
 
@@ -280,6 +379,16 @@ const App: React.FC = () => {
                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.incomeBeforeTax)}</td>
                               <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.incomeBeforeTax)}</td>
                             </tr>
+                            {(result.oldReg.exemptIncome > 0 || result.newReg.exemptIncome > 0) && (
+                              <tr>
+                                <th className="px-4 py-3 font-semibold">
+                                  Thu nhập miễn thuế
+                                  <span className="block text-xs font-normal text-slate-400">Ăn giữa ca (trong hạn mức) + làm thêm giờ, ban đêm</span>
+                                </th>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.exemptIncome)}</td>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.exemptIncome)}</td>
+                              </tr>
+                            )}
                             <tr>
                               <th className="px-4 py-3 font-semibold">Giảm trừ bản thân</th>
                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.personalDeduction)}</td>
@@ -290,6 +399,18 @@ const App: React.FC = () => {
                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.dependentDeduction)}</td>
                               <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.dependentDeduction)}</td>
                             </tr>
+                            {(result.oldReg.specialDeduction > 0 || result.newReg.specialDeduction > 0) && (
+                              <tr>
+                                <th className="px-4 py-3 font-semibold">
+                                  Giảm trừ y tế, giáo dục
+                                  <span className="block text-xs font-normal text-slate-400">Quy về tháng, tối đa 47tr/năm</span>
+                                </th>
+                                <td className="px-4 py-3 text-right text-slate-400">
+                                  {result.oldReg.specialDeduction > 0 ? `- ${formatCurrency(result.oldReg.specialDeduction)}` : 'Không áp dụng'}
+                                </td>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.specialDeduction)}</td>
+                              </tr>
+                            )}
                             <tr className="bg-slate-50">
                               <th className="px-4 py-3 font-semibold">Thu nhập chịu thuế</th>
                               <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.taxableIncome)}</td>
@@ -321,7 +442,7 @@ const App: React.FC = () => {
                             <tr>
                               <th className="px-4 py-3 w-16 text-center">Bậc</th>
                               <th className="px-4 py-3 text-right bg-slate-100/50">QUY ĐỊNH CŨ</th>
-                              <th className="px-4 py-3 text-right text-emerald-700 bg-emerald-50/30">MỚI (DỰ KIẾN)</th>
+                              <th className="px-4 py-3 text-right text-emerald-700 bg-emerald-50/30">MỚI (SAU 1/7/2026)</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100">
@@ -443,7 +564,7 @@ const App: React.FC = () => {
                       Chi tiết thay đổi biểu thuế lũy tiến
                     </h3>
                     <p className="text-sm text-slate-500 mt-1">
-                      So sánh các bậc thuế giữa quy định cũ và dự thảo quy định mới
+                      So sánh các bậc thuế giữa quy định cũ và Luật Thuế TNCN 2025 (hiệu lực 1/7/2026)
                     </p>
                   </div>
                   <BracketTable />
@@ -462,8 +583,8 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Tax Reduction Chart Section */}
-        <div className="mt-8">
+        {/* Tax Reduction Chart Section - kept mounted so switching tabs preserves inputs */}
+        <div className={`mt-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
           <TaxReductionChart />
         </div>
       </main>

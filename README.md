@@ -1,4 +1,4 @@
-# 🇻🇳 Vietnam Tax Calculator 2025
+# 🇻🇳 Vietnam Tax Calculator 2026
 
 **Công cụ tính thuế Thu nhập Cá nhân Việt Nam - So sánh luật thuế cũ và mới**
 
@@ -12,9 +12,9 @@
 
 ## 📖 About | Giới thiệu
 
-A comprehensive **Vietnam Personal Income Tax (PIT) Calculator** that compares tax calculations between the current tax law and the new tax law effective **July 1, 2025**.
+A comprehensive **Vietnam Personal Income Tax (PIT) Calculator** that compares tax calculations between the old tax law and the new law — **Luật Thuế TNCN 2025 (109/2025/QH15)** together with **Nghị định 253/2026/NĐ-CP**, effective **July 1, 2026**.
 
-Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện, so sánh thuế giữa luật thuế hiện hành và luật thuế mới có hiệu lực từ **01/07/2025**.
+Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện, so sánh thuế giữa quy định cũ và quy định mới theo **Luật Thuế TNCN 2025** và **Nghị định 253/2026/NĐ-CP**, hiệu lực từ **01/07/2026**.
 
 ---
 
@@ -28,13 +28,25 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 📈 **Progressive Tax Brackets** | Hiển thị bảng thuế lũy tiến chi tiết |
 | 👨‍👩‍👧‍👦 **Dependent Deductions** | Tính giảm trừ gia cảnh cho người phụ thuộc |
 | 🏢 **Employer/Employee Breakdown** | Phân tích các khoản đóng bảo hiểm cho cả người lao động và doanh nghiệp |
+| 🍱 **Meal Allowance Exemption** | Miễn thuế tiền ăn giữa ca đến 1,2 triệu đồng/tháng (NĐ 253/2026/NĐ-CP) |
+| 🌙 **Overtime Exemption** | Miễn thuế toàn bộ tiền lương làm thêm giờ, làm ban đêm |
+| 🏥 **Medical & Education Deductions** | Giảm trừ chi phí y tế (23tr/năm) và giáo dục - đào tạo (24tr/năm) |
+| 🕘 **Law Changelog Tab** | Tab riêng ghi lại lịch sử thay đổi luật thuế TNCN từ Luật 2007 đến nay |
 
 ---
 
-## 📸 Screenshot
+## 📸 Screenshots
+
+**Tab "Tính thuế"** - nhập lương, các khoản miễn thuế mới và xem so sánh chi tiết:
 
 <div align="center">
-  <img src="assets/screenshot.png" alt="Vietnam Tax Calculator 2025 Screenshot" width="800" />
+  <img src="assets/screenshot.png" alt="Vietnam Tax Calculator - Tab tinh thue" width="800" />
+</div>
+
+**Tab "Lịch sử thay đổi luật"** - dòng thời gian các mốc thay đổi thuế TNCN từ Luật 2007:
+
+<div align="center">
+  <img src="assets/screenshot-changelog.png" alt="Vietnam Tax Calculator - Tab lich su thay doi luat" width="800" />
 </div>
 
 ---
@@ -95,7 +107,9 @@ vietnam-tax-2025/
 │   ├── BracketTable.tsx    # Tax bracket display
 │   ├── ComparisonChart.tsx # Old vs New comparison chart
 │   ├── DeductionDetailTable.tsx # Deduction breakdown
-│   └── InputForm.tsx       # Salary input form
+│   ├── InputForm.tsx       # Salary + exemption input form
+│   ├── LawChangelog.tsx    # Law changelog timeline (tab 2)
+│   └── TaxReductionChart.tsx # Gross salary vs tax reduction chart
 ├── 📂 utils/               # Utility functions
 ├── 📄 types.ts             # TypeScript type definitions
 ├── 📂 assets/              # Images and static assets
@@ -106,11 +120,30 @@ vietnam-tax-2025/
 
 ## 📚 Tax Law Reference | Tham khảo Luật Thuế
 
-The calculator implements:
-- **Current Law**: Personal Income Tax Law (Luật Thuế TNCN hiện hành)
-- **New Law**: Revised PIT provisions effective July 1, 2025
+The calculator implements two rule sets side by side:
 
-Key changes in the new law include updated tax brackets and deduction amounts.
+| | Quy định cũ | Quy định mới (từ 1/7/2026) |
+|---|---|---|
+| Biểu thuế lũy tiến | 7 bậc (5% - 35%) | 5 bậc (5%, 10%, 20%, 30%, 35%) |
+| Giảm trừ bản thân | 11.000.000 ₫/tháng | 15.500.000 ₫/tháng |
+| Giảm trừ người phụ thuộc | 4.400.000 ₫/tháng | 6.200.000 ₫/tháng |
+| Tiền ăn giữa ca miễn thuế | 730.000 ₫/tháng | 1.200.000 ₫/tháng |
+| Lương làm thêm giờ, ban đêm | Chỉ miễn phần chênh lệch | Miễn toàn bộ |
+| Giảm trừ chi phí y tế | Không có | Tối đa 23.000.000 ₫/năm |
+| Giảm trừ chi phí giáo dục | Không có | Tối đa 24.000.000 ₫/năm |
+| Ngưỡng thu nhập người phụ thuộc | 1.000.000 ₫/tháng | 3.000.000 ₫/tháng |
+
+**Căn cứ pháp lý chính:**
+
+- Luật Thuế thu nhập cá nhân 2025 (Luật 109/2025/QH15) - hiệu lực 01/7/2026
+- Nghị định 253/2026/NĐ-CP - hướng dẫn chi tiết Luật Thuế TNCN 2025
+- Thông tư 87/2026/TT-BTC - ngưỡng thu nhập xác định người phụ thuộc (3 triệu đồng/tháng)
+- Nghị quyết 110/2025/UBTVQH15 - mức giảm trừ gia cảnh áp dụng từ kỳ tính thuế 2026
+- Nghị định 293/2025/NĐ-CP - lương tối thiểu vùng từ 01/01/2026
+
+Xem đầy đủ dòng thời gian thay đổi luật trong tab **"Lịch sử thay đổi luật"** của ứng dụng.
+
+> ⚠️ Kết quả mang tính tham khảo, không thay thế tư vấn thuế chính thức.
 
 ---
 

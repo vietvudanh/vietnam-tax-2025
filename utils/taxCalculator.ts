@@ -6,12 +6,22 @@ import {
   BASE_SALARY_2024,
   InsuranceBreakdown,
   REGIONAL_MIN_WAGE_CURRENT,
-  REGIONAL_MIN_WAGE_2026
+  REGIONAL_MIN_WAGE_2026,
+  ExtraIncomeInput,
+  EMPTY_EXTRA_INCOME,
+  MEAL_ALLOWANCE_CAP_OLD,
+  MEAL_ALLOWANCE_CAP_NEW,
+  MEDICAL_DEDUCTION_CAP_YEAR,
+  EDUCATION_DEDUCTION_CAP_YEAR
 } from '../types.ts';
 
 export const OLD_CONFIG: TaxConfig = {
   name: "Quy định cũ (Hiện hành)",
-  effectiveDate: "Trước 1/7/2025",
+  effectiveDate: "Trước 1/7/2026",
+  mealAllowanceCap: MEAL_ALLOWANCE_CAP_OLD,
+  exemptOvertime: false,
+  medicalDeductionCapYear: 0,
+  educationDeductionCapYear: 0,
   personalDeduction: 11_000_000,
   dependentDeduction: 4_400_000,
   brackets: [
@@ -26,8 +36,12 @@ export const OLD_CONFIG: TaxConfig = {
 };
 
 export const NEW_CONFIG: TaxConfig = {
-  name: "Quy định mới (Đề xuất)",
-  effectiveDate: "Sau 1/7/2025",
+  name: "Quy định mới (Luật Thuế TNCN 2025 + NĐ 253/2026/NĐ-CP)",
+  effectiveDate: "Từ 1/7/2026",
+  mealAllowanceCap: MEAL_ALLOWANCE_CAP_NEW,
+  exemptOvertime: true,
+  medicalDeductionCapYear: MEDICAL_DEDUCTION_CAP_YEAR,
+  educationDeductionCapYear: EDUCATION_DEDUCTION_CAP_YEAR,
   personalDeduction: 15_500_000,
   dependentDeduction: 6_200_000,
   brackets: [
@@ -75,13 +89,28 @@ const calculateTaxForConfig = (
   gross: number,
   dependents: number,
   insuranceDetails: InsuranceBreakdown,
-  config: TaxConfig
+  config: TaxConfig,
+  extra: ExtraIncomeInput
 ): TaxResult => {
   const incomeBeforeTax = gross - insuranceDetails.total;
-  const totalDependentDeduction = dependents * config.dependentDeduction;
-  const totalDeductions = config.personalDeduction + totalDependentDeduction;
 
-  const taxableIncome = Math.max(0, incomeBeforeTax - totalDeductions);
+  // Thu nhập miễn thuế nằm trong lương gross:
+  // - Tiền ăn giữa ca chỉ được miễn trong hạn mức, phần vượt vẫn chịu thuế
+  // - Tiền làm thêm giờ / làm ban đêm được miễn toàn bộ theo quy định mới
+  const exemptMeal = Math.min(extra.mealAllowance, config.mealAllowanceCap);
+  const exemptOvertime = config.exemptOvertime ? extra.overtimePay : 0;
+  const exemptIncome = Math.min(incomeBeforeTax, exemptMeal + exemptOvertime);
+
+  const totalDependentDeduction = dependents * config.dependentDeduction;
+
+  // Giảm trừ chi phí y tế / giáo dục tính theo năm, quy đổi về tháng
+  const medicalDeduction = Math.min(extra.medicalExpensesYear, config.medicalDeductionCapYear) / 12;
+  const educationDeduction = Math.min(extra.educationExpensesYear, config.educationDeductionCapYear) / 12;
+  const specialDeduction = medicalDeduction + educationDeduction;
+
+  const totalDeductions = config.personalDeduction + totalDependentDeduction + specialDeduction;
+
+  const taxableIncome = Math.max(0, incomeBeforeTax - exemptIncome - totalDeductions);
 
   let totalTaxMillion = 0;
   const breakdown = [];
@@ -129,8 +158,18 @@ const calculateTaxForConfig = (
     },
     insuranceDetails,
     incomeBeforeTax,
+    exemptIncome,
+    exemptIncomeBreakdown: {
+      meal: exemptMeal,
+      overtime: exemptOvertime,
+    },
     personalDeduction: config.personalDeduction,
     dependentDeduction: totalDependentDeduction,
+    specialDeduction,
+    specialDeductionBreakdown: {
+      medical: medicalDeduction,
+      education: educationDeduction,
+    },
     taxableIncome,
     taxAmount,
     netIncome: incomeBeforeTax - taxAmount,
@@ -145,7 +184,8 @@ export const calculateComparison = (
   customInsuranceSalary: number | null, // If null, use gross
   personalDeduction: number,
   dependentDeduction: number,
-  customRegionalMinWage?: number // Optional override for min wage
+  customRegionalMinWage?: number, // Optional override for min wage
+  extra: ExtraIncomeInput = EMPTY_EXTRA_INCOME
 ): ComparisonResult => {
   const insuranceSalary = customInsuranceSalary !== null ? customInsuranceSalary : gross;
 
@@ -167,8 +207,8 @@ export const calculateComparison = (
     dependentDeduction: dependentDeduction,
   };
 
-  const oldReg = calculateTaxForConfig(gross, dependents, insuranceDetails, oldTaxConfig);
-  const newReg = calculateTaxForConfig(gross, dependents, insuranceDetails, newTaxConfig);
+  const oldReg = calculateTaxForConfig(gross, dependents, insuranceDetails, oldTaxConfig, extra);
+  const newReg = calculateTaxForConfig(gross, dependents, insuranceDetails, newTaxConfig, extra);
 
   return {
     oldReg,

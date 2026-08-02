@@ -1,14 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Calculator, Users, ShieldCheck } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Calculator, Users, ShieldCheck, Utensils, Moon, HeartPulse, GraduationCap } from 'lucide-react';
 import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
+import {
+  ExtraIncomeInput,
+  MEAL_ALLOWANCE_CAP_NEW,
+  MEDICAL_DEDUCTION_CAP_YEAR,
+  EDUCATION_DEDUCTION_CAP_YEAR,
+} from '../types';
 
 interface InputFormProps {
-  onCalculate: (gross: number, dependents: number, insurance: number, region: 'I' | 'II' | 'III' | 'IV') => void;
+  onCalculate: (
+    gross: number,
+    dependents: number,
+    insurance: number,
+    region: 'I' | 'II' | 'III' | 'IV',
+    extra: ExtraIncomeInput
+  ) => void;
   regionalMinWageMap: Record<'I' | 'II' | 'III' | 'IV', number>;
   minWageNote: string;
   useNewMinWage: boolean;
   onToggleNewMinWage: () => void;
 }
+
+const parseAmount = (value: string): number => parseFloat(value.replace(/[^0-9]/g, '')) || 0;
 
 export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWageMap, minWageNote, useNewMinWage, onToggleNewMinWage }) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
@@ -16,6 +30,10 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
   const [insuranceStr, setInsuranceStr] = useState<string>('');
   const [autoInsurance, setAutoInsurance] = useState<boolean>(true);
   const [region, setRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
+  const [mealStr, setMealStr] = useState<string>('');
+  const [overtimeStr, setOvertimeStr] = useState<string>('');
+  const [medicalStr, setMedicalStr] = useState<string>('');
+  const [educationStr, setEducationStr] = useState<string>('');
 
   // Parse strings to numbers safely
   const gross = parseFloat(grossStr.replace(/[^0-9]/g, '')) || 0;
@@ -30,6 +48,13 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
   // Cap = 20 × mức tham chiếu (2,340,000₫) = 46,800,000₫
   const insuranceSalaryBase = Math.min(insuranceSalary, BHXH_MAX_CAP);
 
+  const extra: ExtraIncomeInput = useMemo(() => ({
+    mealAllowance: parseAmount(mealStr),
+    overtimePay: parseAmount(overtimeStr),
+    medicalExpensesYear: parseAmount(medicalStr),
+    educationExpensesYear: parseAmount(educationStr),
+  }), [mealStr, overtimeStr, medicalStr, educationStr]);
+
   useEffect(() => {
     if (autoInsurance) {
       setInsuranceStr('');
@@ -37,14 +62,20 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
   }, [autoInsurance]);
 
   useEffect(() => {
-    onCalculate(gross, dependents, customInsuranceSalaryToPass, region);
-  }, [gross, dependents, customInsuranceSalaryToPass, region, onCalculate]);
+    onCalculate(gross, dependents, customInsuranceSalaryToPass, region, extra);
+  }, [gross, dependents, customInsuranceSalaryToPass, region, extra, onCalculate]);
 
   const handleGrossChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const cleaned = value.replace(/[^0-9]/g, '');
     const num = parseInt(cleaned) || 0;
     setGrossStr(num.toLocaleString('vi-VN'));
+  };
+
+  // Formats keystrokes into a thousands-separated amount, keeping an empty field empty.
+  const handleAmountChange = (setter: (v: string) => void) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const cleaned = e.target.value.replace(/[^0-9]/g, '');
+    setter(cleaned === '' ? '' : (parseInt(cleaned) || 0).toLocaleString('vi-VN'));
   };
 
   const handleInsuranceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,6 +191,84 @@ export const InputForm: React.FC<InputFormProps> = ({ onCalculate, regionalMinWa
               : `Nhập mức lương dùng để đóng bảo hiểm. Hệ thống sẽ tính 10.5% từ giá trị này.`
             }
           </p>
+        </div>
+
+        {/* Exemptions & new deductions - Nghị định 253/2026/NĐ-CP */}
+        <div className="border-t border-slate-100 pt-5">
+          <p className="text-sm font-semibold text-slate-700">Khoản miễn thuế & giảm trừ mới</p>
+          <p className="text-xs text-slate-400 mb-4">
+            Theo Nghị định 253/2026/NĐ-CP - chỉ áp dụng cho cột "Quy định mới"
+          </p>
+
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <Utensils className="w-4 h-4" />
+                Tiền ăn giữa ca / ăn trưa (VNĐ/tháng)
+              </label>
+              <input
+                type="text"
+                value={mealStr}
+                onChange={handleAmountChange(setMealStr)}
+                className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-800"
+                placeholder="0"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Miễn thuế tối đa {formatCurrency(MEAL_ALLOWANCE_CAP_NEW)}/tháng, phần vượt vẫn chịu thuế
+              </p>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <Moon className="w-4 h-4" />
+                Lương làm thêm giờ / ban đêm (VNĐ/tháng)
+              </label>
+              <input
+                type="text"
+                value={overtimeStr}
+                onChange={handleAmountChange(setOvertimeStr)}
+                className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-800"
+                placeholder="0"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Miễn toàn bộ thuế TNCN theo Điều 26 NĐ 253/2026/NĐ-CP (đã bao gồm trong lương gross)
+              </p>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <HeartPulse className="w-4 h-4" />
+                Chi phí y tế trong năm (VNĐ/năm)
+              </label>
+              <input
+                type="text"
+                value={medicalStr}
+                onChange={handleAmountChange(setMedicalStr)}
+                className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-800"
+                placeholder="0"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Giảm trừ tối đa {formatCurrency(MEDICAL_DEDUCTION_CAP_YEAR)}/năm
+              </p>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <GraduationCap className="w-4 h-4" />
+                Chi phí giáo dục - đào tạo (VNĐ/năm)
+              </label>
+              <input
+                type="text"
+                value={educationStr}
+                onChange={handleAmountChange(setEducationStr)}
+                className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-800"
+                placeholder="0"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Giảm trừ tối đa {formatCurrency(EDUCATION_DEDUCTION_CAP_YEAR)}/năm
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Region Selection */}

@@ -77,6 +77,18 @@ export const REGIONAL_MIN_WAGE_2026: Record<Region, number> = {
   IV: 3_700_000,
 };
 
+export const REGIONAL_MIN_WAGE_2027_DRAFT: Record<Region, number> = {
+  // Dự kiến từ 01/01/2027 theo Dự thảo Nghị định thay thế Nghị định 293/2025/NĐ-CP
+  // (Bộ Nội vụ công bố ngày 20/7/2026) - CHƯA ban hành chính thức
+  I: 5_700_000,
+  II: 5_080_000,
+  III: 4_450_000,
+  IV: 4_040_000,
+};
+
+/** Bộ mức lương tối thiểu vùng người dùng có thể chọn */
+export type MinWageSet = 'legacy' | 'current2026' | 'draft2027';
+
 export const REGIONS: Record<Region, { minWage: number }> = {
   I: { minWage: REGIONAL_MIN_WAGE_CURRENT.I },
   II: { minWage: REGIONAL_MIN_WAGE_CURRENT.II },

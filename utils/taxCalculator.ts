@@ -7,6 +7,7 @@ import {
   InsuranceBreakdown,
   REGIONAL_MIN_WAGE_CURRENT,
   REGIONAL_MIN_WAGE_2026,
+  REGIONAL_MIN_WAGE_2027_DRAFT,
   ExtraIncomeInput,
   EMPTY_EXTRA_INCOME,
   MEAL_ALLOWANCE_CAP_OLD,
@@ -235,7 +236,7 @@ export const LUONG_CO_BAN = BASE_SALARY_2024;
 export const BHXH_MAX_CAP = 20 * BASE_SALARY_2024;
 
 export const REGIONAL_MIN_WAGE = REGIONAL_MIN_WAGE_CURRENT;
-export { REGIONAL_MIN_WAGE_CURRENT, REGIONAL_MIN_WAGE_2026 };
+export { REGIONAL_MIN_WAGE_CURRENT, REGIONAL_MIN_WAGE_2026, REGIONAL_MIN_WAGE_2027_DRAFT };
 
 export const calculateBHXH = (gross: number, region: Region): number => {
   return calculateInsurance(gross, region).total;

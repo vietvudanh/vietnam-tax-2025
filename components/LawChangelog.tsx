@@ -9,6 +9,8 @@ interface LawChange {
   /** Thời điểm áp dụng thực tế */
   effective: string;
   document: string;
+  /** Link toàn văn trên Thư Viện Pháp Luật */
+  url: string;
   title: string;
   status: ChangeStatus;
   highlights: string[];
@@ -23,6 +25,7 @@ const CHANGES: LawChange[] = [
     issued: '30/6/2026',
     effective: '1/7/2026',
     document: 'Nghị định 253/2026/NĐ-CP',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-253-2026-ND-CP-huong-dan-Luat-Thue-thu-nhap-ca-nhan-699193.aspx',
     title: 'Hướng dẫn chi tiết Luật Thuế TNCN 2025',
     status: 'current',
     highlights: [
@@ -39,6 +42,7 @@ const CHANGES: LawChange[] = [
     issued: '2026',
     effective: '1/7/2026',
     document: 'Thông tư 87/2026/TT-BTC',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-87-2026-TT-BTC-huong-dan-Luat-Thue-thu-nhap-ca-nhan-Nghi-dinh-253-2026-ND-CP-713265.aspx',
     title: 'Ngưỡng thu nhập xác định người phụ thuộc',
     status: 'current',
     highlights: [
@@ -49,6 +53,7 @@ const CHANGES: LawChange[] = [
     issued: '10/12/2025',
     effective: '1/7/2026 (thu nhập tiền lương áp dụng từ kỳ tính thuế 2026)',
     document: 'Luật Thuế thu nhập cá nhân 2025 (Luật 109/2025/QH15)',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-Thue-thu-nhap-ca-nhan-2025-so-109-2025-QH15-665870.aspx',
     title: 'Luật Thuế TNCN mới thay thế Luật 2007',
     status: 'current',
     highlights: [
@@ -64,6 +69,7 @@ const CHANGES: LawChange[] = [
     issued: '2025',
     effective: 'Kỳ tính thuế năm 2026',
     document: 'Nghị quyết 110/2025/UBTVQH15',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-quyet-110-2025-UBTVQH15-muc-giam-tru-gia-canh-thue-thu-nhap-ca-nhan-665865.aspx',
     title: 'Nâng mức giảm trừ gia cảnh',
     status: 'current',
     highlights: [
@@ -76,6 +82,7 @@ const CHANGES: LawChange[] = [
     issued: '2/6/2020',
     effective: 'Kỳ tính thuế năm 2020',
     document: 'Nghị quyết 954/2020/UBTVQH14',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-quyet-954-2020-UBTVQH14-dieu-chinh-muc-giam-tru-gia-canh-cua-thue-thu-nhap-ca-nhan-444106.aspx',
     title: 'Nâng mức giảm trừ gia cảnh',
     status: 'historical',
     highlights: [
@@ -88,6 +95,7 @@ const CHANGES: LawChange[] = [
     issued: '26/11/2014',
     effective: '1/1/2015',
     document: 'Luật 71/2014/QH13',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-sua-doi-cac-Luat-ve-thue-2014-259208.aspx',
     title: 'Sửa đổi, bổ sung một số điều của các luật về thuế',
     status: 'historical',
     highlights: [
@@ -99,6 +107,7 @@ const CHANGES: LawChange[] = [
     issued: '15/8/2013',
     effective: '1/10/2013',
     document: 'Thông tư 111/2013/TT-BTC',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-111-2013-TT-BTC-Huong-dan-Luat-thue-thu-nhap-ca-nhan-va-Nghi-dinh-65-2013-ND-CP-205356.aspx',
     title: 'Hướng dẫn thi hành Luật Thuế TNCN',
     status: 'historical',
     highlights: [
@@ -110,6 +119,7 @@ const CHANGES: LawChange[] = [
     issued: '22/11/2012',
     effective: '1/7/2013',
     document: 'Luật 26/2012/QH13',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-thue-thu-nhap-ca-nhan-sua-doi-2012-26-2012-QH13-152719.aspx',
     title: 'Sửa đổi, bổ sung Luật Thuế TNCN',
     status: 'historical',
     highlights: [
@@ -123,6 +133,7 @@ const CHANGES: LawChange[] = [
     issued: '21/11/2007',
     effective: '1/1/2009',
     document: 'Luật Thuế thu nhập cá nhân 2007 (Luật 04/2007/QH12)',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-thue-thu-nhap-ca-nhan-2007-04-2007-QH12-59652.aspx',
     title: 'Luật Thuế TNCN đầu tiên của Việt Nam',
     status: 'historical',
     highlights: [
@@ -136,17 +147,25 @@ const CHANGES: LawChange[] = [
 ];
 
 // Các văn bản liên quan về quản lý, kê khai - không thay đổi cách tính thuế.
-const RELATED: { document: string; note: string }[] = [
+const RELATED: { document: string; url: string; note: string }[] = [
+  {
+    document: 'Dự thảo Nghị định lương tối thiểu vùng 2027',
+    url: 'https://thuvienphapluat.vn/lao-dong-tien-luong/da-co-bang-luong-toi-thieu-vung-moi-tu-01012027-cho-toan-bo-nguoi-lao-dong-34-tinh-thanh-theo-du-ki-63150.html',
+    note: 'Bộ Nội vụ công bố 20/7/2026, thay thế NĐ 293/2025/NĐ-CP. Dự kiến từ 01/01/2027: vùng I 5.700.000 ₫, vùng II 5.080.000 ₫, vùng III 4.450.000 ₫, vùng IV 4.040.000 ₫ (tăng khoảng 7,3% - 9,2%). CHƯA ban hành chính thức',
+  },
   {
     document: 'Nghị định 293/2025/NĐ-CP',
+    url: 'https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Nghi-dinh-293-2025-ND-CP-quy-dinh-muc-luong-toi-thieu-lao-dong-lam-viec-theo-hop-dong-lao-dong-665866.aspx',
     note: 'Mức lương tối thiểu vùng mới từ 1/1/2026, ảnh hưởng trần đóng bảo hiểm thất nghiệp',
   },
   {
     document: 'Quyết định 1109/QĐ-BTC năm 2026',
+    url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Quyet-dinh-1109-QD-BTC-2026-cong-bo-thu-tuc-hanh-chinh-quan-ly-thue-hai-quan-705035.aspx',
     note: 'Chuyển kê khai thuế TNCN tháng 4, 5, 6/2026 sang kê khai theo quý II/2026 (hạn nộp 31/7/2026)',
   },
   {
     document: 'Nghị định 245/2026/NĐ-CP',
+    url: 'https://thuvienphapluat.vn/hoi-dap-phap-luat/toan-van-nghi-dinh-2452026ndcp-ve-gia-han-thoi-han-nop-thue-gtgt-thue-tndn-thue-tncn-va-tien-thue-d-138095981.html',
     note: 'Gia hạn nộp thuế TNCN cho hộ, cá nhân kinh doanh từ 27/6/2026 đến 30/12/2026',
   },
 ];
@@ -167,6 +186,7 @@ export const LawChangelog: React.FC = () => {
         <p className="text-sm text-slate-500 mt-2">
           Toàn bộ các mốc thay đổi chính của thuế thu nhập cá nhân Việt Nam, từ Luật đầu tiên năm 2007
           đến Nghị định 253/2026/NĐ-CP có hiệu lực 1/7/2026. Sắp xếp theo thời điểm áp dụng, mới nhất trước.
+          Bấm vào tên văn bản để xem toàn văn trên Thư Viện Pháp Luật.
         </p>
       </div>
 
@@ -187,7 +207,17 @@ export const LawChangelog: React.FC = () => {
                       <FileText className="w-3.5 h-3.5" />
                       <span>Ban hành {change.issued}</span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 mt-1">{change.document}</h3>
+                    <h3 className="text-base font-bold text-slate-900 mt-1">
+                      <a
+                        href={change.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-blue-700 hover:underline inline-flex items-center gap-1.5"
+                      >
+                        {change.document}
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                      </a>
+                    </h3>
                     <p className="text-sm text-slate-600">{change.title}</p>
                   </div>
                   <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${status.className}`}>
@@ -233,7 +263,17 @@ export const LawChangelog: React.FC = () => {
         <ul className="space-y-3 text-sm">
           {RELATED.map((item) => (
             <li key={item.document} className="border-l-2 border-slate-200 pl-3">
-              <div className="font-semibold text-slate-800">{item.document}</div>
+              <div className="font-semibold text-slate-800">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-700 hover:underline inline-flex items-center gap-1.5"
+                >
+                  {item.document}
+                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                </a>
+              </div>
               <div className="text-slate-600">{item.note}</div>
             </li>
           ))}
@@ -242,15 +282,15 @@ export const LawChangelog: React.FC = () => {
 
       <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
         <p className="text-xs text-amber-800">
-          <strong>Lưu ý:</strong> Nội dung tổng hợp mang tính tham khảo. Vui lòng đối chiếu văn bản gốc trên
+          <strong>Lưu ý:</strong> Nội dung tổng hợp mang tính tham khảo. Vui lòng đối chiếu toàn văn trên
           {' '}
           <a
-            href="https://vanban.chinhphu.vn/"
+            href="https://thuvienphapluat.vn/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline inline-flex items-center gap-1"
           >
-            Cơ sở dữ liệu quốc gia về văn bản pháp luật
+            Thư Viện Pháp Luật
             <ExternalLink className="w-3 h-3" />
           </a>
           {' '}trước khi áp dụng.

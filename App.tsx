@@ -5,8 +5,11 @@ import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { TaxReductionChart } from './components/TaxReductionChart';
 import { LawChangelog } from './components/LawChangelog';
+import { AnnualSummary } from './components/AnnualSummary';
+import { MonthlyBreakdownTable } from './components/MonthlyBreakdownTable';
 import {
   calculateComparison,
+  calculateAnnualComparison,
   formatCurrency,
   REGIONAL_MIN_WAGE_CURRENT,
   REGIONAL_MIN_WAGE_2026,
@@ -26,10 +29,16 @@ import {
   CASUAL_INCOME_WITHHOLDING_THRESHOLD,
   CASUAL_INCOME_NO_FINALIZATION_THRESHOLD,
   MinWageSet,
+  TaxPeriod,
+  BonusEntry,
+  AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange } from 'lucide-react';
 
-type Tab = 'calculator' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'changelog';
+
+/** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
+const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
 
 // Constants
 const BLOG_URL = 'https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026';
@@ -81,11 +90,18 @@ const getDefaultMinWageSet = (today: Date = new Date()): MinWageSet => {
 
 const App: React.FC = () => {
   const [result, setResult] = useState<ComparisonResult | null>(null);
+  const [annualResult, setAnnualResult] = useState<AnnualComparisonResult | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
   const [useNewDeduction, setUseNewDeduction] = useState<boolean>(true);
   // Mặc định là bộ lương tối thiểu vùng đang có hiệu lực tại thời điểm truy cập.
   const [minWageSet, setMinWageSet] = useState<MinWageSet>(() => getDefaultMinWageSet());
   const [activeTab, setActiveTab] = useState<Tab>('calculator');
+  // Kỳ tính thuế suy ra từ tab đang mở, không giữ state riêng - hai nguồn sự thật cho
+  // cùng một thứ chắc chắn sẽ có lúc lệch nhau.
+  const period: TaxPeriod = activeTab === 'annual' ? 'year' : 'month';
+  const isCalculatorTab = CALCULATOR_TABS.includes(activeTab);
+  const [monthsWorked, setMonthsWorked] = useState<number>(12);
+  const [bonuses, setBonuses] = useState<BonusEntry[]>([]);
 
   const activeRegionalMinWage = MIN_WAGE_OPTIONS[minWageSet].map;
   const minWageNote = MIN_WAGE_OPTIONS[minWageSet].note;
@@ -113,8 +129,41 @@ const App: React.FC = () => {
       extra
     );
     setResult(calcResult);
+
+    // Quyết toán năm tính luôn cùng lúc để chuyển kỳ là hiển thị ngay, không phải chờ
+    // người dùng gõ lại. Chi phí không đáng kể: 24 phép tính tháng cho hai bộ quy định.
+    setAnnualResult(
+      calculateAnnualComparison(
+        {
+          monthlyGross: gross,
+          monthsWorked,
+          bonuses,
+          dependents,
+          region,
+          customInsuranceSalary: insurance,
+          extra,
+        },
+        personalDeduction,
+        dependentDeduction,
+        activeRegionalMinWage[region]
+      )
+    );
     setSelectedRegion(region);
-  }, [activeRegionalMinWage, useNewDeduction]);
+  }, [activeRegionalMinWage, useNewDeduction, monthsWorked, bonuses]);
+
+  // Kỳ năm dùng lại đúng các bảng của kỳ tháng: `AnnualTaxResult.annual` vốn là một
+  // `TaxResult`, chỉ khác mọi con số đã là số cả năm.
+  const displayResult: ComparisonResult | null =
+    period === 'year'
+      ? annualResult && {
+          oldReg: annualResult.oldReg.annual,
+          newReg: annualResult.newReg.annual,
+          diffTax: annualResult.diffTax,
+          diffNet: annualResult.diffNet,
+        }
+      : result;
+
+  const periodSuffix = period === 'year' ? ' / năm' : ' / tháng';
 
   // Google Analytics tracking helper
   const trackEvent = (eventName: string) => {
@@ -157,7 +206,8 @@ const App: React.FC = () => {
       <nav className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1">
           {([
-            { id: 'calculator' as const, label: 'Tính thuế', icon: Calculator },
+            { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
+            { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
@@ -179,10 +229,25 @@ const App: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {activeTab === 'changelog' && <LawChangelog />}
 
-        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
+        {/*
+          Tab "Tính thuế theo tháng" và "Quyết toán thuế năm" dùng CHUNG khối này. InputForm
+          giữ nguyên vị trí trong cây React nên không bị unmount khi đổi tab - toàn bộ dữ
+          liệu người dùng đã nhập được giữ lại. Chỉ cột kết quả bên phải đổi theo `period`.
+        */}
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${isCalculatorTab ? '' : 'hidden'}`}>
 
           {/* Left Column: Input */}
           <div className="lg:col-span-4 space-y-6">
+            {period === 'year' && (
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
+                <CalendarRange className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                <p className="text-sm text-blue-900">
+                  Đang ở chế độ <strong>quyết toán cả năm</strong>. Nhập thêm số tháng làm việc và
+                  các khoản thưởng một lần để biết bạn được hoàn thuế hay phải nộp thêm.
+                </p>
+              </div>
+            )}
+
             <InputForm
               onCalculate={handleCalculate}
               regionalMinWageMap={activeRegionalMinWage}
@@ -194,6 +259,11 @@ const App: React.FC = () => {
                 draft2027: MIN_WAGE_OPTIONS.draft2027.label,
               }}
               onChangeMinWageSet={setMinWageSet}
+              period={period}
+              monthsWorked={monthsWorked}
+              bonuses={bonuses}
+              onChangeMonthsWorked={setMonthsWorked}
+              onChangeBonuses={setBonuses}
             />
 
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">
@@ -305,7 +375,7 @@ const App: React.FC = () => {
 
           {/* Right Column: Results */}
           <div className="lg:col-span-8 space-y-8">
-            {result && (
+            {displayResult && (
               <>
                 {/* Key Metrics Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -314,19 +384,19 @@ const App: React.FC = () => {
                     <div className="absolute top-0 right-0 px-3 py-1 bg-slate-200 text-slate-600 text-xs font-bold rounded-bl-lg">
                       QUY ĐỊNH CŨ
                     </div>
-                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net)</div>
+                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net){periodSuffix}</div>
                     <div className="text-3xl font-bold text-slate-700 mb-4">
-                      {formatCurrency(result.oldReg.netIncome)}
+                      {formatCurrency(displayResult.oldReg.netIncome)}
                     </div>
                     <div className="space-y-2 text-sm border-t border-slate-200 pt-3">
                       <div className="flex justify-between text-slate-600">
                         <span>Thuế phải đóng:</span>
-                        <span className="font-medium text-red-500">{formatCurrency(result.oldReg.taxAmount)}</span>
+                        <span className="font-medium text-red-500">{formatCurrency(displayResult.oldReg.taxAmount)}</span>
                       </div>
                       <div className="flex justify-between text-slate-600">
                         <span>Tổng giảm trừ:</span>
                         <span className="font-medium">
-                          {formatCurrency(result.oldReg.personalDeduction + result.oldReg.dependentDeduction)}
+                          {formatCurrency(displayResult.oldReg.personalDeduction + displayResult.oldReg.dependentDeduction)}
                         </span>
                       </div>
                     </div>
@@ -337,19 +407,19 @@ const App: React.FC = () => {
                     <div className="absolute top-0 right-0 px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-bl-lg">
                       MỚI (SAU 1/7/2026)
                     </div>
-                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net)</div>
+                    <div className="text-sm text-slate-500 mb-1">Thực lĩnh (Net){periodSuffix}</div>
                     <div className="text-3xl font-bold text-emerald-600 mb-4">
-                      {formatCurrency(result.newReg.netIncome)}
+                      {formatCurrency(displayResult.newReg.netIncome)}
                     </div>
                     <div className="space-y-2 text-sm border-t border-slate-100 pt-3">
                       <div className="flex justify-between text-slate-600">
                         <span>Thuế phải đóng:</span>
-                        <span className="font-medium text-red-500">{formatCurrency(result.newReg.taxAmount)}</span>
+                        <span className="font-medium text-red-500">{formatCurrency(displayResult.newReg.taxAmount)}</span>
                       </div>
                       <div className="flex justify-between text-slate-600">
                         <span>Tổng giảm trừ:</span>
                         <span className="font-medium">
-                          {formatCurrency(result.newReg.personalDeduction + result.newReg.dependentDeduction)}
+                          {formatCurrency(displayResult.newReg.personalDeduction + displayResult.newReg.dependentDeduction)}
                         </span>
                       </div>
                     </div>
@@ -358,7 +428,7 @@ const App: React.FC = () => {
                     <div className="mt-4 bg-emerald-50 text-emerald-700 px-3 py-2 rounded-lg text-sm font-semibold flex items-center justify-between border border-emerald-100">
                       <span>Bạn tiết kiệm được:</span>
                       <span className="text-lg flex items-center gap-1">
-                        {formatCurrency(result.diffNet)}
+                        {formatCurrency(displayResult.diffNet)}
                         <TrendingDown className="w-4 h-4" />
                       </span>
                     </div>
@@ -368,11 +438,22 @@ const App: React.FC = () => {
                 {/* Chart Section */}
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                   <h3 className="text-lg font-bold text-slate-800 mb-4">Biểu đồ so sánh</h3>
-                  <ComparisonChart data={result} />
+                  <ComparisonChart data={displayResult} period={period} />
                 </div>
 
+                {/* Quyết toán năm: thẻ hoàn/nộp thêm và bảng chi tiết 12 tháng */}
+                {period === 'year' && annualResult && (
+                  <>
+                    <AnnualSummary data={annualResult} />
+                    <MonthlyBreakdownTable
+                      data={useNewDeduction ? annualResult.newReg : annualResult.oldReg}
+                      label={useNewDeduction ? 'Quy định mới' : 'Quy định cũ'}
+                    />
+                  </>
+                )}
+
                 {/* Detail Breakdown */}
-                {result && (
+                {displayResult && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                       <div className="p-6 border-b border-slate-100">
@@ -393,75 +474,75 @@ const App: React.FC = () => {
                           <tbody className="divide-y divide-slate-100">
                             <tr>
                               <th className="px-4 py-3 font-semibold">Lương GROSS</th>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.grossIncome)}</td>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.grossIncome)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.oldReg.grossIncome)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.newReg.grossIncome)}</td>
                             </tr>
                             <tr>
                               <th className="px-4 py-3 font-semibold">Bảo hiểm xã hội (8%)</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhxh || 0)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhxh || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.insuranceBreakdown?.bhxh || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.insuranceBreakdown?.bhxh || 0)}</td>
                             </tr>
                             <tr>
                               <th className="px-4 py-3 font-semibold">Bảo hiểm y tế (1.5%)</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhyt || 0)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhyt || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.insuranceBreakdown?.bhyt || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.insuranceBreakdown?.bhyt || 0)}</td>
                             </tr>
                             <tr>
                               <th className="px-4 py-3 font-semibold">Bảo hiểm thất nghiệp (1%)</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.insuranceBreakdown?.bhtn || 0)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.insuranceBreakdown?.bhtn || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.insuranceBreakdown?.bhtn || 0)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.insuranceBreakdown?.bhtn || 0)}</td>
                             </tr>
                             <tr className="bg-slate-50">
                               <th className="px-4 py-3 font-semibold">Thu nhập trước thuế</th>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.incomeBeforeTax)}</td>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.incomeBeforeTax)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.oldReg.incomeBeforeTax)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.newReg.incomeBeforeTax)}</td>
                             </tr>
-                            {(result.oldReg.exemptIncome > 0 || result.newReg.exemptIncome > 0) && (
+                            {(displayResult.oldReg.exemptIncome > 0 || displayResult.newReg.exemptIncome > 0) && (
                               <tr>
                                 <th className="px-4 py-3 font-semibold">
                                   Thu nhập miễn thuế
                                   <span className="block text-xs font-normal text-slate-400">Ăn giữa ca (trong hạn mức) + làm thêm giờ, ban đêm</span>
                                 </th>
-                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.exemptIncome)}</td>
-                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.exemptIncome)}</td>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.exemptIncome)}</td>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.exemptIncome)}</td>
                               </tr>
                             )}
                             <tr>
                               <th className="px-4 py-3 font-semibold">Giảm trừ bản thân</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.personalDeduction)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.personalDeduction)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.personalDeduction)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.personalDeduction)}</td>
                             </tr>
                             <tr>
                               <th className="px-4 py-3 font-semibold">Giảm trừ người phụ thuộc</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.dependentDeduction)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.dependentDeduction)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.dependentDeduction)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.dependentDeduction)}</td>
                             </tr>
-                            {(result.oldReg.specialDeduction > 0 || result.newReg.specialDeduction > 0) && (
+                            {(displayResult.oldReg.specialDeduction > 0 || displayResult.newReg.specialDeduction > 0) && (
                               <tr>
                                 <th className="px-4 py-3 font-semibold">
                                   Giảm trừ y tế, giáo dục
                                   <span className="block text-xs font-normal text-slate-400">Quy về tháng, tối đa 47tr/năm</span>
                                 </th>
                                 <td className="px-4 py-3 text-right text-slate-400">
-                                  {result.oldReg.specialDeduction > 0 ? `- ${formatCurrency(result.oldReg.specialDeduction)}` : 'Không áp dụng'}
+                                  {displayResult.oldReg.specialDeduction > 0 ? `- ${formatCurrency(displayResult.oldReg.specialDeduction)}` : 'Không áp dụng'}
                                 </td>
-                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.specialDeduction)}</td>
+                                <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.specialDeduction)}</td>
                               </tr>
                             )}
                             <tr className="bg-slate-50">
                               <th className="px-4 py-3 font-semibold">Thu nhập chịu thuế</th>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.oldReg.taxableIncome)}</td>
-                              <td className="px-4 py-3 text-right">{formatCurrency(result.newReg.taxableIncome)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.oldReg.taxableIncome)}</td>
+                              <td className="px-4 py-3 text-right">{formatCurrency(displayResult.newReg.taxableIncome)}</td>
                             </tr>
                             <tr>
                               <th className="px-4 py-3 font-semibold">Thuế thu nhập cá nhân</th>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.oldReg.taxAmount)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(result.newReg.taxAmount)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.oldReg.taxAmount)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">- {formatCurrency(displayResult.newReg.taxAmount)}</td>
                             </tr>
                             <tr className="bg-emerald-50">
                               <th className="px-4 py-3 font-semibold">Lương NET</th>
-                              <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.oldReg.netIncome)}</td>
-                              <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(result.newReg.netIncome)}</td>
+                              <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(displayResult.oldReg.netIncome)}</td>
+                              <td className="px-4 py-3 text-right font-bold text-emerald-700">{formatCurrency(displayResult.newReg.netIncome)}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -485,8 +566,8 @@ const App: React.FC = () => {
                           <tbody className="divide-y divide-slate-100">
                             {Array.from({ length: 7 }).map((_, idx) => {
                               const level = idx + 1;
-                              const oldItem = result.oldReg.bracketsBreakdown.find(b => b.level === level);
-                              const newItem = result.newReg.bracketsBreakdown.find(b => b.level === level);
+                              const oldItem = displayResult.oldReg.bracketsBreakdown.find(b => b.level === level);
+                              const newItem = displayResult.newReg.bracketsBreakdown.find(b => b.level === level);
 
                               if (!oldItem && !newItem) return null;
 
@@ -531,10 +612,10 @@ const App: React.FC = () => {
                             <tr className="bg-slate-50 font-bold border-t-2 border-slate-200">
                               <td className="px-4 py-3 text-center">Tổng</td>
                               <td className="px-4 py-3 text-right text-red-600">
-                                {formatCurrency(result.oldReg.taxAmount)}
+                                {formatCurrency(displayResult.oldReg.taxAmount)}
                               </td>
                               <td className="px-4 py-3 text-right text-red-600 bg-emerald-50/30">
-                                {formatCurrency(result.newReg.taxAmount)}
+                                {formatCurrency(displayResult.newReg.taxAmount)}
                               </td>
                             </tr>
                           </tbody>
@@ -545,41 +626,43 @@ const App: React.FC = () => {
                 )}
 
                 {/* Employer contribution table */}
-                {result && (
+                {displayResult && (
                   <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                     <div className="p-6 border-b border-slate-100">
-                      <h3 className="text-lg font-bold text-slate-800">Người sử dụng lao động trả (VNĐ)</h3>
-                      <p className="text-sm text-slate-500 mt-1">Tính trên mức đóng bảo hiểm: {formatCurrency(result.newReg.insuranceBase || 0)}</p>
+                      <h3 className="text-lg font-bold text-slate-800">Người sử dụng lao động trả (VNĐ{periodSuffix})</h3>
+                      <p className="text-sm text-slate-500 mt-1">
+                        Tính trên mức đóng bảo hiểm{periodSuffix}: {formatCurrency(displayResult.newReg.insuranceBase || 0)}
+                      </p>
                     </div>
                     <div className="overflow-x-auto">
                       <table className="min-w-full text-sm text-left text-slate-700">
                         <tbody className="divide-y divide-slate-100">
                           <tr>
                             <th className="px-4 py-3 font-semibold">Lương GROSS</th>
-                            <td className="px-4 py-3">{formatCurrency(result.newReg.grossIncome)}</td>
+                            <td className="px-4 py-3">{formatCurrency(displayResult.newReg.grossIncome)}</td>
                           </tr>
                           <tr>
                             <th className="px-4 py-3 font-semibold">BHXH (17%)</th>
-                            <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhxh)}</td>
+                            <td className="px-4 py-3">{formatCurrency((displayResult.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhxh)}</td>
                           </tr>
                           <tr>
                             <th className="px-4 py-3 font-semibold">BHYT (3%)</th>
-                            <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhyt)}</td>
+                            <td className="px-4 py-3">{formatCurrency((displayResult.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhyt)}</td>
                           </tr>
                           <tr>
                             <th className="px-4 py-3 font-semibold">BHTN (1%)</th>
-                            <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtn)}</td>
+                            <td className="px-4 py-3">{formatCurrency((displayResult.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtn)}</td>
                           </tr>
                           <tr>
                             <th className="px-4 py-3 font-semibold">BHTNLĐ-BNN (0.5%)</th>
-                            <td className="px-4 py-3">{formatCurrency((result.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtnld_bnn)}</td>
+                            <td className="px-4 py-3">{formatCurrency((displayResult.newReg.insuranceBase || 0) * EMPLOYER_RATES.bhtnld_bnn)}</td>
                           </tr>
                           <tr className="bg-slate-50">
                             <th className="px-4 py-3 font-semibold">Tổng cộng</th>
                             <td className="px-4 py-3 font-bold text-slate-900">
                               {formatCurrency(
-                                result.newReg.grossIncome +
-                                (result.newReg.insuranceBase || 0) *
+                                displayResult.newReg.grossIncome +
+                                (displayResult.newReg.insuranceBase || 0) *
                                 (EMPLOYER_RATES.bhxh +
                                   EMPLOYER_RATES.bhyt +
                                   EMPLOYER_RATES.bhtn +
@@ -612,7 +695,7 @@ const App: React.FC = () => {
               </>
             )}
 
-            {!result && (
+            {!displayResult && (
               <div className="h-full flex items-center justify-center text-slate-400">
                 Nhập thông tin lương để xem kết quả...
               </div>
@@ -621,7 +704,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Tax Reduction Chart Section - kept mounted so switching tabs preserves inputs */}
-        <div className={`mt-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
+        <div className={`mt-8 ${isCalculatorTab ? '' : 'hidden'}`}>
           <TaxReductionChart />
         </div>
       </main>

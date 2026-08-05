@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Calculator, Users, ShieldCheck, Utensils, Moon, HeartPulse, GraduationCap } from 'lucide-react';
+import { Calculator, Users, ShieldCheck, Utensils, Moon, HeartPulse, GraduationCap, CalendarDays, Gift, Plus, X } from 'lucide-react';
 import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
 import {
   ExtraIncomeInput,
@@ -7,6 +7,8 @@ import {
   MEDICAL_DEDUCTION_CAP_YEAR,
   EDUCATION_DEDUCTION_CAP_YEAR,
   MinWageSet,
+  TaxPeriod,
+  BonusEntry,
 } from '../types';
 
 interface InputFormProps {
@@ -23,11 +25,30 @@ interface InputFormProps {
   minWageSet: MinWageSet;
   minWageSetLabels: Record<MinWageSet, string>;
   onChangeMinWageSet: (set: MinWageSet) => void;
+  period: TaxPeriod;
+  monthsWorked: number;
+  bonuses: BonusEntry[];
+  onChangeMonthsWorked: (n: number) => void;
+  onChangeBonuses: (next: BonusEntry[]) => void;
 }
 
 const parseAmount = (value: string): number => parseFloat(value.replace(/[^0-9]/g, '')) || 0;
 
 const MIN_WAGE_SET_ORDER: MinWageSet[] = ['legacy', 'current2026', 'draft2027'];
+
+/** 1..12 - dùng cho select số tháng làm việc và tháng chi trả thưởng */
+const MONTH_OPTIONS: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+// Bộ đếm ở module scope: id ổn định, không phụ thuộc Date.now() hay index của mảng.
+let bonusIdCounter = 0;
+const nextBonusId = (): string => {
+  bonusIdCounter += 1;
+  return `bonus-${bonusIdCounter}`;
+};
+
+/** Hiển thị số tiền có dấu phân cách; giữ ô trống khi giá trị bằng 0 (không hiện số 0 thừa). */
+const formatAmountValue = (amount: number): string =>
+  amount === 0 ? '' : amount.toLocaleString('vi-VN');
 
 export const InputForm: React.FC<InputFormProps> = ({
   onCalculate,
@@ -36,6 +57,11 @@ export const InputForm: React.FC<InputFormProps> = ({
   minWageSet,
   minWageSetLabels,
   onChangeMinWageSet,
+  period,
+  monthsWorked,
+  bonuses,
+  onChangeMonthsWorked,
+  onChangeBonuses,
 }) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
@@ -98,6 +124,29 @@ export const InputForm: React.FC<InputFormProps> = ({
     setAutoInsurance(false);
   };
 
+  const handleMonthsWorkedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChangeMonthsWorked(parseInt(e.target.value, 10) || 1);
+  };
+
+  // Mọi thao tác trên danh sách thưởng đều tạo mảng mới - App nhận reference mới mới re-render.
+  const updateBonus = (id: string, patch: Partial<BonusEntry>) => {
+    onChangeBonuses(bonuses.map((b: BonusEntry) => (b.id === id ? { ...b, ...patch } : b)));
+  };
+
+  const handleAddBonus = () => {
+    onChangeBonuses([
+      ...bonuses,
+      { id: nextBonusId(), label: '', amount: 0, month: 12, subjectToInsurance: false },
+    ]);
+  };
+
+  const handleRemoveBonus = (id: string) => {
+    onChangeBonuses(bonuses.filter((b: BonusEntry) => b.id !== id));
+  };
+
+  const bonusTotal = bonuses.reduce((sum: number, b: BonusEntry) => sum + b.amount, 0);
+  const yearTotalIncome = gross * monthsWorked + bonusTotal;
+
   return (
     <div className="bg-white p-6 rounded-xl shadow-md border border-slate-100">
       <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
@@ -122,7 +171,143 @@ export const InputForm: React.FC<InputFormProps> = ({
             <span className="absolute right-4 top-3 text-slate-400 text-sm">VND</span>
           </div>
           <p className="text-xs text-slate-400 mt-1">Lương tổng chưa trừ bảo hiểm và thuế</p>
+          {period === 'year' && (
+            <p className="text-xs text-slate-400 mt-1">
+              Đây là mức lương tháng - áp dụng cho {monthsWorked} tháng làm việc
+            </p>
+          )}
         </div>
+
+        {/* Quyết toán năm: số tháng làm việc + thưởng một lần */}
+        {period === 'year' && (
+          <div className="border-t border-slate-100 pt-5 space-y-5">
+            {/* Số tháng làm việc */}
+            <div>
+              <label className="block text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <CalendarDays className="w-4 h-4" />
+                Số tháng làm việc trong năm
+              </label>
+              <select
+                value={monthsWorked}
+                onChange={handleMonthsWorkedChange}
+                className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-800 bg-white"
+              >
+                {MONTH_OPTIONS.map((m: number) => (
+                  <option key={m} value={m}>
+                    {m} tháng
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-slate-400 mt-1">
+                Khi quyết toán, cá nhân cư trú vẫn được giảm trừ bản thân đủ 12 tháng kể cả khi làm
+                việc không đủ năm (điểm c.1.1 khoản 1 Điều 9 Thông tư 111/2013/TT-BTC).
+              </p>
+            </div>
+
+            {/* Thưởng & thu nhập một lần */}
+            <div>
+              <label className="block text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
+                <Gift className="w-4 h-4" />
+                Thưởng &amp; thu nhập một lần
+              </label>
+
+              {bonuses.length === 0 ? (
+                <p className="text-xs text-slate-400 mb-3">
+                  Chưa có khoản thưởng nào. Thêm thưởng Tết, lương tháng 13... để tính đúng thuế
+                  tạm khấu trừ theo tháng.
+                </p>
+              ) : (
+                <div className="space-y-3 mb-3">
+                  {bonuses.map((bonus: BonusEntry) => (
+                    <div
+                      key={bonus.id}
+                      className="border border-slate-200 rounded-lg p-3 space-y-2 bg-slate-50"
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={bonus.label}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            updateBonus(bonus.id, { label: e.target.value })
+                          }
+                          className="flex-1 min-w-0 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm text-slate-800 bg-white"
+                          placeholder="Thưởng Tết"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveBonus(bonus.id)}
+                          aria-label="Xoá khoản thưởng"
+                          title="Xoá khoản thưởng"
+                          className="shrink-0 w-8 h-8 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={formatAmountValue(bonus.amount)}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            const cleaned = e.target.value.replace(/[^0-9]/g, '');
+                            updateBonus(bonus.id, {
+                              amount: cleaned === '' ? 0 : parseInt(cleaned, 10) || 0,
+                            });
+                          }}
+                          className="flex-1 min-w-0 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm text-slate-800 bg-white"
+                          placeholder="0"
+                        />
+                        <select
+                          value={bonus.month}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                            updateBonus(bonus.id, { month: parseInt(e.target.value, 10) || 1 })
+                          }
+                          className="shrink-0 px-2 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm text-slate-800 bg-white"
+                        >
+                          {MONTH_OPTIONS.map((m: number) => (
+                            <option key={m} value={m}>
+                              T{m}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={bonus.subjectToInsurance}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            updateBonus(bonus.id, { subjectToInsurance: e.target.checked })
+                          }
+                          className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
+                        />
+                        <span className="text-xs text-slate-600">Tính đóng BHXH</span>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={handleAddBonus}
+                className="w-full py-2 border border-dashed border-blue-300 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 hover:border-blue-400 transition-colors flex items-center justify-center gap-1"
+              >
+                <Plus className="w-4 h-4" />
+                Thêm khoản thưởng
+              </button>
+
+              <p className="text-xs text-slate-400 mt-1">
+                Thưởng một lần thường không thuộc tiền lương tháng đóng BHXH bắt buộc (khoản 2 Điều
+                30 Thông tư 59/2015/TT-BLĐTBXH).
+              </p>
+            </div>
+
+            <p className="text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 rounded-lg p-3">
+              → Tổng thu nhập năm: {formatCurrency(yearTotalIncome)}
+            </p>
+          </div>
+        )}
 
         {/* Dependents */}
         <div>

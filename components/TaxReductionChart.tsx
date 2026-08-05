@@ -12,82 +12,67 @@ import {
   Area,
   ReferenceLine,
 } from 'recharts';
+import {
+  calculateComparison,
+  formatCurrency,
+  OLD_CONFIG,
+  NEW_CONFIG,
+  REGIONAL_MIN_WAGE_2026,
+} from '../utils/taxCalculator';
 
-const INSURANCE_RATE = 0.105; // 8% BHXH + 1.5% BHYT + 1% BHTN
-const MAX_INSURANCE_SALARY = 36_000_000;
+// Biểu đồ không có ô chọn vùng nên mặc định lấy vùng I. Vùng chỉ ảnh hưởng tới trần đóng BHTN
+// (20 × lương tối thiểu vùng), tức chỉ bắt đầu tạo chênh lệch từ mức Gross ~99 triệu trở lên
+// và chênh lệch đó chưa tới vài nghìn đồng tiền thuế, không làm đổi hình dáng đường cong.
+const CHART_REGION = 'I' as const;
+// Dùng lương tối thiểu vùng hiện hành (NĐ 293/2025/NĐ-CP) cho khớp với mặc định của trang tính.
+const CHART_MIN_WAGE = REGIONAL_MIN_WAGE_2026[CHART_REGION];
 
-const OLD_SELF_DEDUCTION = 11_000_000;
-const OLD_DEPENDENT_DEDUCTION = 4_400_000;
+interface ReductionPoint {
+  /** Lương Gross, đơn vị triệu đồng (trục X) */
+  gross: number;
+  /** Thuế theo quy định cũ, đơn vị triệu đồng */
+  oldTax: number;
+  /** Thuế theo quy định mới, đơn vị triệu đồng */
+  newTax: number;
+  /** Mức giảm = thuế cũ - thuế mới, đơn vị triệu đồng */
+  reduction: number;
+}
 
-const NEW_SELF_DEDUCTION = 15_000_000;
-const NEW_DEPENDENT_DEDUCTION = 6_000_000;
-
-const OLD_TAX_BRACKETS = [
-  { limit: 5_000_000, rate: 0.05 },
-  { limit: 10_000_000, rate: 0.10 },
-  { limit: 18_000_000, rate: 0.15 },
-  { limit: 32_000_000, rate: 0.20 },
-  { limit: 52_000_000, rate: 0.25 },
-  { limit: 80_000_000, rate: 0.30 },
-  { limit: Infinity, rate: 0.35 },
-];
-
-const NEW_TAX_BRACKETS = [
-  { limit: 10_000_000, rate: 0.05 },
-  { limit: 20_000_000, rate: 0.10 },
-  { limit: 35_000_000, rate: 0.15 },
-  { limit: 55_000_000, rate: 0.20 },
-  { limit: 85_000_000, rate: 0.25 },
-  { limit: 120_000_000, rate: 0.30 },
-  { limit: Infinity, rate: 0.35 },
-];
-
-const calculateTax = (
-  taxableIncome: number,
-  brackets: { limit: number; rate: number }[]
-): number => {
-  if (taxableIncome <= 0) return 0;
-  let tax = 0;
-  let prevLimit = 0;
-  for (const bracket of brackets) {
-    if (taxableIncome > prevLimit) {
-      const currentTaxable = Math.min(taxableIncome, bracket.limit) - prevLimit;
-      tax += currentTaxable * bracket.rate;
-      prevLimit = bracket.limit;
-    } else {
-      break;
-    }
-  }
-  return tax;
-};
+/** Hiển thị số triệu đồng theo định dạng tiếng Việt (dấu phẩy thập phân) */
+const formatMillion = (value: number): string =>
+  value.toLocaleString('vi-VN', { maximumFractionDigits: 3 });
 
 export const TaxReductionChart: React.FC = () => {
   const [dependentsStr, setDependentsStr] = useState('0');
   const dependents = parseInt(dependentsStr) || 0;
 
-  const data = useMemo(() => {
-    const chartData = [];
+  const data = useMemo<ReductionPoint[]>(() => {
+    const chartData: ReductionPoint[] = [];
     for (let gross = 10_000_000; gross <= 200_000_000; gross += 5_000_000) {
-      const insurance =
-        Math.min(gross, MAX_INSURANCE_SALARY) * INSURANCE_RATE;
-      const incomeAfterInsurance = gross - insurance;
-
-      const oldTaxable = Math.max(
-        0,
-        incomeAfterInsurance -
-          OLD_SELF_DEDUCTION -
-          dependents * OLD_DEPENDENT_DEDUCTION
+      // calculateComparison áp dụng CÙNG một cặp giảm trừ cho cả hai biểu thuế, trong khi biểu đồ
+      // này cần mỗi luật chạy đúng mức giảm trừ của chính nó. Vì vậy phải gọi hai lần: lần đầu
+      // với giảm trừ luật cũ (lấy .oldReg), lần sau với giảm trừ luật mới (lấy .newReg).
+      const withOldDeductions = calculateComparison(
+        gross,
+        dependents,
+        CHART_REGION,
+        null,
+        OLD_CONFIG.personalDeduction,
+        OLD_CONFIG.dependentDeduction,
+        CHART_MIN_WAGE
       );
-      const oldTax = calculateTax(oldTaxable, OLD_TAX_BRACKETS);
-
-      const newTaxable = Math.max(
-        0,
-        incomeAfterInsurance -
-          NEW_SELF_DEDUCTION -
-          dependents * NEW_DEPENDENT_DEDUCTION
+      const withNewDeductions = calculateComparison(
+        gross,
+        dependents,
+        CHART_REGION,
+        null,
+        NEW_CONFIG.personalDeduction,
+        NEW_CONFIG.dependentDeduction,
+        CHART_MIN_WAGE
       );
-      const newTax = calculateTax(newTaxable, NEW_TAX_BRACKETS);
 
+      const oldTax = withOldDeductions.oldReg.taxAmount;
+      const newTax = withNewDeductions.newReg.taxAmount;
       const reduction = oldTax - newTax;
 
       chartData.push({
@@ -100,11 +85,28 @@ export const TaxReductionChart: React.FC = () => {
     return chartData;
   }, [dependents]);
 
+  // Các mốc rút ra trực tiếp từ dữ liệu để phần "Nhận xét" luôn khớp với đường cong.
+  const insights = useMemo(() => {
+    const maxReduction = data.reduce(
+      (max: number, point: ReductionPoint) => Math.max(max, point.reduction),
+      0
+    );
+    const plateauPoint = data.find(
+      (point: ReductionPoint) => point.reduction >= maxReduction - 1e-9
+    );
+    const fiveMilestone = data.find((point: ReductionPoint) => point.reduction >= 5);
+    return {
+      maxReduction,
+      plateauGross: plateauPoint ? plateauPoint.gross : null,
+      fiveMilestoneGross: fiveMilestone ? fiveMilestone.gross : null,
+    };
+  }, [data]);
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-8">
       <div>
         <h2 className="text-xl font-bold text-slate-800 mb-1">
-          So sánh Mức Giảm Thuế TNCN (Dự kiến 2026)
+          So sánh Mức Giảm Thuế TNCN (từ 1/7/2026)
         </h2>
         <p className="text-slate-500 italic text-sm">
           Phân tích mức lương Gross cần thiết để tăng 5 triệu VNĐ thu nhập thực nhận chỉ nhờ điều chỉnh thuế.
@@ -130,13 +132,17 @@ export const TaxReductionChart: React.FC = () => {
         </div>
 
         <div className="bg-green-50 p-4 rounded-xl border border-green-100 flex flex-col justify-center">
-          <span className="text-sm font-semibold text-green-800">Giảm trừ gia cảnh mới (giả định)</span>
-          <span className="text-xl font-bold text-green-600">15.000.000đ / tháng</span>
+          <span className="text-sm font-semibold text-green-800">Giảm trừ gia cảnh mới (từ 1/7/2026)</span>
+          <span className="text-xl font-bold text-green-600">
+            {formatCurrency(NEW_CONFIG.personalDeduction)} / tháng
+          </span>
         </div>
 
         <div className="bg-purple-50 p-4 rounded-xl border border-purple-100 flex flex-col justify-center">
-          <span className="text-sm font-semibold text-purple-800">Người phụ thuộc mới (giả định)</span>
-          <span className="text-xl font-bold text-purple-600">6.000.000đ / tháng</span>
+          <span className="text-sm font-semibold text-purple-800">Người phụ thuộc mới (từ 1/7/2026)</span>
+          <span className="text-xl font-bold text-purple-600">
+            {formatCurrency(NEW_CONFIG.dependentDeduction)} / tháng
+          </span>
         </div>
       </div>
 
@@ -238,17 +244,34 @@ export const TaxReductionChart: React.FC = () => {
             chạm mốc 5 trên trục Y.
           </li>
           <li>
-            Với <strong>0 người phụ thuộc</strong>, mức lương Gross thường phải nằm trong khoảng{' '}
-            <strong>110 - 120 triệu đồng</strong> để nhận được ưu đãi này do các bậc thuế cao được nới rộng.
+            Với <strong>{dependents} người phụ thuộc</strong>,{' '}
+            {insights.fiveMilestoneGross !== null ? (
+              <>
+                mốc này đạt được từ mức lương Gross khoảng{' '}
+                <strong>{formatMillion(insights.fiveMilestoneGross)} triệu đồng</strong> trở lên.
+              </>
+            ) : (
+              <>
+                mức giảm <strong>chưa chạm mốc 5 triệu</strong> trong khoảng khảo sát 10 - 200 triệu đồng.
+              </>
+            )}{' '}
+            Đường cong có những đoạn đi ngang: đó là các khoảng thu nhập mà biểu thuế cũ và biểu thuế mới cùng
+            áp một thuế suất biên, nên khoảng cách giữa hai bên không đổi.
           </li>
           <li>
-            Nếu bạn có nhiều người phụ thuộc, mức lương Gross cần thiết sẽ <strong>cao hơn nữa</strong> để có thể
-            &quot;tiết kiệm&quot; được tới 5 triệu tiền thuế, vì phần thuế phải nộp ban đầu của bạn vốn đã thấp hơn
-            người độc thân.
+            Số người phụ thuộc gần như không dời được mốc 5 triệu — mỗi người phụ thuộc chỉ đẩy ngưỡng lên thêm
+            khoảng <strong>0,8 triệu đồng</strong> lương Gross. Bù lại, mỗi người phụ thuộc nâng mức giảm tối đa
+            thêm khoảng <strong>0,63 triệu đồng / tháng</strong>, vì phần giảm trừ người phụ thuộc tăng từ 4,4
+            triệu lên 6,2 triệu và được trừ ở thuế suất cao nhất.
           </li>
           <li>
-            Mức giảm thuế lớn nhất nằm ở các nhóm thu nhập cao do họ đang chịu thuế suất 30-35%. Khi nới rộng bậc
-            thuế, phần thu nhập bị đánh thuế cao giảm xuống đáng kể.
+            Mức giảm tăng theo thu nhập nhưng <strong>có trần</strong>: khi cả hai biểu thuế cùng rơi vào bậc
+            35%{insights.plateauGross !== null && (
+              <> (từ khoảng <strong>{formatMillion(insights.plateauGross)} triệu đồng</strong> Gross)</>
+            )}
+            , mức giảm đứng yên ở <strong>{formatMillion(insights.maxReduction)} triệu đồng / tháng</strong>. Phần
+            thu nhập vượt ngưỡng bị đánh cùng một thuế suất ở cả hai luật, nên chênh lệch chỉ còn đến từ giảm trừ
+            gia cảnh và các mốc bậc thuế phía dưới.
           </li>
         </ul>
       </div>

@@ -1,20 +1,24 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, Legend } from 'recharts';
-import { ComparisonResult } from '../types';
+import { ComparisonResult, TaxPeriod } from '../types';
 
 interface ComparisonChartProps {
   data: ComparisonResult;
+  /** Kỳ tính thuế của số liệu truyền vào - chỉ ảnh hưởng nhãn hiển thị */
+  period?: TaxPeriod;
 }
 
-export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data }) => {
+export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data, period = 'month' }) => {
+  const periodLabel = period === 'year' ? 'Năm' : 'Tháng';
+
   const chartData = [
     {
-      name: 'Thuế phải đóng (Tháng)',
+      name: `Thuế phải đóng (${periodLabel})`,
       Old: data.oldReg.taxAmount,
       New: data.newReg.taxAmount,
     },
     {
-      name: 'Thực lĩnh (Net)',
+      name: `Thực lĩnh (Net / ${periodLabel})`,
       Old: data.oldReg.netIncome,
       New: data.newReg.netIncome,
     }

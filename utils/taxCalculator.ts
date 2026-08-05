@@ -13,7 +13,14 @@ import {
   MEAL_ALLOWANCE_CAP_OLD,
   MEAL_ALLOWANCE_CAP_NEW,
   MEDICAL_DEDUCTION_CAP_YEAR,
-  EDUCATION_DEDUCTION_CAP_YEAR
+  EDUCATION_DEDUCTION_CAP_YEAR,
+  PeriodSpec,
+  MONTHLY_PERIOD,
+  MONTHS_PER_YEAR,
+  AnnualInput,
+  AnnualTaxResult,
+  AnnualComparisonResult,
+  MonthlyLine
 } from '../types.ts';
 
 export const OLD_CONFIG: TaxConfig = {
@@ -54,35 +61,69 @@ export const NEW_CONFIG: TaxConfig = {
   ],
 };
 
+// Tỷ lệ đóng bảo hiểm phần người lao động. Đây là NGUỒN DUY NHẤT - phép tính bên dưới
+// đọc trực tiếp từ đây thay vì lặp lại số, tránh sửa một nơi mà nơi kia vẫn số cũ.
+export const INSURANCE_RATES = {
+  bhxh: 0.08,
+  bhyt: 0.015,
+  bhtn: 0.01,
+  total: 0.105
+};
+
 const calculateInsurance = (
   insuranceSalary: number,
   region: Region,
   regionalMinWage?: number
 ): InsuranceBreakdown => {
-  // Caps
-  const socialHealthCap = 20 * BASE_SALARY_2024; // 20 x Base Salary
+  // Trần đóng BHXH/BHYT: 20 x mức tham chiếu. Đây là trần THÁNG.
+  const socialHealthCap = 20 * BASE_SALARY_2024;
 
   // Use provided regionalMinWage or look up from current rates
   const minWage = regionalMinWage ?? REGIONAL_MIN_WAGE_CURRENT[region];
   const unemploymentCap = 20 * minWage; // 20 x Regional Min Wage
 
-  // Social Insurance (BHXH): 8%
-  const socialBase = Math.min(insuranceSalary, socialHealthCap);
-  const social = socialBase * 0.08;
-
-  // Health Insurance (BHYT): 1.5%
-  const healthBase = Math.min(insuranceSalary, socialHealthCap);
-  const health = healthBase * 0.015;
-
-  // Unemployment Insurance (BHTN): 1%
+  // Căn cứ đóng đã áp trần - trả ra ngoài để bảng đóng góp của người sử dụng lao động
+  // dùng đúng mức này thay vì tự suy ra từ lương gross.
+  const socialHealthBase = Math.min(insuranceSalary, socialHealthCap);
   const unemploymentBase = Math.min(insuranceSalary, unemploymentCap);
-  const unemployment = unemploymentBase * 0.01;
+
+  const social = socialHealthBase * INSURANCE_RATES.bhxh;
+  const health = socialHealthBase * INSURANCE_RATES.bhyt;
+  const unemployment = unemploymentBase * INSURANCE_RATES.bhtn;
 
   return {
     social,
     health,
     unemployment,
-    total: social + health + unemployment
+    total: social + health + unemployment,
+    socialHealthBase,
+    unemploymentBase,
+  };
+};
+
+/**
+ * Quy đổi một `TaxConfig` theo THÁNG sang kỳ tính thuế bất kỳ.
+ *
+ * Hàm lũy tiến từng phần là tuyến tính theo phép co giãn: nếu nhân cả mốc bậc thuế
+ * lẫn thu nhập tính thuế với cùng một hệ số n thì tiền thuế cũng nhân đúng n lần.
+ *   f(n·B)(n·x) = Σ (min(n·x, n·max) − n·min)⁺ · rate = n · f(B)(x)
+ * Nhờ vậy kỳ năm dùng chung một vòng lặp bậc thuế với kỳ tháng, không cần bảng riêng.
+ *
+ * Lưu ý: `medicalDeductionCapYear` / `educationDeductionCapYear` vốn đã là trần NĂM
+ * nên KHÔNG nhân ở đây - chúng được chia tỷ lệ riêng bằng `capRatio` bên dưới.
+ */
+const scaleConfigToPeriod = (config: TaxConfig, period: PeriodSpec): TaxConfig => {
+  if (period.deductionMonths === 1 && period.incomeMonths === 1) return config;
+  return {
+    ...config,
+    personalDeduction: config.personalDeduction * period.deductionMonths,
+    dependentDeduction: config.dependentDeduction * period.deductionMonths,
+    mealAllowanceCap: config.mealAllowanceCap * period.incomeMonths,
+    brackets: config.brackets.map((b) => ({
+      ...b,
+      min: b.min * period.deductionMonths,
+      max: b.max === null ? null : b.max * period.deductionMonths,
+    })),
   };
 };
 
@@ -91,33 +132,41 @@ const calculateTaxForConfig = (
   dependents: number,
   insuranceDetails: InsuranceBreakdown,
   config: TaxConfig,
-  extra: ExtraIncomeInput
+  extra: ExtraIncomeInput,
+  period: PeriodSpec = MONTHLY_PERIOD
 ): TaxResult => {
+  // Toàn bộ mốc bậc thuế và giảm trừ được quy về kỳ tính thuế ngay tại đây,
+  // nên phần tính bên dưới không cần biết đang ở kỳ tháng hay kỳ năm.
+  const scaled = scaleConfigToPeriod(config, period);
+
   const incomeBeforeTax = gross - insuranceDetails.total;
 
   // Thu nhập miễn thuế nằm trong lương gross:
   // - Tiền ăn giữa ca chỉ được miễn trong hạn mức, phần vượt vẫn chịu thuế
   // - Tiền làm thêm giờ / làm ban đêm được miễn toàn bộ theo quy định mới
-  const exemptMeal = Math.min(extra.mealAllowance, config.mealAllowanceCap);
-  const exemptOvertime = config.exemptOvertime ? extra.overtimePay : 0;
+  // Cả hai đều là khoản THÁNG nên nhân theo số tháng thực có thu nhập.
+  const exemptMeal = Math.min(extra.mealAllowance * period.incomeMonths, scaled.mealAllowanceCap);
+  const exemptOvertime = scaled.exemptOvertime ? extra.overtimePay * period.incomeMonths : 0;
   const exemptIncome = Math.min(incomeBeforeTax, exemptMeal + exemptOvertime);
 
-  const totalDependentDeduction = dependents * config.dependentDeduction;
+  const totalDependentDeduction = dependents * scaled.dependentDeduction;
 
-  // Giảm trừ chi phí y tế / giáo dục tính theo năm, quy đổi về tháng
-  const medicalDeduction = Math.min(extra.medicalExpensesYear, config.medicalDeductionCapYear) / 12;
-  const educationDeduction = Math.min(extra.educationExpensesYear, config.educationDeductionCapYear) / 12;
+  // Trần chi phí y tế / giáo dục là theo NĂM. Kỳ tháng chỉ được hưởng 1/12,
+  // kỳ năm được hưởng trọn (capRatio = 12/12 = 1).
+  const capRatio = period.deductionMonths / MONTHS_PER_YEAR;
+  const medicalDeduction = Math.min(extra.medicalExpensesYear, scaled.medicalDeductionCapYear) * capRatio;
+  const educationDeduction = Math.min(extra.educationExpensesYear, scaled.educationDeductionCapYear) * capRatio;
   const specialDeduction = medicalDeduction + educationDeduction;
 
-  const totalDeductions = config.personalDeduction + totalDependentDeduction + specialDeduction;
+  const totalDeductions = scaled.personalDeduction + totalDependentDeduction + specialDeduction;
 
   const taxableIncome = Math.max(0, incomeBeforeTax - exemptIncome - totalDeductions);
 
   let totalTaxMillion = 0;
   const breakdown = [];
 
-  for (let i = 0; i < config.brackets.length; i++) {
-    const bracket = config.brackets[i];
+  for (let i = 0; i < scaled.brackets.length; i++) {
+    const bracket = scaled.brackets[i];
 
     const lowerBound = bracket.min;
     const upperBound = bracket.max;
@@ -151,7 +200,9 @@ const calculateTaxForConfig = (
   return {
     grossIncome: gross,
     insurance: insuranceDetails.total,
-    insuranceBase: Math.min(gross, 20 * BASE_SALARY_2024),
+    // Lấy thẳng căn cứ đóng đã áp trần từ calculateInsurance. Trước đây suy ra từ `gross`
+    // nên khi người dùng chọn "Mức khác" thì bảng đóng góp của NSDLĐ bị sai.
+    insuranceBase: insuranceDetails.socialHealthBase,
     insuranceBreakdown: {
       bhxh: insuranceDetails.social,
       bhyt: insuranceDetails.health,
@@ -164,7 +215,7 @@ const calculateTaxForConfig = (
       meal: exemptMeal,
       overtime: exemptOvertime,
     },
-    personalDeduction: config.personalDeduction,
+    personalDeduction: scaled.personalDeduction,
     dependentDeduction: totalDependentDeduction,
     specialDeduction,
     specialDeductionBreakdown: {
@@ -219,17 +270,139 @@ export const calculateComparison = (
   };
 };
 
+/**
+ * Quyết toán thuế TNCN cả năm cho MỘT bộ quy định.
+ *
+ * Hai phép tính chạy song song rồi so với nhau:
+ *  1. Tạm khấu trừ hằng tháng - đúng như doanh nghiệp làm: mỗi tháng áp biểu thuế THÁNG
+ *     lên thu nhập của riêng tháng đó. Tháng có thưởng Tết bị đẩy lên bậc thuế cao.
+ *  2. Quyết toán năm - gộp cả năm rồi áp biểu thuế NĂM (biểu tháng × 12).
+ *
+ * Chênh lệch giữa hai con số chính là số thuế được HOÀN hoặc phải NỘP THÊM. Với lương đều
+ * 12 tháng và không có khoản đặc biệt thì hai phép tính bằng nhau tuyệt đối (settlement = 0).
+ */
+export const calculateAnnual = (
+  input: AnnualInput,
+  config: TaxConfig,
+  regionalMinWage?: number
+): AnnualTaxResult => {
+  const { monthlyGross, monthsWorked, bonuses, dependents, region, customInsuranceSalary, extra } = input;
+
+  // Tạm khấu trừ hằng tháng chỉ tính các khoản gắn với tháng (ăn ca, làm thêm giờ).
+  // Chi phí y tế / giáo dục là khoản quyết toán cuối năm, doanh nghiệp không khấu trừ
+  // hằng tháng - đó là một nguồn hoàn thuế có thật.
+  const monthlyExtra: ExtraIncomeInput = {
+    mealAllowance: extra.mealAllowance,
+    overtimePay: extra.overtimePay,
+    medicalExpensesYear: 0,
+    educationExpensesYear: 0,
+  };
+
+  const months: MonthlyLine[] = [];
+  let totalGross = 0;
+  let totalWithheld = 0;
+  let sumSocial = 0;
+  let sumHealth = 0;
+  let sumUnemployment = 0;
+  let sumSocialHealthBase = 0;
+  let sumUnemploymentBase = 0;
+
+  for (let m = 1; m <= MONTHS_PER_YEAR; m++) {
+    const working = m <= monthsWorked;
+    const salary = working ? monthlyGross : 0;
+
+    let bonus = 0;
+    let insurableBonus = 0;
+    for (const b of bonuses) {
+      if (b.month !== m) continue;
+      bonus += b.amount;
+      if (b.subjectToInsurance) insurableBonus += b.amount;
+    }
+
+    const gross = salary + bonus;
+
+    // Căn cứ đóng bảo hiểm của tháng. Trần 20 × mức tham chiếu là trần THÁNG, nên phải
+    // áp trần từng tháng rồi mới cộng - gộp cả năm rồi áp trần sẽ ra số khác khi
+    // thu nhập các tháng không đều.
+    const baseSalary = customInsuranceSalary !== null ? customInsuranceSalary : salary;
+    const insuranceSalary = (working ? baseSalary : 0) + insurableBonus;
+    const ins = calculateInsurance(insuranceSalary, region, regionalMinWage);
+
+    const withheld = calculateTaxForConfig(
+      gross,
+      dependents,
+      ins,
+      config,
+      working ? monthlyExtra : EMPTY_EXTRA_INCOME,
+      MONTHLY_PERIOD
+    ).taxAmount;
+
+    months.push({ month: m, salary, bonus, gross, insurance: ins.total, withheldTax: withheld });
+
+    totalGross += gross;
+    totalWithheld += withheld;
+    sumSocial += ins.social;
+    sumHealth += ins.health;
+    sumUnemployment += ins.unemployment;
+    sumSocialHealthBase += ins.socialHealthBase;
+    sumUnemploymentBase += ins.unemploymentBase;
+  }
+
+  const annualInsurance: InsuranceBreakdown = {
+    social: sumSocial,
+    health: sumHealth,
+    unemployment: sumUnemployment,
+    total: sumSocial + sumHealth + sumUnemployment,
+    socialHealthBase: sumSocialHealthBase,
+    unemploymentBase: sumUnemploymentBase,
+  };
+
+  // Giảm trừ bản thân luôn đủ 12 tháng khi quyết toán, kể cả khi không làm việc đủ năm
+  // (điểm c.1.1 khoản 1 Điều 9 Thông tư 111/2013/TT-BTC). Trần ăn ca / làm thêm giờ thì
+  // chỉ tính theo số tháng thực có thu nhập.
+  const annual = calculateTaxForConfig(totalGross, dependents, annualInsurance, config, extra, {
+    deductionMonths: MONTHS_PER_YEAR,
+    incomeMonths: monthsWorked,
+  });
+
+  return {
+    months,
+    totalGross,
+    totalInsurance: annualInsurance.total,
+    annual,
+    totalWithheld,
+    settlement: annual.taxAmount - totalWithheld,
+    netIncomeYear: annual.netIncome,
+  };
+};
+
+/** Quyết toán năm cho cả hai bộ quy định, song song với `calculateComparison` của kỳ tháng. */
+export const calculateAnnualComparison = (
+  input: AnnualInput,
+  personalDeduction: number,
+  dependentDeduction: number,
+  customRegionalMinWage?: number
+): AnnualComparisonResult => {
+  const oldTaxConfig: TaxConfig = { ...OLD_CONFIG, personalDeduction, dependentDeduction };
+  const newTaxConfig: TaxConfig = { ...NEW_CONFIG, personalDeduction, dependentDeduction };
+
+  const oldReg = calculateAnnual(input, oldTaxConfig, customRegionalMinWage);
+  const newReg = calculateAnnual(input, newTaxConfig, customRegionalMinWage);
+
+  return {
+    oldReg,
+    newReg,
+    diffTax: newReg.annual.taxAmount - oldReg.annual.taxAmount,
+    diffNet: newReg.netIncomeYear - oldReg.netIncomeYear,
+  };
+};
+
 export const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
 };
 
 // Compatibility exports
-export const INSURANCE_RATES = {
-  bhxh: 0.08,
-  bhyt: 0.015,
-  bhtn: 0.01,
-  total: 0.105
-};
+// (INSURANCE_RATES được định nghĩa cùng chỗ với calculateInsurance ở trên)
 
 export const LUONG_CO_BAN = BASE_SALARY_2024;
 

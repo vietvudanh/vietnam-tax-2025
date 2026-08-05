@@ -1,15 +1,34 @@
 import React from 'react';
 import { Info } from 'lucide-react';
-import { INSURANCE_RATES, LUONG_CO_BAN, BHXH_MAX_CAP, formatCurrency } from '../utils/taxCalculator';
+import { INSURANCE_RATES, LUONG_CO_BAN, BHXH_MAX_CAP, formatCurrency, OLD_CONFIG, NEW_CONFIG } from '../utils/taxCalculator';
 import {
   MEAL_ALLOWANCE_CAP_OLD,
   MEAL_ALLOWANCE_CAP_NEW,
   MEDICAL_DEDUCTION_CAP_YEAR,
   EDUCATION_DEDUCTION_CAP_YEAR,
   DEPENDENT_INCOME_THRESHOLD,
+  MONTHS_PER_YEAR,
+  TaxPeriod,
 } from '../types';
 
-export const DeductionDetailTable: React.FC = () => {
+interface DeductionDetailTableProps {
+  /** Kỳ tính thuế đang xem. Kỳ năm hiển thị mốc bậc thuế đã nhân 12. */
+  period?: TaxPeriod;
+}
+
+export const DeductionDetailTable: React.FC<DeductionDetailTableProps> = ({ period = 'month' }) => {
+  const isYear = period === 'year';
+  // Biểu thuế trong luật ghi theo THÁNG. Khi quyết toán năm thì mọi mốc nhân 12.
+  const bracketScale = isYear ? MONTHS_PER_YEAR : 1;
+  const periodSuffix = isYear ? '/năm' : '/tháng';
+
+  const bracketLabel = (min: number, max: number | null): string => {
+    const lo = min * bracketScale;
+    const hi = max === null ? null : max * bracketScale;
+    if (min === 0) return `Đến ${lo === 0 ? hi : hi} triệu`;
+    return hi === null ? `Trên ${lo} triệu` : `Trên ${lo} - ${hi} triệu`;
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
       <div className="p-6 border-b border-slate-100">
@@ -20,6 +39,13 @@ export const DeductionDetailTable: React.FC = () => {
         <p className="text-sm text-slate-500 mt-1">
           Bảng chi tiết các khoản bảo hiểm xã hội, thuế, và giảm trừ với tỷ lệ phần trăm
         </p>
+        {isYear && (
+          <p className="text-xs text-amber-800 bg-amber-50 border border-amber-100 rounded-lg p-2 mt-2">
+            Luật quy định biểu thuế và mức giảm trừ theo <strong>tháng</strong>. Đang ở chế độ quyết
+            toán năm nên các mốc dưới đây đã được nhân 12. Riêng trần đóng bảo hiểm vẫn là trần
+            tháng - áp cho từng tháng rồi mới cộng lại.
+          </p>
+        )}
       </div>
       
       <div className="overflow-x-auto">
@@ -88,19 +114,19 @@ export const DeductionDetailTable: React.FC = () => {
             <tr className="hover:bg-slate-50">
               <td className="px-4 py-3">Giảm trừ bản thân</td>
               <td className="px-4 py-3 font-medium text-slate-500">-</td>
-              <td className="px-4 py-3 text-slate-500">{formatCurrency(11_000_000)}</td>
-              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(15_500_000)}</td>
+              <td className="px-4 py-3 text-slate-500">{formatCurrency(OLD_CONFIG.personalDeduction * bracketScale)}</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(NEW_CONFIG.personalDeduction * bracketScale)}</td>
               <td className="px-4 py-3 text-slate-500">
-                /tháng (+{formatCurrency(4_500_000)})
+                {periodSuffix} (+{formatCurrency((NEW_CONFIG.personalDeduction - OLD_CONFIG.personalDeduction) * bracketScale)})
               </td>
             </tr>
             <tr className="hover:bg-slate-50">
               <td className="px-4 py-3">Giảm trừ người phụ thuộc</td>
               <td className="px-4 py-3 font-medium text-slate-500">-</td>
-              <td className="px-4 py-3 text-slate-500">{formatCurrency(4_400_000)}</td>
-              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(6_200_000)}</td>
+              <td className="px-4 py-3 text-slate-500">{formatCurrency(OLD_CONFIG.dependentDeduction * bracketScale)}</td>
+              <td className="px-4 py-3 text-green-700 font-semibold">{formatCurrency(NEW_CONFIG.dependentDeduction * bracketScale)}</td>
               <td className="px-4 py-3 text-slate-500">
-                /người/tháng (+{formatCurrency(1_800_000)})
+                /người{periodSuffix} (+{formatCurrency((NEW_CONFIG.dependentDeduction - OLD_CONFIG.dependentDeduction) * bracketScale)})
               </td>
             </tr>
 
@@ -162,41 +188,18 @@ export const DeductionDetailTable: React.FC = () => {
                 Thuế TNCN lũy tiến (Hiệu lực từ 1/7/2026)
               </td>
             </tr>
-            <tr className="hover:bg-slate-50">
-              <td className="px-4 py-3">Bậc 1: Đến 10 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">5%</td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
-            </tr>
-            <tr className="hover:bg-slate-50">
-              <td className="px-4 py-3">Bậc 2: Trên 10 - 30 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">10%</td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
-            </tr>
-            <tr className="hover:bg-slate-50">
-              <td className="px-4 py-3">Bậc 3: Trên 30 - 60 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">20%</td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
-            </tr>
-            <tr className="hover:bg-slate-50">
-              <td className="px-4 py-3">Bậc 4: Trên 60 - 100 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">30%</td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
-            </tr>
-            <tr className="hover:bg-slate-50">
-              <td className="px-4 py-3">Bậc 5: Trên 100 triệu</td>
-              <td className="px-4 py-3 font-bold text-orange-600">35%</td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế/tháng</td>
-            </tr>
+            {/* Đọc thẳng từ NEW_CONFIG để bảng không bao giờ lệch với phép tính */}
+            {NEW_CONFIG.brackets.map((bracket, index) => (
+              <tr key={index} className="hover:bg-slate-50">
+                <td className="px-4 py-3">
+                  Bậc {index + 1}: {bracketLabel(bracket.min, bracket.max)}
+                </td>
+                <td className="px-4 py-3 font-bold text-orange-600">{bracket.rate}%</td>
+                <td className="px-4 py-3"></td>
+                <td className="px-4 py-3"></td>
+                <td className="px-4 py-3 text-slate-500">Thu nhập tính thuế{periodSuffix}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

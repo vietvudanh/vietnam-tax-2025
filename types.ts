@@ -57,6 +57,100 @@ export interface InsuranceBreakdown {
   health: number;
   unemployment: number;
   total: number;
+  /** Mức tiền lương làm căn cứ đóng BHXH/BHYT (đã áp trần 20 × mức tham chiếu) */
+  socialHealthBase: number;
+  /** Mức tiền lương làm căn cứ đóng BHTN (đã áp trần 20 × lương tối thiểu vùng) */
+  unemploymentBase: number;
+}
+
+/**
+ * Kỳ tính thuế. Biểu thuế lũy tiến trong `TaxConfig` được lưu theo THÁNG, nên kỳ năm
+ * chỉ cần nhân các mốc bậc thuế và mức giảm trừ lên - phép tính lũy tiến giữ nguyên.
+ */
+export interface PeriodSpec {
+  /**
+   * Số tháng dùng để nhân biểu thuế + giảm trừ gia cảnh.
+   * Kỳ tháng = 1, kỳ năm = 12. Khi quyết toán năm, cá nhân cư trú được giảm trừ
+   * đủ 12 tháng cho bản thân kể cả khi không làm việc đủ năm
+   * (điểm c.1.1 khoản 1 Điều 9 Thông tư 111/2013/TT-BTC).
+   */
+  deductionMonths: number;
+  /**
+   * Số tháng thực tế có thu nhập. Dùng cho các khoản gắn với tháng làm việc:
+   * trần tiền ăn giữa ca và tiền làm thêm giờ / ban đêm.
+   */
+  incomeMonths: number;
+}
+
+export const MONTHS_PER_YEAR = 12;
+
+/** Kỳ tính thuế theo tháng - hành vi mặc định, giữ nguyên như trước. */
+export const MONTHLY_PERIOD: PeriodSpec = { deductionMonths: 1, incomeMonths: 1 };
+
+/** Chế độ hiển thị: tính theo tháng hay quyết toán cả năm */
+export type TaxPeriod = 'month' | 'year';
+
+/** Một khoản thưởng / thu nhập một lần trong năm (thưởng Tết, lương tháng 13...) */
+export interface BonusEntry {
+  id: string;
+  label: string;
+  amount: number; // VNĐ
+  /** Tháng chi trả 1-12. Quyết định tháng nào bị tạm khấu trừ ở thuế suất cao. */
+  month: number;
+  /**
+   * Thưởng một lần thường KHÔNG thuộc tiền lương tháng đóng BHXH bắt buộc
+   * (khoản 2 Điều 30 Thông tư 59/2015/TT-BLĐTBXH), nên mặc định là false.
+   */
+  subjectToInsurance: boolean;
+}
+
+/** Dữ liệu đầu vào cho quyết toán thuế TNCN cả năm */
+export interface AnnualInput {
+  monthlyGross: number;
+  /** Số tháng làm việc trong năm, 1-12 */
+  monthsWorked: number;
+  bonuses: BonusEntry[];
+  dependents: number;
+  region: Region;
+  customInsuranceSalary: number | null;
+  extra: ExtraIncomeInput;
+}
+
+/** Một dòng trong bảng chi tiết 12 tháng */
+export interface MonthlyLine {
+  month: number;
+  /** Lương tháng (chưa gồm thưởng) */
+  salary: number;
+  bonus: number;
+  /** salary + bonus */
+  gross: number;
+  insurance: number;
+  /** Thuế TNCN tạm khấu trừ trong tháng, tính theo biểu thuế THÁNG */
+  withheldTax: number;
+}
+
+export interface AnnualTaxResult {
+  months: MonthlyLine[];
+  totalGross: number;
+  totalInsurance: number;
+  /** Kết quả quyết toán cả năm (biểu thuế và giảm trừ đã nhân theo kỳ năm) */
+  annual: TaxResult;
+  /** Tổng thuế đã tạm khấu trừ qua 12 tháng */
+  totalWithheld: number;
+  /**
+   * annual.taxAmount − totalWithheld.
+   * Âm = nộp thừa, được HOÀN THUẾ. Dương = phải NỘP THÊM.
+   */
+  settlement: number;
+  /** Thu nhập thực nhận cả năm sau bảo hiểm và thuế quyết toán */
+  netIncomeYear: number;
+}
+
+export interface AnnualComparisonResult {
+  oldReg: AnnualTaxResult;
+  newReg: AnnualTaxResult;
+  diffTax: number; // New - Old
+  diffNet: number; // New - Old
 }
 
 export type Region = 'I' | 'II' | 'III' | 'IV';
@@ -117,7 +211,7 @@ export interface TaxResult {
   };
   personalDeduction: number;
   dependentDeduction: number;
-  /** Giảm trừ chi phí y tế + giáo dục quy về tháng */
+  /** Giảm trừ chi phí y tế + giáo dục, quy về kỳ tính thuế (chia 12 ở kỳ tháng) */
   specialDeduction: number;
   specialDeductionBreakdown: {
     medical: number;

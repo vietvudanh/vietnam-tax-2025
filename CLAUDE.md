@@ -24,18 +24,23 @@ npx tsx test.ts  # regression tests against recorded HAR fixtures
 ```
 
 There is no test runner or linter configured. Before finishing a change, run **both**
-`npx tsc --noEmit` and `npx tsx test.ts`.
+`npx tsc --noEmit` and `npx tsx test.ts`. `test.ts` exits non-zero on failure and accepts a
+substring filter (`npx tsx test.ts test2`). It replays the HAR fixtures and then a set of
+`runCase` unit assertions — add new cases there rather than starting a framework.
 
 ## Architecture
 
 ```
-App.tsx                  # Layout, tab switching, result cards, detail tables
+App.tsx                  # Layout, tab switching, kỳ tính thuế toggle, result cards, detail tables
 ├── components/
-│   ├── InputForm.tsx           # Salary, dependents, insurance base, region, NĐ 253 exemptions
-│   ├── ComparisonChart.tsx     # Old vs new bar chart
+│   ├── InputForm.tsx           # Salary, dependents, insurance base, region, NĐ 253 exemptions,
+│   │                           #   plus year-mode inputs (số tháng làm việc + danh sách thưởng)
+│   ├── ComparisonChart.tsx     # Old vs new bar chart (takes a `period` prop for labels)
 │   ├── BracketTable.tsx        # 7-bracket vs 5-bracket comparison (static)
-│   ├── DeductionDetailTable.tsx # Rates, deductions, exemption caps (static)
-│   ├── TaxReductionChart.tsx   # Gross salary vs tax reduction curve
+│   ├── DeductionDetailTable.tsx # Rates, deductions, exemption caps; `period` scales the figures
+│   ├── AnnualSummary.tsx       # Year mode: hoàn thuế / nộp thêm card + year-total table
+│   ├── MonthlyBreakdownTable.tsx # Year mode: 12-month withholding table, flags spiky months
+│   ├── TaxReductionChart.tsx   # Gross salary vs tax reduction curve (drives off calculateComparison)
 │   └── LawChangelog.tsx        # Tab 2: law history timeline (static data in-file)
 ├── utils/taxCalculator.ts  # All tax math; OLD_CONFIG / NEW_CONFIG live here
 └── types.ts                # Types + every legal constant (deductions, caps, thresholds)
@@ -55,7 +60,41 @@ not in a branch inside the calculation.
    `calculateTaxForConfig()` for each config.
 3. Per config: `incomeBeforeTax = gross - insurance`, minus exempt income (meal allowance within cap
    + overtime if the config exempts it), minus deductions (personal + dependents + medical/education
-   divided by 12), then the progressive brackets.
+   prorated by the period), then the progressive brackets.
+
+### Kỳ tính thuế (monthly vs annual)
+
+`TaxConfig` stores brackets and deductions **per month**. The annual mode does not use a second
+bracket table — `scaleConfigToPeriod()` multiplies the monthly config by a `PeriodSpec`, because the
+progressive function is linear under scaling:
+
+```
+f(n·B)(n·x) = Σ (min(n·x, n·max) − n·min)⁺ · rate = n · f(B)(x)
+```
+
+So there is exactly one bracket loop. `PeriodSpec` carries two counts, and they differ for a
+partial year:
+
+- `deductionMonths` — scales brackets + giảm trừ gia cảnh. Always **12** in year mode: a cá nhân cư
+  trú gets the full 12-month personal deduction even when they worked fewer months
+  (điểm c.1.1 khoản 1 Điều 9 TT 111/2013/TT-BTC). This is what produces a refund for a mid-year joiner.
+- `incomeMonths` — scales the meal-allowance cap and overtime, which only accrue in months worked.
+
+The annual y tế / giáo dục caps are **not** scaled (they are already per-year); they are prorated by
+`deductionMonths / 12`, which reduces to the old `/ 12` in monthly mode.
+
+`calculateAnnual()` runs two passes and compares them: a month-by-month withholding simulation
+(monthly brackets, per-month insurance cap) and the year-total finalization. `settlement =
+annual.taxAmount − totalWithheld`; negative means hoàn thuế. Two modelling choices worth knowing:
+one-off bonuses default to **not** subject to BHXH, and y tế/giáo dục are **not** withheld monthly
+(they are only claimed at quyết toán) — both are real sources of refunds.
+
+**The insurance cap is a monthly ceiling**, so `calculateAnnual` caps each month then sums. Capping
+an annual total would give a different answer whenever months differ.
+
+Load-bearing invariant, asserted in `test.ts`: with a flat 12-month salary and no extras, the annual
+result equals **exactly** 12 × the monthly result, and `settlement` is 0. If you touch the scaling,
+that test is the one that catches you.
 
 ### Tabs
 

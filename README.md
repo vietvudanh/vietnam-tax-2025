@@ -33,7 +33,7 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 🏥 **Medical & Education Deductions** | Giảm trừ chi phí y tế (23tr/năm) và giáo dục - đào tạo (24tr/năm) |
 | 🕘 **Law Changelog Tab** | Tab riêng ghi lại lịch sử thay đổi luật thuế TNCN từ Luật 2007 đến nay, có link toàn văn trên Thư Viện Pháp Luật |
 | 📅 **Minimum Wage Sets** | Chọn giữa mức lương tối thiểu vùng trước 2026, hiện hành (NĐ 293/2025) và dự kiến 2027 (dự thảo); mặc định tự chọn theo ngày truy cập |
-| 🗓️ **Annual Finalization** | Chế độ "Quyết toán năm": nhập lương tháng + số tháng làm việc + các khoản thưởng một lần, tính thuế cả năm theo biểu thuế năm |
+| 🗓️ **Annual Finalization** | Tab "Quyết toán thuế năm": nhập lương tháng + số tháng làm việc + các khoản thưởng một lần, tính thuế cả năm theo biểu thuế năm. Dùng chung dữ liệu nhập với tab theo tháng nên chuyển tab không mất thông tin |
 | 💸 **Tax Refund / Top-up** | So sánh thuế đã tạm khấu trừ 12 tháng với thuế quyết toán để ra số tiền **được hoàn** hoặc **phải nộp thêm** |
 | 📆 **Monthly Withholding Table** | Bảng chi tiết 12 tháng, tự đánh dấu tháng bị tạm khấu trừ cao bất thường (thưởng Tết, lương tháng 13) |
 

@@ -31,7 +31,7 @@ substring filter (`npx tsx test.ts test2`). It replays the HAR fixtures and then
 ## Architecture
 
 ```
-App.tsx                  # Layout, tab switching, kỳ tính thuế toggle, result cards, detail tables
+App.tsx                  # Layout, 3-tab switching, result cards, detail tables
 ├── components/
 │   ├── InputForm.tsx           # Salary, dependents, insurance base, region, NĐ 253 exemptions,
 │   │                           #   plus year-mode inputs (số tháng làm việc + danh sách thưởng)
@@ -98,8 +98,17 @@ that test is the one that catches you.
 
 ### Tabs
 
-`App` renders both tabs but hides the inactive one with a `hidden` class rather than unmounting, so
-switching tabs preserves the user's inputs and results.
+Three tabs: `calculator` (theo tháng), `annual` (quyết toán năm), `changelog`. `App` renders them
+but hides the inactive one with a `hidden` class rather than unmounting, so switching preserves the
+user's inputs and results.
+
+`calculator` and `annual` **share one panel and one `InputForm` instance** — `CALCULATOR_TABS` /
+`isCalculatorTab` gate the same `<div>`, so `InputForm` keeps its position in the React tree and is
+never unmounted when switching between them. Everything the user typed survives the switch. Only the
+right-hand results column changes.
+
+`period` is **derived** from `activeTab` (`activeTab === 'annual' ? 'year' : 'month'`), not stored.
+Do not add a separate period state — two sources of truth for the same thing will drift.
 
 ## Current legal parameters
 

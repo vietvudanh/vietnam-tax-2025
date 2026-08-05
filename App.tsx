@@ -33,9 +33,12 @@ import {
   BonusEntry,
   AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, CalendarDays } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange } from 'lucide-react';
 
-type Tab = 'calculator' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'changelog';
+
+/** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
+const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
 
 // Constants
 const BLOG_URL = 'https://vietvudanh.substack.com/p/minh-a-tao-trang-tinh-thue-tncn-2026';
@@ -93,8 +96,10 @@ const App: React.FC = () => {
   // Mặc định là bộ lương tối thiểu vùng đang có hiệu lực tại thời điểm truy cập.
   const [minWageSet, setMinWageSet] = useState<MinWageSet>(() => getDefaultMinWageSet());
   const [activeTab, setActiveTab] = useState<Tab>('calculator');
-  // Kỳ tính thuế: theo tháng (mặc định) hoặc quyết toán cả năm
-  const [period, setPeriod] = useState<TaxPeriod>('month');
+  // Kỳ tính thuế suy ra từ tab đang mở, không giữ state riêng - hai nguồn sự thật cho
+  // cùng một thứ chắc chắn sẽ có lúc lệch nhau.
+  const period: TaxPeriod = activeTab === 'annual' ? 'year' : 'month';
+  const isCalculatorTab = CALCULATOR_TABS.includes(activeTab);
   const [monthsWorked, setMonthsWorked] = useState<number>(12);
   const [bonuses, setBonuses] = useState<BonusEntry[]>([]);
 
@@ -201,7 +206,8 @@ const App: React.FC = () => {
       <nav className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1">
           {([
-            { id: 'calculator' as const, label: 'Tính thuế', icon: Calculator },
+            { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
+            { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
@@ -223,30 +229,24 @@ const App: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {activeTab === 'changelog' && <LawChangelog />}
 
-        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
+        {/*
+          Tab "Tính thuế theo tháng" và "Quyết toán thuế năm" dùng CHUNG khối này. InputForm
+          giữ nguyên vị trí trong cây React nên không bị unmount khi đổi tab - toàn bộ dữ
+          liệu người dùng đã nhập được giữ lại. Chỉ cột kết quả bên phải đổi theo `period`.
+        */}
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${isCalculatorTab ? '' : 'hidden'}`}>
 
           {/* Left Column: Input */}
           <div className="lg:col-span-4 space-y-6">
-            {/* Kỳ tính thuế. Cùng một bộ dữ liệu nhập, hai cách trình bày. */}
-            <div className="bg-white p-1 rounded-xl shadow-sm border border-slate-200 grid grid-cols-2 gap-1">
-              {([
-                { id: 'month' as const, label: 'Theo tháng', icon: CalendarDays },
-                { id: 'year' as const, label: 'Quyết toán năm', icon: CalendarRange },
-              ]).map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => setPeriod(id)}
-                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    period === id
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {label}
-                </button>
-              ))}
-            </div>
+            {period === 'year' && (
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
+                <CalendarRange className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                <p className="text-sm text-blue-900">
+                  Đang ở chế độ <strong>quyết toán cả năm</strong>. Nhập thêm số tháng làm việc và
+                  các khoản thưởng một lần để biết bạn được hoàn thuế hay phải nộp thêm.
+                </p>
+              </div>
+            )}
 
             <InputForm
               onCalculate={handleCalculate}
@@ -704,7 +704,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Tax Reduction Chart Section - kept mounted so switching tabs preserves inputs */}
-        <div className={`mt-8 ${activeTab === 'calculator' ? '' : 'hidden'}`}>
+        <div className={`mt-8 ${isCalculatorTab ? '' : 'hidden'}`}>
           <TaxReductionChart />
         </div>
       </main>

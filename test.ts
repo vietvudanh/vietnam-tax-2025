@@ -17,6 +17,7 @@ import {
   MEDICAL_DEDUCTION_CAP_YEAR,
   EDUCATION_DEDUCTION_CAP_YEAR,
 } from './types';
+import { calculateLatePayment, parseVietnamDate } from './utils/latePaymentCalculator';
 
 const TEST_DIR = path.join(process.cwd(), 'test_requests');
 
@@ -306,6 +307,21 @@ function runUnitCases(): void {
     if (belowNew.newReg.netIncome >= targetNet) {
       throw new Error('gross tìm được cho newReg chưa tối thiểu');
     }
+  });
+
+  runCase('tính chậm nộp tiền thuế: mẫu 20/1/2020-20/7/2026 khớp số liệu', () => {
+    const fromDate = parseVietnamDate('20/1/2020');
+    const toDate = parseVietnamDate('20/7/2026');
+    if (!fromDate || !toDate) throw new Error('Không parse được ngày mẫu');
+
+    const result = calculateLatePayment(2_000_000_000, fromDate, toDate, 'tax');
+
+    check('số kỳ', result.segments.length, 2);
+    check('kỳ 1 số ngày', result.segments[0].days, 163);
+    check('kỳ 1 tiền chậm nộp', result.segments[0].amount, 97_800_000);
+    check('kỳ 2 số ngày', result.segments[1].days, 2210);
+    check('kỳ 2 tiền chậm nộp', result.segments[1].amount, 1_326_000_000);
+    check('tổng tiền chậm nộp', result.totalAmount, 1_423_800_000);
   });
 
   // -------------------------------------------------------------------------

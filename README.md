@@ -37,6 +37,7 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 💸 **Tax Refund / Top-up** | So sánh thuế đã tạm khấu trừ 12 tháng với thuế quyết toán để ra số tiền **được hoàn** hoặc **phải nộp thêm** |
 | 📆 **Monthly Withholding Table** | Bảng chi tiết 12 tháng, tự đánh dấu tháng bị tạm khấu trừ cao bất thường (thưởng Tết, lương tháng 13) |
 | ↔️ **Net/Gross Converter** | Tab "Quy đổi Net/Gross": quy đổi hai chiều Gross → Net và Net → Gross, hiển thị song song theo quy định cũ và mới |
+| 🧮 **Late Payment Calculator** | Tab "Tính chậm nộp": tính tiền chậm nộp tiền thuế hoặc chậm nộp tiền phạt theo từng giai đoạn pháp lý, kèm bảng diễn giải chi tiết |
 
 ---
 
@@ -116,6 +117,7 @@ vietnam-tax-2025/
 │   ├── InputForm.tsx       # Salary + exemption input form
 │   ├── LawChangelog.tsx    # Law changelog timeline (tab 2)
 │   ├── MonthlyBreakdownTable.tsx # 12-month withholding table
+│   ├── LatePaymentCalculator.tsx # Late payment calculator tab
 │   ├── NetGrossConverter.tsx # Gross ↔ Net converter tab
 │   └── TaxReductionChart.tsx # Gross salary vs tax reduction chart
 ├── 📂 utils/               # Utility functions

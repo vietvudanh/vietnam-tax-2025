@@ -8,6 +8,7 @@ import { LawChangelog } from './components/LawChangelog';
 import { AnnualSummary } from './components/AnnualSummary';
 import { MonthlyBreakdownTable } from './components/MonthlyBreakdownTable';
 import { NetGrossConverter } from './components/NetGrossConverter';
+import { LatePaymentCalculator } from './components/LatePaymentCalculator';
 import {
   calculateComparison,
   calculateAnnualComparison,
@@ -34,9 +35,9 @@ import {
   BonusEntry,
   AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins } from 'lucide-react';
 
-type Tab = 'calculator' | 'annual' | 'conversion' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'conversion' | 'latePayment' | 'changelog';
 
 /** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
 const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
@@ -210,6 +211,7 @@ const App: React.FC = () => {
             { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
             { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
             { id: 'conversion' as const, label: 'Quy đổi Net/Gross', icon: ArrowLeftRight },
+            { id: 'latePayment' as const, label: 'Tính chậm nộp', icon: HandCoins },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
@@ -245,6 +247,7 @@ const App: React.FC = () => {
             onToggleDeduction={() => setUseNewDeduction(!useNewDeduction)}
           />
         )}
+        {activeTab === 'latePayment' && <LatePaymentCalculator />}
 
         {/*
           Tab "Tính thuế theo tháng" và "Quyết toán thuế năm" dùng CHUNG khối này. InputForm

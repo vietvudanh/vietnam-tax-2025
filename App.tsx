@@ -7,6 +7,8 @@ import { TaxReductionChart } from './components/TaxReductionChart';
 import { LawChangelog } from './components/LawChangelog';
 import { AnnualSummary } from './components/AnnualSummary';
 import { MonthlyBreakdownTable } from './components/MonthlyBreakdownTable';
+import { NetGrossConverter } from './components/NetGrossConverter';
+import { LatePaymentCalculator } from './components/LatePaymentCalculator';
 import {
   calculateComparison,
   calculateAnnualComparison,
@@ -33,9 +35,9 @@ import {
   BonusEntry,
   AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins } from 'lucide-react';
 
-type Tab = 'calculator' | 'annual' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'conversion' | 'latePayment' | 'changelog';
 
 /** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
 const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
@@ -208,6 +210,8 @@ const App: React.FC = () => {
           {([
             { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
             { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
+            { id: 'conversion' as const, label: 'Quy đổi Net/Gross', icon: ArrowLeftRight },
+            { id: 'latePayment' as const, label: 'Tính chậm nộp', icon: HandCoins },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
@@ -228,6 +232,22 @@ const App: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {activeTab === 'changelog' && <LawChangelog />}
+        {activeTab === 'conversion' && (
+          <NetGrossConverter
+            regionalMinWageMap={activeRegionalMinWage}
+            minWageNote={minWageNote}
+            minWageSet={minWageSet}
+            minWageSetLabels={{
+              legacy: MIN_WAGE_OPTIONS.legacy.label,
+              current2026: MIN_WAGE_OPTIONS.current2026.label,
+              draft2027: MIN_WAGE_OPTIONS.draft2027.label,
+            }}
+            onChangeMinWageSet={setMinWageSet}
+            useNewDeduction={useNewDeduction}
+            onToggleDeduction={() => setUseNewDeduction(!useNewDeduction)}
+          />
+        )}
+        {activeTab === 'latePayment' && <LatePaymentCalculator />}
 
         {/*
           Tab "Tính thuế theo tháng" và "Quyết toán thuế năm" dùng CHUNG khối này. InputForm

@@ -234,3 +234,21 @@ export interface ComparisonResult {
   diffTax: number; // New - Old (Should be negative if tax is lower)
   diffNet: number; // New - Old (Should be positive if net is higher)
 }
+
+/** Chế độ quy đổi lương giữa Gross và Net (kỳ tháng). */
+export type NetGrossMode = 'grossToNet' | 'netToGross';
+
+export interface NetGrossSideResult {
+  grossIncome: number;
+  netIncome: number;
+  taxAmount: number;
+  insurance: number;
+}
+
+/** Kết quả quy đổi Net/Gross cho cả 2 bộ quy định cũ và mới. */
+export interface NetGrossComparisonResult {
+  mode: NetGrossMode;
+  targetAmount: number;
+  oldReg: NetGrossSideResult;
+  newReg: NetGrossSideResult;
+}

@@ -4,6 +4,7 @@ import {
   calculateComparison,
   calculateAnnual,
   calculateAnnualComparison,
+  calculateNetGrossComparison,
   OLD_CONFIG,
   NEW_CONFIG,
 } from './utils/taxCalculator';
@@ -16,6 +17,7 @@ import {
   MEDICAL_DEDUCTION_CAP_YEAR,
   EDUCATION_DEDUCTION_CAP_YEAR,
 } from './types';
+import { calculateLatePayment, parseVietnamDate } from './utils/latePaymentCalculator';
 
 const TEST_DIR = path.join(process.cwd(), 'test_requests');
 
@@ -235,6 +237,91 @@ function runUnitCases(): void {
     );
 
     check('Thuế TNCN (quy định mới)', result.newReg.taxAmount, 0);
+  });
+
+  runCase('gross→net mode khớp với calculateComparison', () => {
+    const gross = 42_000_000;
+    const dependents = 1;
+    const minWage = REGIONAL_MIN_WAGE_2026.I;
+    const direct = calculateComparison(
+      gross,
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+    const converted = calculateNetGrossComparison(
+      gross,
+      'grossToNet',
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+
+    check('old gross', converted.oldReg.grossIncome, direct.oldReg.grossIncome);
+    check('new gross', converted.newReg.grossIncome, direct.newReg.grossIncome);
+    check('old net', converted.oldReg.netIncome, direct.oldReg.netIncome);
+    check('new net', converted.newReg.netIncome, direct.newReg.netIncome);
+  });
+
+  runCase('net→gross mode tìm gross tối thiểu để đạt net mục tiêu', () => {
+    const targetNet = 30_000_000;
+    const dependents = 0;
+    const minWage = REGIONAL_MIN_WAGE_2026.I;
+    const converted = calculateNetGrossComparison(
+      targetNet,
+      'netToGross',
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+
+    if (converted.newReg.netIncome < targetNet) {
+      throw new Error(`newReg net phải >= targetNet, actual=${converted.newReg.netIncome}`);
+    }
+    if (converted.oldReg.netIncome < targetNet) {
+      throw new Error(`oldReg net phải >= targetNet, actual=${converted.oldReg.netIncome}`);
+    }
+
+    const belowNew = calculateComparison(
+      Math.max(0, converted.newReg.grossIncome - 1),
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+    if (belowNew.newReg.netIncome >= targetNet) {
+      throw new Error('gross tìm được cho newReg chưa tối thiểu');
+    }
+  });
+
+  runCase('tính chậm nộp tiền thuế: mẫu 20/1/2020-20/7/2026 khớp số liệu', () => {
+    const fromDate = parseVietnamDate('20/1/2020');
+    const toDate = parseVietnamDate('20/7/2026');
+    if (!fromDate || !toDate) throw new Error('Không parse được ngày mẫu');
+
+    const result = calculateLatePayment(2_000_000_000, fromDate, toDate, 'tax');
+
+    check('số kỳ', result.segments.length, 2);
+    check('kỳ 1 số ngày', result.segments[0].days, 163);
+    check('kỳ 1 tiền chậm nộp', result.segments[0].amount, 97_800_000);
+    check('kỳ 2 số ngày', result.segments[1].days, 2210);
+    check('kỳ 2 tiền chậm nộp', result.segments[1].amount, 1_326_000_000);
+    check('tổng tiền chậm nộp', result.totalAmount, 1_423_800_000);
   });
 
   // -------------------------------------------------------------------------

@@ -4,6 +4,7 @@ import {
   calculateComparison,
   calculateAnnual,
   calculateAnnualComparison,
+  calculateNetGrossComparison,
   OLD_CONFIG,
   NEW_CONFIG,
 } from './utils/taxCalculator';
@@ -235,6 +236,76 @@ function runUnitCases(): void {
     );
 
     check('Thuế TNCN (quy định mới)', result.newReg.taxAmount, 0);
+  });
+
+  runCase('gross→net mode khớp với calculateComparison', () => {
+    const gross = 42_000_000;
+    const dependents = 1;
+    const minWage = REGIONAL_MIN_WAGE_2026.I;
+    const direct = calculateComparison(
+      gross,
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+    const converted = calculateNetGrossComparison(
+      gross,
+      'grossToNet',
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+
+    check('old gross', converted.oldReg.grossIncome, direct.oldReg.grossIncome);
+    check('new gross', converted.newReg.grossIncome, direct.newReg.grossIncome);
+    check('old net', converted.oldReg.netIncome, direct.oldReg.netIncome);
+    check('new net', converted.newReg.netIncome, direct.newReg.netIncome);
+  });
+
+  runCase('net→gross mode tìm gross tối thiểu để đạt net mục tiêu', () => {
+    const targetNet = 30_000_000;
+    const dependents = 0;
+    const minWage = REGIONAL_MIN_WAGE_2026.I;
+    const converted = calculateNetGrossComparison(
+      targetNet,
+      'netToGross',
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+
+    if (converted.newReg.netIncome < targetNet) {
+      throw new Error(`newReg net phải >= targetNet, actual=${converted.newReg.netIncome}`);
+    }
+    if (converted.oldReg.netIncome < targetNet) {
+      throw new Error(`oldReg net phải >= targetNet, actual=${converted.oldReg.netIncome}`);
+    }
+
+    const belowNew = calculateComparison(
+      Math.max(0, converted.newReg.grossIncome - 1),
+      dependents,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    );
+    if (belowNew.newReg.netIncome >= targetNet) {
+      throw new Error('gross tìm được cho newReg chưa tối thiểu');
+    }
   });
 
   // -------------------------------------------------------------------------

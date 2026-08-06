@@ -20,7 +20,9 @@ import {
   AnnualInput,
   AnnualTaxResult,
   AnnualComparisonResult,
-  MonthlyLine
+  MonthlyLine,
+  NetGrossMode,
+  NetGrossComparisonResult
 } from '../types.ts';
 
 export const OLD_CONFIG: TaxConfig = {
@@ -267,6 +269,200 @@ export const calculateComparison = (
     newReg,
     diffTax: newReg.taxAmount - oldReg.taxAmount,
     diffNet: newReg.netIncome - oldReg.netIncome,
+  };
+};
+
+const MAX_GROSS_SEARCH = 10_000_000_000;
+const SOLVER_ITERATIONS = 80;
+
+type RegulationKey = 'oldReg' | 'newReg';
+
+const findGrossForTargetNet = (
+  targetNet: number,
+  reg: RegulationKey,
+  dependents: number,
+  region: Region,
+  customInsuranceSalary: number | null,
+  personalDeduction: number,
+  dependentDeduction: number,
+  customRegionalMinWage?: number,
+  extra: ExtraIncomeInput = EMPTY_EXTRA_INCOME
+): number => {
+  if (targetNet <= 0) return 0;
+
+  const netAt = (gross: number): number => (
+    calculateComparison(
+      gross,
+      dependents,
+      region,
+      customInsuranceSalary,
+      personalDeduction,
+      dependentDeduction,
+      customRegionalMinWage,
+      extra
+    )[reg].netIncome
+  );
+
+  let low = 0;
+  let high = Math.max(targetNet, 1_000_000);
+
+  while (netAt(high) < targetNet && high < MAX_GROSS_SEARCH) {
+    high *= 2;
+  }
+
+  if (high >= MAX_GROSS_SEARCH && netAt(high) < targetNet) {
+    return MAX_GROSS_SEARCH;
+  }
+
+  for (let i = 0; i < SOLVER_ITERATIONS; i++) {
+    const mid = (low + high) / 2;
+    if (netAt(mid) >= targetNet) {
+      high = mid;
+    } else {
+      low = mid;
+    }
+  }
+
+  const center = Math.max(0, Math.round(high));
+  const candidates = [Math.max(0, Math.floor(high)), center, Math.ceil(high)];
+  for (let delta = -3; delta <= 3; delta++) {
+    candidates.push(Math.max(0, center + delta));
+  }
+  const uniqueCandidates = Array.from(new Set(candidates));
+
+  let bestGross = uniqueCandidates[0];
+  let bestNet = netAt(bestGross);
+
+  for (const gross of uniqueCandidates.slice(1)) {
+    const currentNet = netAt(gross);
+    const bestReached = bestNet >= targetNet;
+    const currentReached = currentNet >= targetNet;
+
+    if (currentReached && !bestReached) {
+      bestGross = gross;
+      bestNet = currentNet;
+      continue;
+    }
+
+    if (currentReached && bestReached) {
+      if (gross < bestGross || (gross === bestGross && currentNet < bestNet)) {
+        bestGross = gross;
+        bestNet = currentNet;
+      }
+      continue;
+    }
+
+    if (!bestReached && Math.abs(currentNet - targetNet) < Math.abs(bestNet - targetNet)) {
+      bestGross = gross;
+      bestNet = currentNet;
+    }
+  }
+
+  return bestGross;
+};
+
+export const calculateNetGrossComparison = (
+  amount: number,
+  mode: NetGrossMode,
+  dependents: number,
+  region: Region,
+  customInsuranceSalary: number | null,
+  personalDeduction: number,
+  dependentDeduction: number,
+  customRegionalMinWage?: number,
+  extra: ExtraIncomeInput = EMPTY_EXTRA_INCOME
+): NetGrossComparisonResult => {
+  const inputAmount = Math.max(0, amount);
+
+  if (mode === 'grossToNet') {
+    const comparison = calculateComparison(
+      inputAmount,
+      dependents,
+      region,
+      customInsuranceSalary,
+      personalDeduction,
+      dependentDeduction,
+      customRegionalMinWage,
+      extra
+    );
+
+    return {
+      mode,
+      targetAmount: inputAmount,
+      oldReg: {
+        grossIncome: comparison.oldReg.grossIncome,
+        netIncome: comparison.oldReg.netIncome,
+        taxAmount: comparison.oldReg.taxAmount,
+        insurance: comparison.oldReg.insurance,
+      },
+      newReg: {
+        grossIncome: comparison.newReg.grossIncome,
+        netIncome: comparison.newReg.netIncome,
+        taxAmount: comparison.newReg.taxAmount,
+        insurance: comparison.newReg.insurance,
+      },
+    };
+  }
+
+  const oldGross = findGrossForTargetNet(
+    inputAmount,
+    'oldReg',
+    dependents,
+    region,
+    customInsuranceSalary,
+    personalDeduction,
+    dependentDeduction,
+    customRegionalMinWage,
+    extra
+  );
+  const oldComparison = calculateComparison(
+    oldGross,
+    dependents,
+    region,
+    customInsuranceSalary,
+    personalDeduction,
+    dependentDeduction,
+    customRegionalMinWage,
+    extra
+  );
+
+  const newGross = findGrossForTargetNet(
+    inputAmount,
+    'newReg',
+    dependents,
+    region,
+    customInsuranceSalary,
+    personalDeduction,
+    dependentDeduction,
+    customRegionalMinWage,
+    extra
+  );
+  const newComparison = calculateComparison(
+    newGross,
+    dependents,
+    region,
+    customInsuranceSalary,
+    personalDeduction,
+    dependentDeduction,
+    customRegionalMinWage,
+    extra
+  );
+
+  return {
+    mode,
+    targetAmount: inputAmount,
+    oldReg: {
+      grossIncome: oldComparison.oldReg.grossIncome,
+      netIncome: oldComparison.oldReg.netIncome,
+      taxAmount: oldComparison.oldReg.taxAmount,
+      insurance: oldComparison.oldReg.insurance,
+    },
+    newReg: {
+      grossIncome: newComparison.newReg.grossIncome,
+      netIncome: newComparison.newReg.netIncome,
+      taxAmount: newComparison.newReg.taxAmount,
+      insurance: newComparison.newReg.insurance,
+    },
   };
 };
 

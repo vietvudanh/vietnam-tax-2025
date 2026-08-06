@@ -27,7 +27,7 @@ export const NetGrossConverter: React.FC<NetGrossConverterProps> = ({
   onToggleDeduction,
 }) => {
   const [mode, setMode] = useState<NetGrossMode>('grossToNet');
-  const [amountStr, setAmountStr] = useState<string>('30,000,000');
+  const [amountStr, setAmountStr] = useState<string>('66,000,000');
   const [dependents, setDependents] = useState<number>(0);
   const [region, setRegion] = useState<'I' | 'II' | 'III' | 'IV'>('I');
 

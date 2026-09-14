@@ -220,7 +220,7 @@ export const InputForm: React.FC<InputFormProps> = ({
               }}
               className="text-[11px] font-medium text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
             >
-              Xem 16 hồ sơ chi tiết →
+              Xem 20 hồ sơ chi tiết →
             </button>
           )}
         </div>
@@ -230,6 +230,8 @@ export const InputForm: React.FC<InputFormProps> = ({
             { id: 'profile-500m-engineer', label: '500M/năm (1 con)' },
             { id: 'profile-1b-lead', label: '1 Tỷ/năm (2 con)' },
             { id: 'profile-100m-director', label: '100M/tháng' },
+            { id: 'profile-vozer-350m', label: '🥔 Vozer 350M' },
+            { id: 'profile-nguoi-anh-96-20k-usd', label: '🚀 Người anh 20k$' },
           ].map((item) => (
             <button
               key={item.id}

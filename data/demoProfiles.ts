@@ -18,6 +18,7 @@ export interface DemoProfile {
   badgeVariant: 'neutral' | 'blue' | 'green' | 'yellow' | 'purple';
   description: string;
   tier: 'under300m' | '300m_600m' | '600m_1b' | 'over1b';
+  isMeme?: boolean;
   monthlyGross: number;
   annualGross: number;
   monthsWorked: number;
@@ -550,6 +551,166 @@ export const DEMO_PROFILES: DemoProfile[] = [
       'Tham gia Quỹ hưu trí tự nguyện được giảm trừ tối đa 1 triệu/tháng (12 triệu/năm) theo điểm đ khoản 1 Điều 9 TT 111/2013/TT-BTC',
       'Tối ưu hóa thu nhập tính thuế, hạ bậc lũy tiến hợp pháp',
       'Hưởng trọn lợi ích giảm thuế từ mức giảm trừ gia cảnh mới 15,5 triệu và trần bậc 2 nới rộng lên 30 triệu',
+    ],
+    suggestedPeriod: 'month',
+  },
+  {
+    id: 'profile-vozer-350m',
+    title: 'Vozer IT chuẩn mực 350 củ / tháng (F17 Legend)',
+    role: 'Senior Fullstack Dev / Vozer chuẩn 1m8 6 múi',
+    avatarEmoji: '🥔',
+    badgeLabel: '350M / Tháng (Chuẩn Vozer)',
+    badgeVariant: 'purple',
+    description:
+      'Huyền thoại chuẩn Vozer làng công nghệ: Lương 350 củ khoai/tháng (~4,2 Tỷ/năm), làm remote cho Big Tech Mỹ, tối về lướt F17 phát card Viettel 500k cho anh em. Đóng BHXH kịch trần 46,8 triệu, độc thân, chi phí trị đau lưng thoát vị đĩa đệm kịch trần 23 triệu/năm.',
+    tier: 'over1b',
+    isMeme: true,
+    monthlyGross: 350_000_000,
+    annualGross: 4_200_000_000,
+    monthsWorked: 12,
+    dependents: 0,
+    region: 'I',
+    customInsuranceSalary: 46_800_000, // Trần BHXH 20 lần mức lương cơ sở (10,5% = 4.914.000 ₫)
+    extra: {
+      mealAllowance: MEAL_ALLOWANCE_CAP_NEW,
+      overtimePay: 0,
+      medicalExpensesYear: MEDICAL_DEDUCTION_CAP_YEAR,
+      educationExpensesYear: EDUCATION_DEDUCTION_CAP_YEAR,
+    },
+    bonuses: [
+      {
+        id: 'bonus-vozer-f17',
+        label: 'Thưởng KPI phát card Viettel F17',
+        amount: 350_000_000,
+        month: 12,
+        subjectToInsurance: false,
+      },
+    ],
+    highlights: [
+      'Nộp thuế TNCN hơn 106 triệu/tháng (cả năm hơn 1,38 Tỷ VNĐ) - gánh còng lưng ngân sách quốc gia',
+      'Đóng bảo hiểm kịch trần 46,8M (4.914.000 ₫/tháng) nhưng thuế thu nhập vẫn chạm kịch khung 35%',
+      'Tiết kiệm hơn 60 triệu VNĐ tiền thuế/năm theo Luật 2026 nhờ giãn bậc 35% từ 80M lên 100M và 47M giảm trừ y tế/học tập',
+      'Số tiền thuế nộp riêng 1 tháng đủ mua hơn 200 thẻ cào điện thoại 500k phát cho anh em diễn đàn',
+    ],
+    suggestedPeriod: 'month',
+  },
+  {
+    id: 'profile-nguoi-anh-96-20k-usd',
+    title: 'Người anh sinh năm 96 (20.000 USD / tháng)',
+    role: 'Principal Quantitative Architect / AI Researcher',
+    avatarEmoji: '🚀',
+    badgeLabel: '20k USD (~510M / Tháng)',
+    badgeVariant: 'yellow',
+    description:
+      'Chuyện kể người anh sinh năm 96 học Cơ khí Bách Khoa tự học code, nay làm remote cho quỹ đầu tư định lượng phố Wall nhận 20.000 USD/tháng (~510 triệu VNĐ/tháng theo tỷ giá 25.500). Nuôi 1 mẹ già ở quê, chăm lo sức khỏe cột sống và học tập nâng cao.',
+    tier: 'over1b',
+    isMeme: true,
+    monthlyGross: 510_000_000,
+    annualGross: 6_120_000_000,
+    monthsWorked: 12,
+    dependents: 1,
+    region: 'I',
+    customInsuranceSalary: 46_800_000, // Trần BHXH 20 lần mức lương cơ sở (10,5% = 4.914.000 ₫)
+    extra: {
+      mealAllowance: MEAL_ALLOWANCE_CAP_NEW,
+      overtimePay: 0,
+      medicalExpensesYear: MEDICAL_DEDUCTION_CAP_YEAR,
+      educationExpensesYear: EDUCATION_DEDUCTION_CAP_YEAR,
+    },
+    bonuses: [
+      {
+        id: 'bonus-quant-perf',
+        label: 'Thưởng hiệu suất thuật toán giao dịch',
+        amount: 510_000_000,
+        month: 12,
+        subjectToInsurance: false,
+      },
+    ],
+    highlights: [
+      'Thu nhập 20.000 USD/tháng tương đương hơn 6,1 Tỷ đồng/năm - hình mẫu "con nhà người ta" huyền thoại của làng IT',
+      'Nộp thuế TNCN cả năm hơn 2,05 Tỷ đồng (tương đương mua đứt một chiếc Mercedes E300 hoặc căn chung cư cao cấp mỗi năm)',
+      'Thuế suất thực tế hiệu dụng đạt ~31% tổng thu nhập',
+      'Tiết kiệm kỷ lục hơn 75 triệu VNĐ thuế/năm theo Luật 2026 nhờ nới trần bậc 5 lên 100M/tháng',
+    ],
+    suggestedPeriod: 'month',
+  },
+  {
+    id: 'profile-chu-tich-thu-long',
+    title: 'Chủ tịch giả nghèo thử lòng nhân viên (Thưởng 5 Tỷ)',
+    role: 'Chủ tịch tập đoàn / Đi xe Dream rách thử lòng cấp dưới',
+    avatarEmoji: '🕶️',
+    badgeLabel: 'Lương 5M - Thưởng 5 Tỷ',
+    badgeVariant: 'blue',
+    description:
+      'Chủ tịch tập đoàn ẩn thân thử việc với lương cơ bản 5.000.000 ₫/tháng đi xe máy số cà tàng để thử lòng nhân viên. Tháng 12 công bố thân phận và nhận thưởng Tết 5.000.000.000 ₫ (5 Tỷ VNĐ) khiến phòng kế toán thức trắng đêm làm quyết toán!',
+    tier: 'over1b',
+    isMeme: true,
+    monthlyGross: 5_000_000,
+    annualGross: 60_000_000,
+    monthsWorked: 12,
+    dependents: 0,
+    region: 'I',
+    customInsuranceSalary: 5_000_000,
+    extra: {
+      mealAllowance: MEAL_ALLOWANCE_CAP_NEW,
+      overtimePay: 0,
+      medicalExpensesYear: MEDICAL_DEDUCTION_CAP_YEAR,
+      educationExpensesYear: EDUCATION_DEDUCTION_CAP_YEAR,
+    },
+    bonuses: [
+      {
+        id: 'bonus-chu-tich-tet',
+        label: 'Thưởng Tết thử lòng kế toán',
+        amount: 5_000_000_000,
+        month: 12,
+        subjectToInsurance: false,
+      },
+    ],
+    highlights: [
+      '11 tháng đầu năm thuế TNCN = 0 VNĐ vì lương 5M thấp hơn rất nhiều so với mức giảm trừ gia cảnh 15,5M',
+      'Riêng tháng 12 nhận thưởng 5 Tỷ bị tạm khấu trừ thuế kịch khung 35% (nộp hơn 1,7 Tỷ đồng tiền thuế trong duy nhất 1 tháng)',
+      'Khi quyết toán cả năm: Khoản thưởng 5 Tỷ được dàn đều trên 12 tháng giúp hạ bớt biểu thuế lũy tiến và được hoàn thuế khủng',
+      'Bài học thuế: Thu nhập dồn cục vào tháng Tết luôn chịu mức khấu trừ thuế tạm tính cao chót vót',
+    ],
+    suggestedPeriod: 'year',
+  },
+  {
+    id: 'profile-genz-8m-spend-20m',
+    title: 'Gen Z thần thái: Lương 8 triệu, tiêu 20 triệu',
+    role: 'Junior Specialist / Chuyên gia trà sữa & check-in',
+    avatarEmoji: '🧋',
+    badgeLabel: '8M / Tháng (Ngoại hạng)',
+    badgeVariant: 'green',
+    description:
+      'Lương công ty chuyển khoản đúng 8 triệu/tháng, ngày uống 2 ly trà sữa full topping, du lịch nước ngoài mỗi quý, chi tiêu 20 triệu/tháng nhờ nguồn viện trợ bí ẩn. Thu nhập sau bảo hiểm thấp hơn mức giảm trừ bản thân nên thuế luôn là 0 VNĐ tròn trĩnh!',
+    tier: 'under300m',
+    isMeme: true,
+    monthlyGross: 8_000_000,
+    annualGross: 96_000_000,
+    monthsWorked: 12,
+    dependents: 0,
+    region: 'I',
+    customInsuranceSalary: null,
+    extra: {
+      mealAllowance: MEAL_ALLOWANCE_CAP_NEW,
+      overtimePay: 0,
+      medicalExpensesYear: 0,
+      educationExpensesYear: 0,
+    },
+    bonuses: [
+      {
+        id: 'bonus-genz-tet',
+        label: 'Thưởng Tết',
+        amount: 8_000_000,
+        month: 12,
+        subjectToInsurance: false,
+      },
+    ],
+    highlights: [
+      'Thuế TNCN cả năm: 0 VNĐ tuyệt đối ở cả luật cũ (11tr) và luật mới (15,5tr)',
+      'Lương 8M sau BHXH (840k) còn 7,16M, chỉ bằng chưa tới một nửa mức giảm trừ bản thân 15,5M',
+      'Kể cả tháng 12 nhận thưởng Tết 8M (tổng 16M), sau khi trừ tiền ăn ca và gia cảnh vẫn không phát sinh thuế',
+      'Cơ quan thuế xác nhận: Tiêu 20 triệu với lương 8 triệu không vi phạm Luật Thuế TNCN (chỉ vi phạm định luật bảo toàn tài chính)',
     ],
     suggestedPeriod: 'month',
   },

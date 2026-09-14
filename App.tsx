@@ -1,14 +1,16 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
 import { DeductionDetailTable } from './components/DeductionDetailTable';
 import { TaxReductionChart } from './components/TaxReductionChart';
 import { LawChangelog } from './components/LawChangelog';
+import { DemoProfiles } from './components/DemoProfiles';
 import { AnnualSummary } from './components/AnnualSummary';
 import { MonthlyBreakdownTable } from './components/MonthlyBreakdownTable';
 import { NetGrossConverter } from './components/NetGrossConverter';
 import { LatePaymentCalculator } from './components/LatePaymentCalculator';
+import { DemoProfile } from './data/demoProfiles';
 import {
   calculateComparison,
   calculateAnnualComparison,
@@ -35,9 +37,9 @@ import {
   BonusEntry,
   AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins, Users } from 'lucide-react';
 
-type Tab = 'calculator' | 'annual' | 'conversion' | 'latePayment' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'profiles' | 'conversion' | 'latePayment' | 'changelog';
 
 /** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
 const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
@@ -104,6 +106,40 @@ const App: React.FC = () => {
   const isCalculatorTab = CALCULATOR_TABS.includes(activeTab);
   const [monthsWorked, setMonthsWorked] = useState<number>(12);
   const [bonuses, setBonuses] = useState<BonusEntry[]>([]);
+  const [appliedProfile, setAppliedProfile] = useState<DemoProfile | null>(null);
+
+  const scrollToTop = useCallback(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+    requestAnimationFrame(() => {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
+    });
+    setTimeout(() => {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
+    }, 100);
+  }, []);
+
+  // Khi chuyển tab, luôn cuộn lên đầu trang
+  useEffect(() => {
+    scrollToTop();
+  }, [activeTab, scrollToTop]);
+
+  const handleApplyProfile = useCallback((profile: DemoProfile, targetPeriod: TaxPeriod) => {
+    setAppliedProfile(profile);
+    setActiveTab(targetPeriod === 'year' ? 'annual' : 'calculator');
+    scrollToTop();
+  }, [scrollToTop]);
 
   const activeRegionalMinWage = MIN_WAGE_OPTIONS[minWageSet].map;
   const minWageNote = MIN_WAGE_OPTIONS[minWageSet].note;
@@ -210,14 +246,18 @@ const App: React.FC = () => {
           {([
             { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
             { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
+            { id: 'profiles' as const, label: 'Hồ sơ mẫu', icon: Users },
             { id: 'conversion' as const, label: 'Quy đổi Net/Gross', icon: ArrowLeftRight },
             { id: 'latePayment' as const, label: 'Tính chậm nộp', icon: HandCoins },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
               key={id}
-              onClick={() => setActiveTab(id)}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+              onClick={() => {
+                setActiveTab(id);
+                scrollToTop();
+              }}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeTab === id
                   ? 'border-blue-600 text-blue-700'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300'
@@ -231,6 +271,14 @@ const App: React.FC = () => {
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        {activeTab === 'profiles' && (
+          <DemoProfiles
+            onApplyProfile={handleApplyProfile}
+            regionalMinWageMap={activeRegionalMinWage}
+            useNewDeduction={useNewDeduction}
+          />
+        )}
+
         {activeTab === 'changelog' && <LawChangelog />}
         {activeTab === 'conversion' && (
           <NetGrossConverter
@@ -284,6 +332,11 @@ const App: React.FC = () => {
               bonuses={bonuses}
               onChangeMonthsWorked={setMonthsWorked}
               onChangeBonuses={setBonuses}
+              appliedProfile={appliedProfile}
+              onNavigateToProfiles={() => {
+                setActiveTab('profiles');
+                scrollToTop();
+              }}
             />
 
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">

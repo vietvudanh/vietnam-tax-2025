@@ -31,17 +31,20 @@ substring filter (`npx tsx test.ts test2`). It replays the HAR fixtures and then
 ## Architecture
 
 ```
-App.tsx                  # Layout, 3-tab switching, result cards, detail tables
+App.tsx                  # Layout, 4-tab switching, result cards, detail tables
 ├── components/
 │   ├── InputForm.tsx           # Salary, dependents, insurance base, region, NĐ 253 exemptions,
-│   │                           #   plus year-mode inputs (số tháng làm việc + danh sách thưởng)
+│   │                           #   year-mode inputs, plus quick profile preset selectors
 │   ├── ComparisonChart.tsx     # Old vs new bar chart (takes a `period` prop for labels)
 │   ├── BracketTable.tsx        # 7-bracket vs 5-bracket comparison (static)
 │   ├── DeductionDetailTable.tsx # Rates, deductions, exemption caps; `period` scales the figures
 │   ├── AnnualSummary.tsx       # Year mode: hoàn thuế / nộp thêm card + year-total table
 │   ├── MonthlyBreakdownTable.tsx # Year mode: 12-month withholding table, flags spiky months
 │   ├── TaxReductionChart.tsx   # Gross salary vs tax reduction curve (drives off calculateComparison)
-│   └── LawChangelog.tsx        # Tab 2: law history timeline (static data in-file)
+│   ├── DemoProfiles.tsx        # Tab 3: realistic profiles gallery (200M, 500M, 1B, 100M/mo...) + matrix table
+│   └── LawChangelog.tsx        # Tab 4: law history timeline (static data in-file)
+├── data/
+│   └── demoProfiles.ts         # 12 taxpayer profiles covering diverse income tiers & NĐ 253 scenarios
 ├── utils/taxCalculator.ts  # All tax math; OLD_CONFIG / NEW_CONFIG live here
 └── types.ts                # Types + every legal constant (deductions, caps, thresholds)
 ```

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Calculator, Users, ShieldCheck, Utensils, Moon, HeartPulse, GraduationCap, CalendarDays, Gift, Plus, X } from 'lucide-react';
+import { Calculator, Users, ShieldCheck, Utensils, Moon, HeartPulse, GraduationCap, CalendarDays, Gift, Plus, X, Sparkles } from 'lucide-react';
 import { calculateBHXH, formatCurrency, BHXH_MAX_CAP } from '../utils/taxCalculator';
 import {
   ExtraIncomeInput,
@@ -10,6 +10,7 @@ import {
   TaxPeriod,
   BonusEntry,
 } from '../types';
+import { DEMO_PROFILES, DemoProfile } from '../data/demoProfiles';
 
 interface InputFormProps {
   onCalculate: (
@@ -30,6 +31,8 @@ interface InputFormProps {
   bonuses: BonusEntry[];
   onChangeMonthsWorked: (n: number) => void;
   onChangeBonuses: (next: BonusEntry[]) => void;
+  appliedProfile?: DemoProfile | null;
+  onNavigateToProfiles?: () => void;
 }
 
 const parseAmount = (value: string): number => parseFloat(value.replace(/[^0-9]/g, '')) || 0;
@@ -62,6 +65,8 @@ export const InputForm: React.FC<InputFormProps> = ({
   bonuses,
   onChangeMonthsWorked,
   onChangeBonuses,
+  appliedProfile,
+  onNavigateToProfiles,
 }) => {
   const [grossStr, setGrossStr] = useState<string>('100,000,000');
   const [dependents, setDependents] = useState<number>(0);
@@ -72,6 +77,47 @@ export const InputForm: React.FC<InputFormProps> = ({
   const [overtimeStr, setOvertimeStr] = useState<string>('');
   const [medicalStr, setMedicalStr] = useState<string>('');
   const [educationStr, setEducationStr] = useState<string>('');
+
+  const applyProfile = (profile: DemoProfile) => {
+    setGrossStr(Math.round(profile.monthlyGross).toLocaleString('vi-VN'));
+    setDependents(profile.dependents);
+    setRegion(profile.region);
+    if (profile.customInsuranceSalary !== null) {
+      setAutoInsurance(false);
+      setInsuranceStr(Math.round(profile.customInsuranceSalary).toLocaleString('vi-VN'));
+    } else {
+      setAutoInsurance(true);
+      setInsuranceStr('');
+    }
+    setMealStr(
+      profile.extra.mealAllowance > 0
+        ? Math.round(profile.extra.mealAllowance).toLocaleString('vi-VN')
+        : ''
+    );
+    setOvertimeStr(
+      profile.extra.overtimePay > 0
+        ? Math.round(profile.extra.overtimePay).toLocaleString('vi-VN')
+        : ''
+    );
+    setMedicalStr(
+      profile.extra.medicalExpensesYear > 0
+        ? Math.round(profile.extra.medicalExpensesYear).toLocaleString('vi-VN')
+        : ''
+    );
+    setEducationStr(
+      profile.extra.educationExpensesYear > 0
+        ? Math.round(profile.extra.educationExpensesYear).toLocaleString('vi-VN')
+        : ''
+    );
+    onChangeMonthsWorked(profile.monthsWorked);
+    onChangeBonuses(profile.bonuses);
+  };
+
+  useEffect(() => {
+    if (appliedProfile) {
+      applyProfile(appliedProfile);
+    }
+  }, [appliedProfile]);
 
   // Parse strings to numbers safely
   const gross = parseFloat(grossStr.replace(/[^0-9]/g, '')) || 0;
@@ -149,10 +195,49 @@ export const InputForm: React.FC<InputFormProps> = ({
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md border border-slate-100">
-      <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+      <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
         <Calculator className="w-6 h-6 text-blue-600" />
         Nhập thông tin lương
       </h2>
+
+      {/* Quick Profile Presets */}
+      <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 mb-6 space-y-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <span>Điền nhanh hồ sơ mẫu:</span>
+          </div>
+          {onNavigateToProfiles && (
+            <button
+              type="button"
+              onClick={onNavigateToProfiles}
+              className="text-[11px] font-medium text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+            >
+              Xem 12 hồ sơ chi tiết →
+            </button>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {[
+            { id: 'profile-200m-single', label: '200M/năm' },
+            { id: 'profile-500m-engineer', label: '500M/năm (1 con)' },
+            { id: 'profile-1b-lead', label: '1 Tỷ/năm (2 con)' },
+            { id: 'profile-100m-director', label: '100M/tháng' },
+          ].map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => {
+                const p = DEMO_PROFILES.find((x) => x.id === item.id);
+                if (p) applyProfile(p);
+              }}
+              className="text-xs bg-white hover:bg-slate-100 text-slate-700 font-medium px-2.5 py-1 rounded border border-slate-200 shadow-xs transition-colors cursor-pointer"
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="space-y-6">
         {/* Gross Income */}

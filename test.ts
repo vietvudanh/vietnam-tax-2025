@@ -18,6 +18,7 @@ import {
   EDUCATION_DEDUCTION_CAP_YEAR,
 } from './types';
 import { calculateLatePayment, parseVietnamDate } from './utils/latePaymentCalculator';
+import { DEMO_PROFILES } from './data/demoProfiles';
 
 const TEST_DIR = path.join(process.cwd(), 'test_requests');
 
@@ -484,9 +485,159 @@ function runUnitCases(): void {
   });
 }
 
+function runDemoProfileTests(): void {
+  runCase('demo profiles: bộ dữ liệu gồm 12 hồ sơ hợp lệ và ID duy nhất', () => {
+    check('số lượng hồ sơ demo', DEMO_PROFILES.length, 12);
+    const ids = new Set(DEMO_PROFILES.map((p) => p.id));
+    check('tính duy nhất của ID hồ sơ', ids.size, 12);
+
+    for (const p of DEMO_PROFILES) {
+      if (!p.title || !p.description || p.monthlyGross <= 0 || p.annualGross <= 0) {
+        throw new Error(`Hồ sơ ${p.id} thiếu thông tin cơ bản hợp lệ`);
+      }
+      if (p.monthsWorked < 1 || p.monthsWorked > 12) {
+        throw new Error(`Hồ sơ ${p.id} có monthsWorked không hợp lệ: ${p.monthsWorked}`);
+      }
+      if (p.dependents < 0) {
+        throw new Error(`Hồ sơ ${p.id} có dependents âm: ${p.dependents}`);
+      }
+    }
+  });
+
+  runCase('demo profile 200M/năm độc thân: thuế TNCN mới = 0, tiết kiệm thuế', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-200m-single')!;
+    const minWage = REGIONAL_MIN_WAGE_2026[p.region];
+    const oldRes = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      minWage,
+      p.extra
+    ).oldReg;
+
+    const newRes = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      p.extra
+    ).newReg;
+
+    // Với lương ~16.67M, sau BHXH 10.5% (~1.75M), thu nhập tính thuế còn ~14.92M
+    // Giảm trừ bản thân 15.5M + ăn trưa 1.2M => Thuế mới phải = 0
+    check('thuế TNCN mới', newRes.taxAmount, 0);
+    if (oldRes.taxAmount <= 0) {
+      throw new Error(`Thuế cũ phải > 0 với mức 16.7M/tháng theo luật cũ, thực tế = ${oldRes.taxAmount}`);
+    }
+    const savings = oldRes.taxAmount - newRes.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Số tiền tiết kiệm phải > 0, thực tế = ${savings}`);
+    }
+  });
+
+  runCase('demo profile 180M/năm công nhân Vùng II: miễn thuế 100% làm thêm giờ & ca đêm', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-180m-ot-worker')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+
+    // Làm thêm giờ 5tr được miễn 100% theo Điều 26 NĐ 253/2026/NĐ-CP
+    // Lương chính 10M + ăn trưa 1M miễn thuế => không phát sinh thuế
+    check('thuế TNCN mới', res.newReg.taxAmount, 0);
+  });
+
+  runCase('demo profile 500M/năm kỹ sư: tiết kiệm thuế và được hoàn thuế khi quyết toán', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-500m-engineer')!;
+    const monthlyRes = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    const savings = monthlyRes.oldReg.taxAmount - monthlyRes.newReg.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Hồ sơ 500M/năm phải có savings > 0 hằng tháng`);
+    }
+
+    const annualInput: AnnualInput = {
+      monthlyGross: p.monthlyGross,
+      monthsWorked: p.monthsWorked,
+      dependents: p.dependents,
+      region: p.region,
+      customInsuranceSalary: p.customInsuranceSalary,
+      extra: p.extra,
+      bonuses: p.bonuses,
+    };
+    const annualRes = calculateAnnual(annualInput, NEW_CONFIG, REGIONAL_MIN_WAGE_2026[p.region]);
+    // Nhờ có chi phí y tế 8M, giáo dục 15M và thưởng Tết => phải được hoàn thuế khi quyết toán
+    if (annualRes.settlement >= 0) {
+      throw new Error(`Hồ sơ 500M kỹ sư phải được hoàn thuế (settlement < 0), thực tế = ${annualRes.settlement}`);
+    }
+  });
+
+  runCase('demo profile 1 Tỷ/năm Tech Lead: trọn vẹn 47M giảm trừ y tế & giáo dục', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-1b-lead')!;
+    const annualInput: AnnualInput = {
+      monthlyGross: p.monthlyGross,
+      monthsWorked: p.monthsWorked,
+      dependents: p.dependents,
+      region: p.region,
+      customInsuranceSalary: p.customInsuranceSalary,
+      extra: p.extra,
+      bonuses: p.bonuses,
+    };
+    const annualRes = calculateAnnual(annualInput, NEW_CONFIG, REGIONAL_MIN_WAGE_2026[p.region]);
+    check(
+      'giảm trừ y tế + giáo dục cả năm',
+      annualRes.annual.specialDeduction,
+      MEDICAL_DEDUCTION_CAP_YEAR + EDUCATION_DEDUCTION_CAP_YEAR
+    );
+  });
+
+  runCase('demo profile 100M/tháng Giám đốc: bảo hiểm áp trần 46,8M chính xác', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-100m-director')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+
+    // Mức đóng theo trần quy định 46.8M
+    const expectedInsurance = 46_800_000 * 0.105;
+    check('tổng bảo hiểm tháng', res.newReg.insurance, expectedInsurance, 1);
+    const savings = res.oldReg.taxAmount - res.newReg.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Thu nhập 100M/tháng phải tiết kiệm đáng kể tiền thuế`);
+    }
+  });
+}
+
 function runAllTests(): void {
   runHarTests();
   runUnitCases();
+  runDemoProfileTests();
 
   console.log(`\n${passedCount} passed, ${failedCount} failed`);
 }

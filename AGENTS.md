@@ -28,7 +28,8 @@ medical and education expenses) to see insurance and PIT computed under both rul
 ├── index.tsx         # React entry point
 ├── index.html        # HTML template with TailwindCSS CDN
 ├── types.ts          # TypeScript type definitions
-├── components/       # Reusable React components (incl. LawChangelog.tsx - law history tab)
+├── data/             # Static datasets (incl. demoProfiles.ts - 12 taxpayer profiles)
+├── components/       # Reusable React components (incl. DemoProfiles.tsx, LawChangelog.tsx)
 ├── utils/            # Utility functions
 ├── assets/           # Static assets (images, screenshots)
 ├── public/           # Public static files
@@ -59,8 +60,10 @@ npm run preview
 4. **Progressive Tax Tables**: Display progressive tax brackets and deductions
 5. **NĐ 253/2026/NĐ-CP exemptions**: Meal allowance cap (1.2M/month), full overtime and night-shift
    exemption, medical (23M/year) and education (24M/year) deductions
-6. **Law Changelog tab**: Timeline of every major PIT change from the 2007 law onwards
-7. **Bilingual Support**: Vietnamese language interface
+6. **Demo Profiles tab**: 12 pre-defined taxpayer archetypes (200M/yr, 500M/yr, 1B/yr, 100M/mo...) with
+   instant load into calculator, filtering, and cross-comparison matrix table
+7. **Law Changelog tab**: Timeline of every major PIT change from the 2007 law onwards
+8. **Bilingual Support**: Vietnamese language interface
 
 ## Important Notes
 

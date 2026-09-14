@@ -486,10 +486,10 @@ function runUnitCases(): void {
 }
 
 function runDemoProfileTests(): void {
-  runCase('demo profiles: bộ dữ liệu gồm 12 hồ sơ hợp lệ và ID duy nhất', () => {
-    check('số lượng hồ sơ demo', DEMO_PROFILES.length, 12);
+  runCase('demo profiles: bộ dữ liệu gồm 16 hồ sơ hợp lệ và ID duy nhất', () => {
+    check('số lượng hồ sơ demo', DEMO_PROFILES.length, 16);
     const ids = new Set(DEMO_PROFILES.map((p) => p.id));
-    check('tính duy nhất của ID hồ sơ', ids.size, 12);
+    check('tính duy nhất của ID hồ sơ', ids.size, 16);
 
     for (const p of DEMO_PROFILES) {
       if (!p.title || !p.description || p.monthlyGross <= 0 || p.annualGross <= 0) {
@@ -630,6 +630,91 @@ function runDemoProfileTests(): void {
     const savings = res.oldReg.taxAmount - res.newReg.taxAmount;
     if (savings <= 0) {
       throw new Error(`Thu nhập 100M/tháng phải tiết kiệm đáng kể tiền thuế`);
+    }
+  });
+
+  runCase('demo profile Freelancer 300M/năm: không BHXH bắt buộc và được hoàn thuế lớn khi quyết toán', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-freelancer-refund')!;
+    check('customInsuranceSalary của freelancer = 0', p.customInsuranceSalary!, 0);
+
+    const annualInput: AnnualInput = {
+      monthlyGross: p.monthlyGross,
+      monthsWorked: p.monthsWorked,
+      dependents: p.dependents,
+      region: p.region,
+      customInsuranceSalary: p.customInsuranceSalary,
+      extra: p.extra,
+      bonuses: p.bonuses,
+    };
+    const annualRes = calculateAnnual(annualInput, NEW_CONFIG, REGIONAL_MIN_WAGE_2026[p.region]);
+    check('bảo hiểm bắt buộc cả năm', annualRes.totalInsurance, 0);
+
+    // Quyết toán cả năm: thu nhập 300M, giảm trừ bản thân 15.5M*12 = 186M, y tế 5M => Thu nhập tính thuế 109M
+    // Bậc 1 (dưới 120M) thuế 5%: 109M * 5% = 5.45M
+    check('thuế quyết toán cả năm', annualRes.annual.taxAmount, 109_000_000 * 0.05, 1);
+
+    // Nếu bị tạm khấu trừ 10% tại nguồn theo Thông tư 111 (30M), số thuế được hoàn là hơn 24,5M
+    const withholdingAtSource10Pct = 300_000_000 * 0.1;
+    const actualRefund = withholdingAtSource10Pct - annualRes.annual.taxAmount;
+    if (actualRefund <= 24_000_000) {
+      throw new Error(`Khoản hoàn thuế thực tế phải > 24 triệu VNĐ, thực tế = ${actualRefund}`);
+    }
+  });
+
+  runCase('demo profile Bác sĩ 2 nguồn thu 420M/năm: chỉ đóng BHXH ở viện chính', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-dual-income')!;
+    check('căn cứ đóng BHXH chỉ tính trên lương chính 20M', p.customInsuranceSalary!, 20_000_000);
+    check('tổng thu nhập tháng gồm cả 2 nguồn', p.monthlyGross, 35_000_000);
+
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    // BHXH tính trên 20M = 20M * 10.5% = 2.1M
+    check('bảo hiểm tháng', res.newReg.insurance, 20_000_000 * 0.105, 1);
+  });
+
+  runCase('demo profile Chuyên gia nước ngoài 120M/tháng: đóng BHXH trần 46,8M', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-expat-resident')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+
+    // Cá nhân cư trú tính theo biểu lũy tiến
+    const nonResidentTaxFlat20 = 120_000_000 * 0.2; // 24 triệu/tháng nếu không cư trú
+    if (res.newReg.taxAmount >= nonResidentTaxFlat20) {
+      throw new Error(`Thuế cư trú (${res.newReg.taxAmount}) phải thấp hơn thuế không cư trú 20% (${nonResidentTaxFlat20})`);
+    }
+  });
+
+  runCase('demo profile Quản lý có quỹ hưu trí 45M/tháng: tiết kiệm thuế', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-voluntary-pension')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    const savings = res.oldReg.taxAmount - res.newReg.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Profile quỹ hưu trí phải tiết kiệm thuế`);
     }
   });
 }

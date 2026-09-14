@@ -60,7 +60,7 @@ npm run preview
 4. **Progressive Tax Tables**: Display progressive tax brackets and deductions
 5. **NĐ 253/2026/NĐ-CP exemptions**: Meal allowance cap (1.2M/month), full overtime and night-shift
    exemption, medical (23M/year) and education (24M/year) deductions
-6. **Demo Profiles tab**: 12 pre-defined taxpayer archetypes (200M/yr, 500M/yr, 1B/yr, 100M/mo...) with
+6. **Demo Profiles tab**: 16 pre-defined taxpayer archetypes (200M/yr, 500M/yr, 1B/yr, 100M/mo, Freelancer, dual-income, expat, voluntary pension...) with
    instant load into calculator, filtering, and cross-comparison matrix table
 7. **Law Changelog tab**: Timeline of every major PIT change from the 2007 law onwards
 8. **Bilingual Support**: Vietnamese language interface

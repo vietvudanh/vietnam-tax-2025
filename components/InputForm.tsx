@@ -503,7 +503,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             <div>
               <label className="text-sm font-medium text-slate-600 mb-2 flex items-center gap-2">
                 <Moon className="w-4 h-4" />
-                Lương làm thêm giờ / ban đêm (VNĐ/tháng)
+                Lương làm thêm giờ / ban đêm được miễn thuế (VNĐ/tháng)
               </label>
               <input
                 type="text"
@@ -513,7 +513,7 @@ export const InputForm: React.FC<InputFormProps> = ({
                 placeholder="0"
               />
               <p className="text-xs text-slate-400 mt-1">
-                Miễn toàn bộ thuế TNCN theo Điều 26 NĐ 253/2026/NĐ-CP (đã bao gồm trong lương gross)
+                Phần tiền lương trả cao hơn do làm thêm giờ, ban đêm được miễn thuế TNCN (điểm i khoản 1 Điều 3 TT 111/2013/TT-BTC & Điều 98 BLLĐ 2019) - đã bao gồm trong lương gross
               </p>
             </div>
 

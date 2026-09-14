@@ -31,7 +31,7 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 🍱 **Meal Allowance Exemption** | Miễn thuế tiền ăn giữa ca đến 1,2 triệu đồng/tháng (NĐ 253/2026/NĐ-CP) |
 | 🌙 **Overtime Exemption** | Miễn thuế toàn bộ tiền lương làm thêm giờ, làm ban đêm |
 | 🏥 **Medical & Education Deductions** | Giảm trừ chi phí y tế (23tr/năm) và giáo dục - đào tạo (24tr/năm) |
-| 👥 **Demo Profiles** | Tab "Hồ sơ mẫu": 12 hồ sơ người nộp thuế thực tế (200M/năm, 500M/năm, 1 Tỷ/năm, 100M/tháng...) phản ánh đầy đủ giảm trừ y tế, giáo dục, làm thêm giờ, 1-2 người phụ thuộc; nạp nhanh vào bộ tính thuế với 1 click |
+| 👥 **Demo Profiles** | Tab "Hồ sơ mẫu": 16 hồ sơ người nộp thuế thực tế (200M/năm, 500M/năm, 1 Tỷ/năm, 100M/tháng, Freelancer khấu trừ 10%, Bác sĩ 2 nguồn thu, Expat không cư trú/cư trú, Quỹ hưu trí tự nguyện...); nạp nhanh vào bộ tính thuế tương ứng theo tháng hoặc theo năm |
 | 🕘 **Law Changelog Tab** | Tab riêng ghi lại lịch sử thay đổi luật thuế TNCN từ Luật 2007 đến nay, có link toàn văn trên Thư Viện Pháp Luật |
 | 📅 **Minimum Wage Sets** | Chọn giữa mức lương tối thiểu vùng trước 2026, hiện hành (NĐ 293/2025) và dự kiến 2027 (dự thảo); mặc định tự chọn theo ngày truy cập |
 | 🗓️ **Annual Finalization** | Tab "Quyết toán thuế năm": nhập lương tháng + số tháng làm việc + các khoản thưởng một lần, tính thuế cả năm theo biểu thuế năm. Dùng chung dữ liệu nhập với tab theo tháng nên chuyển tab không mất thông tin |

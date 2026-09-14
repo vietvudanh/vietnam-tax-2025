@@ -227,8 +227,8 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
               Thư viện Hồ sơ Mẫu Thuế TNCN 2026
             </h2>
             <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
-              Khám phá tác động cụ thể của chính sách thuế mới trên 12 hồ sơ điển hình: từ người mới đi làm 
-              (<span className="font-semibold text-white">200M/năm</span>), kỹ sư chuyên viên (
+              Khám phá tác động cụ thể của chính sách thuế mới trên 16 hồ sơ điển hình: từ người mới đi làm 
+              (<span className="font-semibold text-white">200M/năm</span>), Freelancer tự do (<span className="font-semibold text-white">300M/năm</span>), bác sĩ 2 nguồn thu, kỹ sư chuyên viên (
               <span className="font-semibold text-white">500M/năm</span>), quản lý (
               <span className="font-semibold text-white">1 Tỷ/năm</span>) đến lãnh đạo cấp cao (
               <span className="font-semibold text-white">100M - 150M/tháng</span>).
@@ -394,7 +394,7 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
               {[
                 { id: 'all' as const, label: 'Tất cả', icon: null },
                 { id: 'med_edu' as const, label: 'Có Y tế / Giáo dục', icon: HeartPulse },
-                { id: 'overtime' as const, label: 'Làm thêm giờ (OT miễn 100%)', icon: Moon },
+                { id: 'overtime' as const, label: 'Có làm thêm giờ / ca đêm', icon: Moon },
                 { id: 'bonus' as const, label: 'Có thưởng Tết / Thưởng năm', icon: Gift },
               ].map((f) => {
                 const Icon = f.icon;

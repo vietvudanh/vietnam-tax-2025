@@ -436,28 +436,28 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
               className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow"
             >
               <div className="space-y-4">
-                {/* Header thẻ: Avatar, Tiêu đề, Badge */}
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-3xl p-1 bg-slate-50 rounded-lg border border-slate-100">
+                {/* Header thẻ: Avatar & Badges trên hàng đầu, sau đó Tiêu đề & Chức danh */}
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className="text-2xl p-1.5 bg-slate-50 rounded-lg border border-slate-100 shrink-0 inline-flex items-center justify-center w-10 h-10">
                       {profile.avatarEmoji}
                     </span>
-                    <div>
-                      <h3 className="font-bold text-slate-900 text-base leading-tight">
-                        {profile.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">{profile.role}</p>
+                    <div className="flex items-center gap-1.5 flex-wrap justify-end">
+                      {profile.isMeme && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 border border-pink-200 shrink-0">
+                          🎭 Meme
+                        </span>
+                      )}
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border shrink-0 ${badgeClass}`}>
+                        {profile.badgeLabel}
+                      </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    {profile.isMeme && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 border border-pink-200">
-                        🎭 Meme
-                      </span>
-                    )}
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border shrink-0 ${badgeClass}`}>
-                      {profile.badgeLabel}
-                    </span>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base leading-snug">
+                      {profile.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-0.5">{profile.role}</p>
                   </div>
                 </div>
 
@@ -560,7 +560,7 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                         {formatCurrency(currentResult.diffNet)}
                       </span>
                       <span className="text-[11px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">
-                        -{savingsPercent}
+                        {currentResult.diffNet > 0 ? `-${savingsPercent}` : '0%'}
                       </span>
                     </div>
                   </div>
@@ -703,7 +703,7 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                           : 'bg-green-50 text-green-700 border border-green-200'
                       }`}
                     >
-                      -{savingsPercent}
+                      {currentResult.diffNet > 0 ? `-${savingsPercent}` : '0%'}
                     </span>
                   </td>
                   <td className="px-4 py-3.5 text-center">

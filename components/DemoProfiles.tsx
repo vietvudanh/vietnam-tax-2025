@@ -576,7 +576,14 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
               {/* Nút nạp vào bộ tính toán */}
               <button
                 type="button"
-                onClick={() => onApplyProfile(profile, viewPeriod)}
+                onClick={() => {
+                  onApplyProfile(profile, viewPeriod);
+                  try {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                  } catch {
+                    window.scrollTo(0, 0);
+                  }
+                }}
                 className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"
               >
                 <Calculator className="w-4 h-4" />
@@ -683,7 +690,14 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                   <td className="px-4 py-3.5 text-center">
                     <button
                       type="button"
-                      onClick={() => onApplyProfile(profile, viewPeriod)}
+                      onClick={() => {
+                        onApplyProfile(profile, viewPeriod);
+                        try {
+                          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                        } catch {
+                          window.scrollTo(0, 0);
+                        }
+                      }}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
                     >
                       <span>Tính thử</span>

@@ -210,10 +210,17 @@ export const InputForm: React.FC<InputFormProps> = ({
           {onNavigateToProfiles && (
             <button
               type="button"
-              onClick={onNavigateToProfiles}
+              onClick={() => {
+                onNavigateToProfiles();
+                try {
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                } catch {
+                  window.scrollTo(0, 0);
+                }
+              }}
               className="text-[11px] font-medium text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
             >
-              Xem 12 hồ sơ chi tiết →
+              Xem 16 hồ sơ chi tiết →
             </button>
           )}
         </div>

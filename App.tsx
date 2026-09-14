@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { InputForm } from './components/InputForm';
 import { ComparisonChart } from './components/ComparisonChart';
 import { BracketTable } from './components/BracketTable';
@@ -108,10 +108,38 @@ const App: React.FC = () => {
   const [bonuses, setBonuses] = useState<BonusEntry[]>([]);
   const [appliedProfile, setAppliedProfile] = useState<DemoProfile | null>(null);
 
+  const scrollToTop = useCallback(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+    requestAnimationFrame(() => {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
+    });
+    setTimeout(() => {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
+    }, 100);
+  }, []);
+
+  // Khi chuyển tab, luôn cuộn lên đầu trang
+  useEffect(() => {
+    scrollToTop();
+  }, [activeTab, scrollToTop]);
+
   const handleApplyProfile = useCallback((profile: DemoProfile, targetPeriod: TaxPeriod) => {
     setAppliedProfile(profile);
     setActiveTab(targetPeriod === 'year' ? 'annual' : 'calculator');
-  }, []);
+    scrollToTop();
+  }, [scrollToTop]);
 
   const activeRegionalMinWage = MIN_WAGE_OPTIONS[minWageSet].map;
   const minWageNote = MIN_WAGE_OPTIONS[minWageSet].note;
@@ -225,7 +253,10 @@ const App: React.FC = () => {
           ]).map(({ id, label, icon: Icon }) => (
             <button
               key={id}
-              onClick={() => setActiveTab(id)}
+              onClick={() => {
+                setActiveTab(id);
+                scrollToTop();
+              }}
               className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeTab === id
                   ? 'border-blue-600 text-blue-700'
@@ -302,7 +333,10 @@ const App: React.FC = () => {
               onChangeMonthsWorked={setMonthsWorked}
               onChangeBonuses={setBonuses}
               appliedProfile={appliedProfile}
-              onNavigateToProfiles={() => setActiveTab('profiles')}
+              onNavigateToProfiles={() => {
+                setActiveTab('profiles');
+                scrollToTop();
+              }}
             />
 
             <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm">

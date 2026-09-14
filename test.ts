@@ -486,10 +486,10 @@ function runUnitCases(): void {
 }
 
 function runDemoProfileTests(): void {
-  runCase('demo profiles: bộ dữ liệu gồm 16 hồ sơ hợp lệ và ID duy nhất', () => {
-    check('số lượng hồ sơ demo', DEMO_PROFILES.length, 16);
+  runCase('demo profiles: bộ dữ liệu gồm 20 hồ sơ hợp lệ và ID duy nhất', () => {
+    check('số lượng hồ sơ demo', DEMO_PROFILES.length, 20);
     const ids = new Set(DEMO_PROFILES.map((p) => p.id));
-    check('tính duy nhất của ID hồ sơ', ids.size, 16);
+    check('tính duy nhất của ID hồ sơ', ids.size, 20);
 
     for (const p of DEMO_PROFILES) {
       if (!p.title || !p.description || p.monthlyGross <= 0 || p.annualGross <= 0) {
@@ -716,6 +716,81 @@ function runDemoProfileTests(): void {
     if (savings <= 0) {
       throw new Error(`Profile quỹ hưu trí phải tiết kiệm thuế`);
     }
+  });
+
+  runCase('demo profile Vozer 350M/tháng: nộp thuế lớn, bảo hiểm trần, tiết kiệm thuế', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-vozer-350m')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    check('bảo hiểm trần vozer', res.newReg.insurance, 4_914_000);
+    const savings = res.oldReg.taxAmount - res.newReg.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Vozer 350M phải tiết kiệm thuế theo luật mới`);
+    }
+  });
+
+  runCase('demo profile Người anh 96 20k USD/tháng: tính đúng quy đổi và tiết kiệm thuế', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-nguoi-anh-96-20k-usd')!;
+    check('gross người anh 96', p.monthlyGross, 510_000_000);
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    const savings = res.oldReg.taxAmount - res.newReg.taxAmount;
+    if (savings <= 0) {
+      throw new Error(`Người anh 96 20k USD phải tiết kiệm thuế theo luật mới`);
+    }
+  });
+
+  runCase('demo profile Chủ tịch giả nghèo 5M thưởng 5 Tỷ: hoàn thuế khi quyết toán', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-chu-tich-thu-long')!;
+    const annualRes = calculateAnnualComparison(
+      {
+        monthlyGross: p.monthlyGross,
+        monthsWorked: p.monthsWorked,
+        bonuses: p.bonuses,
+        dependents: p.dependents,
+        region: p.region,
+        customInsuranceSalary: p.customInsuranceSalary,
+        extra: p.extra,
+      },
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region]
+    ).newReg;
+    if (annualRes.settlement >= 0) {
+      throw new Error(`Chủ tịch nhận thưởng dồn cục tháng 12 phải được hoàn thuế khi quyết toán`);
+    }
+  });
+
+  runCase('demo profile Gen Z 8M tiêu 20M: thuế = 0 VNĐ', () => {
+    const p = DEMO_PROFILES.find((x) => x.id === 'profile-genz-8m-spend-20m')!;
+    const res = calculateComparison(
+      p.monthlyGross,
+      p.dependents,
+      p.region,
+      p.customInsuranceSalary,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      REGIONAL_MIN_WAGE_2026[p.region],
+      p.extra
+    );
+    check('thuế cũ Gen Z', res.oldReg.taxAmount, 0);
+    check('thuế mới Gen Z', res.newReg.taxAmount, 0);
   });
 }
 

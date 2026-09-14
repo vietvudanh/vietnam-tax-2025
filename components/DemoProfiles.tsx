@@ -15,6 +15,7 @@ import {
   Moon,
   Gift,
   Search,
+  Laugh,
 } from 'lucide-react';
 import {
   calculateComparison,
@@ -56,7 +57,7 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
   const [viewPeriod, setViewPeriod] = useState<TaxPeriod>('month');
   const [tierFilter, setTierFilter] = useState<IncomeTier>('all');
   const [dependentsFilter, setDependentsFilter] = useState<'all' | '0' | '1' | '2plus'>('all');
-  const [featureFilter, setFeatureFilter] = useState<'all' | 'med_edu' | 'overtime' | 'bonus'>('all');
+  const [featureFilter, setFeatureFilter] = useState<'all' | 'med_edu' | 'overtime' | 'bonus' | 'meme'>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const personalDeduction = useNewDeduction ? NEW_CONFIG.personalDeduction : OLD_CONFIG.personalDeduction;
@@ -194,6 +195,9 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
       if (featureFilter === 'bonus' && profile.bonuses.length === 0) {
         return false;
       }
+      if (featureFilter === 'meme' && !profile.isMeme) {
+        return false;
+      }
 
       // Tìm kiếm từ khóa
       if (searchTerm.trim() !== '') {
@@ -227,11 +231,11 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
               Thư viện Hồ sơ Mẫu Thuế TNCN 2026
             </h2>
             <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
-              Khám phá tác động cụ thể của chính sách thuế mới trên 16 hồ sơ điển hình: từ người mới đi làm 
+              Khám phá tác động cụ thể của chính sách thuế mới trên 20 hồ sơ đa dạng: từ người mới đi làm 
               (<span className="font-semibold text-white">200M/năm</span>), Freelancer tự do (<span className="font-semibold text-white">300M/năm</span>), bác sĩ 2 nguồn thu, kỹ sư chuyên viên (
-              <span className="font-semibold text-white">500M/năm</span>), quản lý (
-              <span className="font-semibold text-white">1 Tỷ/năm</span>) đến lãnh đạo cấp cao (
-              <span className="font-semibold text-white">100M - 150M/tháng</span>).
+              <span className="font-semibold text-white">500M/năm</span>), lãnh đạo cấp cao (
+              <span className="font-semibold text-white">100M - 150M/tháng</span>) đến các hồ sơ vui vẻ / meme (
+              <span className="font-semibold text-amber-300">Vozer 350M/tháng</span>, <span className="font-semibold text-amber-300">Người anh 96 20k USD</span>, Chủ tịch thử lòng).
             </p>
           </div>
 
@@ -396,6 +400,7 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                 { id: 'med_edu' as const, label: 'Có Y tế / Giáo dục', icon: HeartPulse },
                 { id: 'overtime' as const, label: 'Có làm thêm giờ / ca đêm', icon: Moon },
                 { id: 'bonus' as const, label: 'Có thưởng Tết / Thưởng năm', icon: Gift },
+                { id: 'meme' as const, label: '🎭 Góc vui vẻ / Meme', icon: Laugh },
               ].map((f) => {
                 const Icon = f.icon;
                 return (
@@ -444,9 +449,16 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                       <p className="text-xs text-slate-500 mt-0.5">{profile.role}</p>
                     </div>
                   </div>
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border shrink-0 ${badgeClass}`}>
-                    {profile.badgeLabel}
-                  </span>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    {profile.isMeme && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 border border-pink-200">
+                        🎭 Meme
+                      </span>
+                    )}
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border shrink-0 ${badgeClass}`}>
+                      {profile.badgeLabel}
+                    </span>
+                  </div>
                 </div>
 
                 <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">
@@ -628,7 +640,14 @@ export const DemoProfiles: React.FC<DemoProfilesProps> = ({
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{profile.avatarEmoji}</span>
                       <div>
-                        <div className="font-semibold text-slate-900">{profile.title}</div>
+                        <div className="font-semibold text-slate-900 flex items-center gap-1.5">
+                          <span>{profile.title}</span>
+                          {profile.isMeme && (
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-pink-100 text-pink-700 border border-pink-200">
+                              Meme
+                            </span>
+                          )}
+                        </div>
                         <div className="text-[11px] text-slate-500">{profile.role}</div>
                       </div>
                     </div>

@@ -44,7 +44,7 @@ App.tsx                  # Layout, 4-tab switching, result cards, detail tables
 │   ├── DemoProfiles.tsx        # Tab 3: realistic profiles gallery (200M, 500M, 1B, 100M/mo...) + matrix table
 │   └── LawChangelog.tsx        # Tab 4: law history timeline (static data in-file)
 ├── data/
-│   └── demoProfiles.ts         # 16 taxpayer profiles covering diverse employment types & NĐ 253 scenarios
+│   └── demoProfiles.ts         # 20 taxpayer profiles covering diverse employment types, NĐ 253 scenarios & meme profiles
 ├── utils/taxCalculator.ts  # All tax math; OLD_CONFIG / NEW_CONFIG live here
 └── types.ts                # Types + every legal constant (deductions, caps, thresholds)
 ```

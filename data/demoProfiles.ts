@@ -562,7 +562,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     badgeLabel: '350M / Tháng (Chuẩn Vozer)',
     badgeVariant: 'purple',
     description:
-      'Huyền thoại chuẩn Vozer làng công nghệ: Lương 350 củ khoai/tháng (~4,2 Tỷ/năm), làm remote cho Big Tech Mỹ, tối về lướt F17 phát card Viettel 500k cho anh em. Đóng BHXH kịch trần 46,8 triệu, độc thân, chi phí trị đau lưng thoát vị đĩa đệm kịch trần 23 triệu/năm.',
+      'Huyền thoại chuẩn Vozer làng công nghệ: Lương 350 củ khoai/tháng (~4,2 Tỷ/năm), làm remote cho Big Tech Mỹ, tối về lướt F17 phát card Viettel 500k cho anh em. Đóng BHXH kịch trần 50,6 triệu, độc thân, chi phí trị đau lưng thoát vị đĩa đệm kịch trần 23 triệu/năm.',
     tier: 'over1b',
     isMeme: true,
     monthlyGross: 350_000_000,
@@ -588,7 +588,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     ],
     highlights: [
       'Nộp thuế TNCN hơn 106 triệu/tháng (cả năm hơn 1,38 Tỷ VNĐ) - gánh còng lưng ngân sách quốc gia',
-      'Đóng bảo hiểm kịch trần 46,8M (4.914.000 ₫/tháng) nhưng thuế thu nhập vẫn chạm kịch khung 35%',
+      'Đóng bảo hiểm kịch trần 50,6M (5.313.000 ₫/tháng) nhưng thuế thu nhập vẫn chạm kịch khung 35%',
       'Tiết kiệm hơn 60 triệu VNĐ tiền thuế/năm theo Luật 2026 nhờ giãn bậc 35% từ 80M lên 100M và 47M giảm trừ y tế/học tập',
       'Số tiền thuế nộp riêng 1 tháng đủ mua hơn 200 thẻ cào điện thoại 500k phát cho anh em diễn đàn',
     ],

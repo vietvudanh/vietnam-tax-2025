@@ -217,7 +217,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-2 rounded-lg">
               <TrendingUp className="w-6 h-6 text-white" />
@@ -232,7 +232,7 @@ const App: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('top_banner_blog_click')}
-            className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-3 py-2 rounded-lg"
+            className="w-full sm:w-auto justify-center flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-3 py-2 rounded-lg"
           >
             <span>{BLOG_LINK_TEXT}</span>
             <ExternalLink className="w-4 h-4" />
@@ -242,7 +242,8 @@ const App: React.FC = () => {
 
       {/* Tabs */}
       <nav className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+          <div className="flex gap-1 min-w-max">
           {([
             { id: 'calculator' as const, label: 'Tính thuế theo tháng', icon: Calculator },
             { id: 'annual' as const, label: 'Quyết toán thuế năm', icon: CalendarRange },
@@ -257,7 +258,7 @@ const App: React.FC = () => {
                 setActiveTab(id);
                 scrollToTop();
               }}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeTab === id
                   ? 'border-blue-600 text-blue-700'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300'
@@ -267,6 +268,7 @@ const App: React.FC = () => {
               {label}
             </button>
           ))}
+          </div>
         </div>
       </nav>
 
@@ -786,7 +788,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
             <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center flex-wrap gap-3">
               <a
                 href={BLOG_URL}
                 target="_blank"
@@ -799,7 +801,7 @@ const App: React.FC = () => {
               </a>
               <a className="flex items-center gap-2 text-slate-600 hover:text-slate-800" href="https://github.com/vietvudanh/vietnam-tax-2025" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
-                <span>vietvudanh/vietnam-tax-2025</span>
+                <span className="hidden sm:inline">vietvudanh/vietnam-tax-2025</span>
               </a>
             </div>
           </div>

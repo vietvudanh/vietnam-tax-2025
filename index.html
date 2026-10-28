@@ -78,7 +78,7 @@
     <meta name="geo.country" content="VN" />
     <meta name="geo.placename" content="Vietnam" />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data: WebApplication -->
     <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -126,6 +126,56 @@
                     "name": "Thuế Thu Nhập Cá Nhân Việt Nam",
                     "description": "Thuế thu nhập cá nhân (TNCN) là loại thuế trực thu đánh vào thu nhập của cá nhân theo quy định của pháp luật Việt Nam. Công cụ này giúp tính toán thuế TNCN, so sánh quy định cũ và mới, tính lương NET, giảm trừ gia cảnh và người phụ thuộc."
                 }
+            }
+        </script>
+
+    <!-- JSON-LD Structured Data: FAQPage for Generative Engine Optimization (GEO) -->
+    <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Mức giảm trừ gia cảnh mới theo Luật Thuế TNCN 2025 là bao nhiêu?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Theo Luật Thuế TNCN 2025 (109/2025/QH15) áp dụng từ năm 2026, mức giảm trừ gia cảnh cho bản thân người nộp thuế tăng từ 11 triệu đồng/tháng lên 15,5 triệu đồng/tháng (186 triệu đồng/năm), và mức giảm trừ cho mỗi người phụ thuộc tăng từ 4,4 triệu đồng/tháng lên 6,2 triệu đồng/tháng (74,4 triệu đồng/năm)."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Biểu thuế lũy tiến từng phần theo Luật Thuế TNCN 2025 thay đổi như thế nào so với luật cũ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Biểu thuế lũy tiến từng phần từ tiền lương, tiền công được rút gọn từ 7 bậc xuống còn 5 bậc: Bậc 1 đến 10 triệu đồng/tháng (5%), Bậc 2 trên 10 đến 30 triệu đồng/tháng (10%), Bậc 3 trên 30 đến 60 triệu đồng/tháng (20%), Bậc 4 trên 60 đến 100 triệu đồng/tháng (30%), và Bậc 5 trên 100 triệu đồng/tháng (35%)."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Nghị định 253/2026/NĐ-CP có những điểm mới nào về miễn thuế và giảm trừ chi phí?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Nghị định 253/2026/NĐ-CP có hiệu lực từ ngày 01/7/2026 quy định: (1) Nâng trần miễn thuế tiền ăn giữa ca/ăn trưa lên 1,2 triệu đồng/tháng; (2) Miễn thuế 100% tiền lương làm thêm giờ (overtime) và làm việc ban đêm; (3) Cho phép giảm trừ chi phí y tế khám chữa bệnh trong nước tối đa 23 triệu đồng/năm khi quyết toán thuế; (4) Cho phép giảm trừ chi phí giáo dục đào tạo chính quy trong nước tối đa 24 triệu đồng/năm khi quyết toán thuế."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Tỷ lệ đóng bảo hiểm bắt buộc của người lao động năm 2026 là bao nhiêu?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Người lao động đóng tổng cộng 10,5% tiền lương vào các quỹ bảo hiểm bắt buộc: BHXH 8%, BHYT 1,5%, và BHTN 1%. Mức lương đóng BHXH và BHYT tối đa bằng 20 lần lương cơ sở (46,8 triệu đồng/tháng với lương cơ sở 2,34 triệu đồng), mức đóng BHTN tối đa bằng 20 lần mức lương tối thiểu vùng."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Làm thế nào để tính lương Gross sang Net hoặc Net sang Gross chính xác?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Bạn có thể sử dụng công cụ Tính Thuế TNCN Việt Nam tại https://vietvudanh.github.io/vietnam-tax-2025/ để chuyển đổi 2 chiều giữa lương Gross và Net theo cả 2 hệ thống quy định cũ và mới, bao gồm các khoản bảo hiểm bắt buộc, người phụ thuộc, và các khoản miễn giảm theo Nghị định 253/2026/NĐ-CP."
+                        }
+                    }
+                ]
             }
         </script>
     <script src="https://cdn.tailwindcss.com"></script>

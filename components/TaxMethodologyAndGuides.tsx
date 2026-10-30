@@ -37,7 +37,7 @@ import {
 } from '../types';
 
 export interface TaxMethodologyAndGuidesProps {
-  onNavigateToTab?: (tab: 'calculator' | 'annual' | 'profiles' | 'conversion' | 'latePayment' | 'changelog') => void;
+  onNavigateToTab?: (tab: 'calculator' | 'annual' | 'profiles' | 'conversion' | 'latePayment' | 'changelog' | 'guides') => void;
   onQuickLoadSalary?: (gross: number, dependents: number, targetPeriod?: TaxPeriod) => void;
 }
 
@@ -203,7 +203,7 @@ export const TaxMethodologyAndGuides: React.FC<TaxMethodologyAndGuidesProps> = (
           <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-4 text-xs space-y-2 shrink-0">
             <div className="flex items-center gap-2 font-bold text-emerald-300 text-sm">
               <Calendar className="w-4 h-4" />
-              <span>Thông tin kiểm duyệt dữ liệu</span>
+              <span>Thông tin rà soát dữ liệu</span>
             </div>
             <div className="text-slate-200">
               <span className="text-slate-400">Rà soát lần cuối:</span>{' '}

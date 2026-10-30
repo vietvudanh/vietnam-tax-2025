@@ -38,9 +38,9 @@ import {
   BonusEntry,
   AnnualComparisonResult,
 } from './types';
-import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins, Users } from 'lucide-react';
+import { TrendingDown, TrendingUp, Info, AlertCircle, Github, ExternalLink, Calculator, History, CalendarRange, ArrowLeftRight, HandCoins, Users, BookOpen } from 'lucide-react';
 
-type Tab = 'calculator' | 'annual' | 'profiles' | 'conversion' | 'latePayment' | 'changelog';
+type Tab = 'calculator' | 'annual' | 'profiles' | 'conversion' | 'latePayment' | 'changelog' | 'guides';
 
 /** Hai tab đầu dùng chung một khối nhập liệu, chỉ khác kỳ tính thuế của phần kết quả. */
 const CALCULATOR_TABS: Tab[] = ['calculator', 'annual'];
@@ -251,6 +251,7 @@ const App: React.FC = () => {
             { id: 'profiles' as const, label: 'Hồ sơ mẫu', icon: Users },
             { id: 'conversion' as const, label: 'Quy đổi Net/Gross', icon: ArrowLeftRight },
             { id: 'latePayment' as const, label: 'Tính chậm nộp', icon: HandCoins },
+            { id: 'guides' as const, label: 'Căn cứ & Phương pháp tính', icon: BookOpen },
             { id: 'changelog' as const, label: 'Lịch sử thay đổi luật', icon: History },
           ]).map(({ id, label, icon: Icon }) => (
             <button
@@ -283,6 +284,38 @@ const App: React.FC = () => {
         )}
 
         {activeTab === 'changelog' && <LawChangelog />}
+        {activeTab === 'guides' && (
+          <TaxMethodologyAndGuides
+            onNavigateToTab={(tab) => {
+              setActiveTab(tab);
+              scrollToTop();
+            }}
+            onQuickLoadSalary={(gross, dependents, targetPeriod = 'month') => {
+              setAppliedProfile({
+                id: `custom-${gross}-${dependents}`,
+                title: `Lương ${formatCurrency(gross)} (${dependents} NPT)`,
+                role: 'Ví dụ minh họa chuẩn',
+                avatarEmoji: '📊',
+                badgeLabel: `${(gross / 1_000_000).toFixed(0)}M / Tháng`,
+                badgeVariant: 'blue',
+                description: `Ví dụ minh họa lương Gross ${formatCurrency(gross)}/tháng với ${dependents} người phụ thuộc.`,
+                tier: '300m_600m',
+                monthlyGross: gross,
+                annualGross: gross * 12,
+                monthsWorked: 12,
+                dependents,
+                region: 'I',
+                customInsuranceSalary: null,
+                extra: EMPTY_EXTRA_INCOME,
+                bonuses: [],
+                highlights: [],
+                suggestedPeriod: targetPeriod,
+              });
+              setActiveTab(targetPeriod === 'year' ? 'annual' : 'calculator');
+              scrollToTop();
+            }}
+          />
+        )}
         {activeTab === 'conversion' && (
           <NetGrossConverter
             regionalMinWageMap={activeRegionalMinWage}
@@ -783,38 +816,6 @@ const App: React.FC = () => {
         <div className={`mt-8 ${isCalculatorTab ? '' : 'hidden'}`}>
           <TaxReductionChart />
         </div>
-
-        {/* Comprehensive Legal Basis, Methodology, Worked Example & FAQ Section for users and AI search crawlers */}
-        <TaxMethodologyAndGuides
-          onNavigateToTab={(tab) => {
-            setActiveTab(tab);
-            scrollToTop();
-          }}
-          onQuickLoadSalary={(gross, dependents, targetPeriod = 'month') => {
-            setAppliedProfile({
-              id: `custom-${gross}-${dependents}`,
-              title: `Lương ${formatCurrency(gross)} (${dependents} NPT)`,
-              role: 'Ví dụ minh họa chuẩn',
-              avatarEmoji: '📊',
-              badgeLabel: `${(gross / 1_000_000).toFixed(0)}M / Tháng`,
-              badgeVariant: 'blue',
-              description: `Ví dụ minh họa lương Gross ${formatCurrency(gross)}/tháng với ${dependents} người phụ thuộc.`,
-              tier: '300m_600m',
-              monthlyGross: gross,
-              annualGross: gross * 12,
-              monthsWorked: 12,
-              dependents,
-              region: 'I',
-              customInsuranceSalary: null,
-              extra: EMPTY_EXTRA_INCOME,
-              bonuses: [],
-              highlights: [],
-              suggestedPeriod: targetPeriod,
-            });
-            setActiveTab(targetPeriod === 'year' ? 'annual' : 'calculator');
-            scrollToTop();
-          }}
-        />
       </main>
 
       <footer className="bg-white border-t border-slate-200 mt-8">

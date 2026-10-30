@@ -11,6 +11,8 @@ interface LawChange {
   document: string;
   /** Link toàn văn trên Thư Viện Pháp Luật */
   url: string;
+  /** Link trên Cổng thông tin điện tử Chính phủ (vanban.chinhphu.vn) nếu có */
+  govUrl?: string;
   title: string;
   status: ChangeStatus;
   highlights: string[];
@@ -26,6 +28,7 @@ const CHANGES: LawChange[] = [
     effective: '1/7/2026',
     document: 'Nghị định 253/2026/NĐ-CP',
     url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-253-2026-ND-CP-huong-dan-Luat-Thue-thu-nhap-ca-nhan-699193.aspx',
+    govUrl: 'https://vanban.chinhphu.vn/?classid=1&docid=218684&pageid=27160',
     title: 'Hướng dẫn chi tiết Luật Thuế TNCN 2025',
     status: 'current',
     highlights: [
@@ -39,10 +42,11 @@ const CHANGES: LawChange[] = [
     ],
   },
   {
-    issued: '2026',
+    issued: '30/6/2026',
     effective: '1/7/2026',
     document: 'Thông tư 87/2026/TT-BTC',
     url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-87-2026-TT-BTC-huong-dan-Luat-Thue-thu-nhap-ca-nhan-Nghi-dinh-253-2026-ND-CP-713265.aspx',
+    govUrl: 'https://vanban.chinhphu.vn/?docid=218772&pageid=27160',
     title: 'Ngưỡng thu nhập xác định người phụ thuộc',
     status: 'current',
     highlights: [
@@ -54,6 +58,7 @@ const CHANGES: LawChange[] = [
     effective: '1/7/2026 (thu nhập tiền lương áp dụng từ kỳ tính thuế 2026)',
     document: 'Luật Thuế thu nhập cá nhân 2025 (Luật 109/2025/QH15)',
     url: 'https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-Thue-thu-nhap-ca-nhan-2025-so-109-2025-QH15-665870.aspx',
+    govUrl: 'https://vanban.chinhphu.vn/?classid=1&docid=216495&pageid=27160&typegroupid=1',
     title: 'Luật Thuế TNCN mới thay thế Luật 2007',
     status: 'current',
     highlights: [
@@ -207,7 +212,7 @@ export const LawChangelog: React.FC = () => {
                       <FileText className="w-3.5 h-3.5" />
                       <span>Ban hành {change.issued}</span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 mt-1">
+                    <h3 className="text-base font-bold text-slate-900 mt-1 flex flex-wrap items-center gap-2">
                       <a
                         href={change.url}
                         target="_blank"
@@ -217,6 +222,17 @@ export const LawChangelog: React.FC = () => {
                         {change.document}
                         <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
                       </a>
+                      {change.govUrl && (
+                        <a
+                          href={change.govUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-medium bg-blue-50 text-blue-700 hover:bg-blue-100 px-2 py-0.5 rounded border border-blue-200 inline-flex items-center gap-1"
+                        >
+                          <span>Cổng TTĐT Chính phủ</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                     </h3>
                     <p className="text-sm text-slate-600">{change.title}</p>
                   </div>

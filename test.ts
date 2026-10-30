@@ -792,6 +792,42 @@ function runDemoProfileTests(): void {
     check('thuế cũ Gen Z', res.oldReg.taxAmount, 0);
     check('thuế mới Gen Z', res.newReg.taxAmount, 0);
   });
+
+  runCase('worked example 50M Gross (1 NPT, Vùng I 2026): khớp số liệu GEO & JSON-LD', () => {
+    const minWage = REGIONAL_MIN_WAGE_2026.I;
+    const oldSide = calculateComparison(
+      50_000_000,
+      1,
+      'I',
+      null,
+      OLD_CONFIG.personalDeduction,
+      OLD_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    ).oldReg;
+
+    const newSide = calculateComparison(
+      50_000_000,
+      1,
+      'I',
+      null,
+      NEW_CONFIG.personalDeduction,
+      NEW_CONFIG.dependentDeduction,
+      minWage,
+      EMPTY_EXTRA_INCOME
+    ).newReg;
+
+    check('50M bảo hiểm bắt buộc', newSide.insurance, 4_946_000);
+    check('50M thu nhập trước thuế', newSide.incomeBeforeTax, 45_054_000);
+    check('50M thu nhập tính thuế cũ', oldSide.taxableIncome, 29_654_000);
+    check('50M thuế cũ', oldSide.taxAmount, 4_280_800);
+    check('50M net cũ', oldSide.netIncome, 40_773_200);
+    check('50M thu nhập tính thuế mới', newSide.taxableIncome, 23_354_000);
+    check('50M thuế mới', newSide.taxAmount, 1_835_400);
+    check('50M net mới', newSide.netIncome, 43_218_600);
+    check('50M tiết kiệm tháng', oldSide.taxAmount - newSide.taxAmount, 2_445_400);
+    check('50M tiết kiệm năm', (oldSide.taxAmount - newSide.taxAmount) * 12, 29_344_800);
+  });
 }
 
 function runAllTests(): void {

@@ -10,6 +10,7 @@ import { AnnualSummary } from './components/AnnualSummary';
 import { MonthlyBreakdownTable } from './components/MonthlyBreakdownTable';
 import { NetGrossConverter } from './components/NetGrossConverter';
 import { LatePaymentCalculator } from './components/LatePaymentCalculator';
+import { TaxMethodologyAndGuides } from './components/TaxMethodologyAndGuides';
 import { DemoProfile } from './data/demoProfiles';
 import {
   calculateComparison,
@@ -782,13 +783,70 @@ const App: React.FC = () => {
         <div className={`mt-8 ${isCalculatorTab ? '' : 'hidden'}`}>
           <TaxReductionChart />
         </div>
+
+        {/* Comprehensive Legal Basis, Methodology, Worked Example & FAQ Section for users and AI search crawlers */}
+        <TaxMethodologyAndGuides
+          onNavigateToTab={(tab) => {
+            setActiveTab(tab);
+            scrollToTop();
+          }}
+          onQuickLoadSalary={(gross, dependents, targetPeriod = 'month') => {
+            setAppliedProfile({
+              id: `custom-${gross}-${dependents}`,
+              title: `Lương ${formatCurrency(gross)} (${dependents} NPT)`,
+              role: 'Ví dụ minh họa chuẩn',
+              avatarEmoji: '📊',
+              badgeLabel: `${(gross / 1_000_000).toFixed(0)}M / Tháng`,
+              badgeVariant: 'blue',
+              description: `Ví dụ minh họa lương Gross ${formatCurrency(gross)}/tháng với ${dependents} người phụ thuộc.`,
+              tier: '300m_600m',
+              monthlyGross: gross,
+              annualGross: gross * 12,
+              monthsWorked: 12,
+              dependents,
+              region: 'I',
+              customInsuranceSalary: null,
+              extra: EMPTY_EXTRA_INCOME,
+              bonuses: [],
+              highlights: [],
+              suggestedPeriod: targetPeriod,
+            });
+            setActiveTab(targetPeriod === 'year' ? 'annual' : 'calculator');
+            scrollToTop();
+          }}
+        />
       </main>
 
       <footer className="bg-white border-t border-slate-200 mt-8">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-            <div>Made by <a className="text-slate-700 font-medium hover:underline" href="https://github.com/vietvudanh" target="_blank" rel="noopener noreferrer">vietvudanh</a></div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span>
+                Made by{' '}
+                <a
+                  className="text-slate-700 font-medium hover:underline"
+                  href="https://github.com/vietvudanh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  vietvudanh
+                </a>
+              </span>
+              <span className="text-slate-300">•</span>
+              <span className="text-xs text-slate-500">
+                Rà soát pháp lý: <time dateTime="2026-10-30" className="font-medium text-slate-700">30/10/2026</time> (Luật 109/2025/QH15 &amp; NĐ 253/2026/NĐ-CP)
+              </span>
+            </div>
             <div className="flex items-center justify-center flex-wrap gap-3">
+              <a
+                href="/vietnam-tax-2025/llms.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-slate-500 hover:text-blue-600 hover:underline transition-colors"
+              >
+                llms.txt
+              </a>
+              <span className="text-slate-300">•</span>
               <a
                 href={BLOG_URL}
                 target="_blank"
@@ -805,6 +863,9 @@ const App: React.FC = () => {
               </a>
             </div>
           </div>
+          <p className="text-xs text-slate-400 text-center sm:text-left">
+            Công cụ cung cấp kết quả tính toán ước lượng dựa trên văn bản pháp luật Việt Nam hiện hành, phục vụ mục đích tham khảo và không thay thế tư vấn thuế chuyên nghiệp.
+          </p>
         </div>
       </footer>
     </div>

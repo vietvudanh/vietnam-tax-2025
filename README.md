@@ -39,6 +39,7 @@ Công cụ tính **Thuế Thu nhập Cá nhân (TNCN) Việt Nam** toàn diện,
 | 📆 **Monthly Withholding Table** | Bảng chi tiết 12 tháng, tự đánh dấu tháng bị tạm khấu trừ cao bất thường (thưởng Tết, lương tháng 13) |
 | ↔️ **Net/Gross Converter** | Tab "Quy đổi Net/Gross": quy đổi hai chiều Gross → Net và Net → Gross, hiển thị song song theo quy định cũ và mới |
 | 🧮 **Late Payment Calculator** | Tab "Tính chậm nộp": tính tiền chậm nộp tiền thuế hoặc chậm nộp tiền phạt theo từng giai đoạn pháp lý, kèm bảng diễn giải chi tiết |
+| 🤖 **GEO & Legal Methodology** | Tối ưu hóa cho công cụ tìm kiếm AI (ChatGPT Search / `OAI-SearchBot`, Perplexity, Google AI Overviews): phần diễn giải phương pháp tính, bài toán mẫu 50 triệu/tháng, hướng dẫn thuế cho người nước ngoài (Expat), liên kết trực tiếp Cổng TTĐT Chính phủ (`vanban.chinhphu.vn`), dữ liệu có cấu trúc JSON-LD (`WebApplication` + `FAQPage`) và tệp `llms.txt` |
 
 ---
 

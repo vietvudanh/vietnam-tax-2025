@@ -42,7 +42,10 @@ App.tsx                  # Layout, 4-tab switching, result cards, detail tables
 │   ├── MonthlyBreakdownTable.tsx # Year mode: 12-month withholding table, flags spiky months
 │   ├── TaxReductionChart.tsx   # Gross salary vs tax reduction curve (drives off calculateComparison)
 │   ├── DemoProfiles.tsx        # Tab 3: realistic profiles gallery (200M, 500M, 1B, 100M/mo...) + matrix table
-│   └── LawChangelog.tsx        # Tab 4: law history timeline (static data in-file)
+│   ├── NetGrossConverter.tsx   # Tab 4: bidirectional Gross ⇄ Net monthly converter
+│   ├── LatePaymentCalculator.tsx # Tab 5: late tax/fine interest calculator across legal periods
+│   ├── LawChangelog.tsx        # Tab 6: law history timeline (static data in-file)
+│   └── TaxMethodologyAndGuides.tsx # Crawl-friendly methodology, 50M worked example, official legal links & FAQ
 ├── data/
 │   └── demoProfiles.ts         # 20 taxpayer profiles covering diverse employment types, NĐ 253 scenarios & meme profiles
 ├── utils/taxCalculator.ts  # All tax math; OLD_CONFIG / NEW_CONFIG live here
